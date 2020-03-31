@@ -4,15 +4,14 @@ public class LiveConcert extends Entertainment{
 	
 	protected String band;
 	
-	public LiveConcert(int yearOfRelease, String title, String genre, String band) {
+	public LiveConcert(int yearOfRelease, String title, String genre, boolean rented, String band) {
+		super(yearOfRelease, title, genre, rented);
+		// TODO Auto-generated constructor stub
 		
 		this.band = band;
-		this.yearOfRelease = yearOfRelease;
-		this.title = title;
-		this.genre = genre;
-		
 	}
-
+	
+	
 	public String getBand() {
 		return band;
 	}

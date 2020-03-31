@@ -5,6 +5,15 @@ public abstract class Entertainment {
 	protected int yearOfRelease;
 	protected String title;
 	protected String genre;
+	protected boolean rented = false;
+	
+	public Entertainment(int yearOfRelease, String title, String genre, boolean rented) {
+		
+		this.yearOfRelease = yearOfRelease;
+		this.title = title;
+		this.genre = genre;
+		this.rented = rented;
+	}
 
 	public int getYearOfRelease() {
 		return yearOfRelease;
@@ -28,6 +37,14 @@ public abstract class Entertainment {
 
 	public void setGenre(String genre) {
 		this.genre = genre;
+	}
+
+	public boolean isRented() {
+		return rented;
+	}
+
+	public void setRented(boolean rented) {
+		this.rented = rented;
 	}
 
 }

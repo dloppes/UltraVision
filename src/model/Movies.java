@@ -1,17 +1,16 @@
 package model;
 
 public class Movies extends Entertainment {
-
+	
 	private String director;
 
-	public Movies(int yearOfRelease, String title, String genre, String director) {
-
+	public Movies(int yearOfRelease, String title, String genre, boolean rented, String director) {
+		super(yearOfRelease, title, genre, rented);
+		// TODO Auto-generated constructor stub
+		
 		this.director = director;
-		this.yearOfRelease = yearOfRelease;
-		this.title = title;
-		this.genre = genre;
-
 	}
+	
 
 	public String getDirector() {
 		return director;
