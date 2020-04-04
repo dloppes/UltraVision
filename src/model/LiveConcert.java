@@ -1,6 +1,8 @@
 package model;
 
-public class LiveConcert extends Entertainment{
+import interfaces.BluRay;
+
+public class LiveConcert extends Entertainment implements BluRay{
 	
 	protected String band;
 	
@@ -18,5 +20,12 @@ public class LiveConcert extends Entertainment{
 	
 	public void setBand(String band) {
 		this.band = band;
+	}
+
+
+	@Override
+	public void bluRayFormat() {
+		// TODO Auto-generated method stub
+		
 	}
 }

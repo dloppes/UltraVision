@@ -6,23 +6,74 @@ public class Customer {
 	protected String lName;
 	protected int phoneNumber;
 	protected String email;
-	protected String[] collection = new String[4];
-	protected String membership;
+	protected String[] collection = new String[4];// object instead of string
+	protected String plan;
 	protected String cardNumber;
-	protected String cardFunction;
+	protected Customer c;
 
-	public Customer(String fName, String lName, int phoneNumber, String email, String[] collection, String membership,
-			String cardNumber, String cardFunction) {
+	public Customer(String fName, String lName, int phoneNumber, String email, String[] collection, String plan,
+			String cardNumber) {
 
 		this.collection = collection;
 		this.email = email;
 		this.fName = fName;
 		this.lName = lName;
 		this.phoneNumber = phoneNumber;
-		this.membership = membership;
+		this.plan = plan;
 		this.cardNumber = cardNumber;
-		this.cardFunction = cardFunction;
+		loyaltyCard mermbershipCard = new loyaltyCard(c);
+
 	}
+//-------------------------------------------------Inner Class - Loyalty Card -------------------------------------------------------------// 		
+		public class loyaltyCard {
+
+			Customer c; // instance of customer
+			protected int points;
+			protected boolean freeRentAllowed;
+
+			public loyaltyCard(Customer c) { 
+				// passing the object of c (customer) to attach it to the new card.
+				this.c = c;
+				points = 0; // zero value because it is a brand new card.
+
+			}
+
+			public void addPoints(int points) {
+
+				this.points += points;
+
+			}
+
+			public boolean availFreeRent() {
+				if (this.isfreeRentAllowed()) {
+					this.points -= 100;
+					setRentAllowed();
+					return true;
+				} else {
+					return false;
+				}
+			}
+
+			private void setRentAllowed() {
+				if (this.points >= 100) {
+					this.freeRentAllowed = true;
+				} else {
+					this.freeRentAllowed = false;
+				}
+			}
+
+			public int getNumberOfPoints() {
+				return points;
+			}
+
+			public boolean isfreeRentAllowed() {
+				return freeRentAllowed;
+
+			}
+
+		}
+	
+//------------------------------------------------------------------------------------------------------------------------------------------//	
 
 	public String getfName() {
 		return fName;
@@ -94,19 +145,11 @@ public class Customer {
 	}
 
 	public String getPlan() {
-		return membership;
+		return plan;
 	}
 
-	public void setPlan(String membership) {
-		this.membership = membership;
-	}
-
-	public String getCardFunction() {
-		return cardFunction;
-	}
-
-	public void setCardFunction(String cardFunction) {
-		this.cardFunction = cardFunction;
+	public void setPlan(String plan) {
+		this.plan = plan;
 	}
 
 }

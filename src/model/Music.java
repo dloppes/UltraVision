@@ -1,6 +1,8 @@
 package model;
 
-public class Music extends Entertainment {
+import interfaces.CD;
+
+public class Music extends Entertainment implements CD{
 
 	protected String singer;
 
@@ -17,6 +19,12 @@ public class Music extends Entertainment {
 
 	public void setSinger(String singer) {
 		this.singer = singer;
+	}
+
+	@Override
+	public void cdFormat() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
