@@ -38,12 +38,10 @@ public class menuView extends JFrame implements View {
 
 		JPanel p = new JPanel();
 		this.add(p);
-		// --------------------------------------------------Creating JMenu
-		// Bar---------------------------------------------------------------------------
+// --------------------------------------------------Creating JMenu Bar---------------------------------------------------------------------------
 		JMenuBar myMenuBar = new JMenuBar();
 		this.setJMenuBar(myMenuBar);
-		// --------------------------------------------------Creating JMenu
-		// ------------------------------------------------------------------------------
+// --------------------------------------------------Creating JMenu ------------------------------------------------------------------------------
 		JMenu customer = new JMenu(" Customer ");
 		JMenu titles = new JMenu(" Titles ");
 		JMenu stock = new JMenu(" Stock ");
@@ -52,14 +50,12 @@ public class menuView extends JFrame implements View {
 		logout.add(exit);
 		exit.addActionListener((ActionListener) controllerInternalRef); // adding button to action listener
 		exit.setActionCommand("logout");// setting the value that actives action command
-		// --------------------------------------------------Adding the JMenu into my
-		// JMenu Bar------------------------------------------------------------
+// --------------------------------------------------Adding the JMenu into my JMenu Bar------------------------------------------------------------
 		myMenuBar.add(customer);
 		myMenuBar.add(titles);
 		myMenuBar.add(stock);
 		myMenuBar.add(logout);
-		// --------------------------------------------------Creating JMenuItems &
-		// Adding into JMenu-------------------------------------------------------
+// --------------------------------------------------Creating JMenuItems & Adding into JMenu-------------------------------------------------------
 		JMenuItem newCustomer = new JMenuItem(" New Customer");
 		newCustomer.addActionListener((ActionListener) controllerInternalRef); // adding button to action listener
 		newCustomer.setActionCommand("newCustomer");// setting the value that actives action command

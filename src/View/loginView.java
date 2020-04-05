@@ -1,5 +1,7 @@
 package View;
 
+import java.awt.event.ActionListener;
+
 //import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
@@ -9,16 +11,19 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import controller.loginController;
 //import Controller.adminLoginController;
 import interfaces.View;
 
-public class welcomeView extends JFrame implements View {
+public class loginView extends JFrame implements View {
 
 	private JTextField username;
 	private JPasswordField password;
-//	private adminLoginController controllerInternalRef;
+	private loginController controllerInternalRef;
 
-	public welcomeView() {
+	public loginView(loginController controller) {
+		
+		this.controllerInternalRef = controller;
 		attributeSetter();
 		components();
 		validation();
@@ -47,8 +52,7 @@ public class welcomeView extends JFrame implements View {
 		password = new JPasswordField(20); // assigning size of text field tf2
 
 		JButton login = new JButton("Login"); // login button created
-		// login.addActionListener((ActionListener) controllerInternalRef); //adding
-		// button to action listener
+		login.addActionListener((ActionListener) controllerInternalRef); // adding button to action listener
 		login.setActionCommand("login");// setting the value that actives action command
 
 		p.add(user); // adding JLabel "user" to the panel
@@ -67,4 +71,11 @@ public class welcomeView extends JFrame implements View {
 
 	}
 
+	public String getUsername() {
+		return username.getText();
+	}
+
+	public String getPassword() {
+		return new String(password.getPassword());
+	}
 }

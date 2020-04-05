@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 
 import View.menuView;
 
-import View.welcomeView;
+import View.loginView;
 
 
 
