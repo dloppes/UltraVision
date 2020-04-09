@@ -59,14 +59,17 @@ public class connection {
 
 	}
 
-	public void ExecuteSet(String query) {
+	public boolean ExecuteSet(String query) {
+		
+		boolean result = false;
 		try {
 			stmt.execute(query);
-
+			
+			result = true;
 		} catch (SQLException ex) {
 			Logger.getLogger(connection.class.getName()).log(Level.SEVERE, null, ex);
 
 		}
-
+		return result;
 	}
 }

@@ -1,10 +1,9 @@
 package model;
 
-import interfaces.DVD;
-
-public class Movies extends Entertainment implements DVD {
+public class Movies extends Entertainment {
 
 	private String director;
+	protected Format format = Format.DVD;
 
 	public Movies(int yearOfRelease, String title, String genre, boolean rented, String director) {
 		super(yearOfRelease, title, genre, rented);
@@ -19,12 +18,6 @@ public class Movies extends Entertainment implements DVD {
 
 	public void setDirector(String director) {
 		this.director = director;
-	}
-
-	@Override
-	public void dvdFormat() {
-		// TODO Auto-generated method stub
-
 	}
 
 }

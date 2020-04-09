@@ -12,12 +12,12 @@ import model.connection;
 
 public class loginController implements ActionListener {
 
-	connection conn;
+	
 	loginView loginView;
 	Employee employee;
 
 	public loginController() {
-		new connection();
+	
 		loginView = new loginView(this);
 	}
 

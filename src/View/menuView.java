@@ -16,6 +16,8 @@ public class menuView extends JFrame implements View {
 	private menuController controllerInternalRef;
 
 	public menuView(menuController controller) {
+		
+		this.controllerInternalRef = controller;
 		attributeSetter();
 		components();
 		validation();
