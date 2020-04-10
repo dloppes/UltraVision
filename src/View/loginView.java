@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import controller.loginController;
+import controller.LoginController;
 //import Controller.adminLoginController;
 import interfaces.View;
 
@@ -19,9 +19,9 @@ public class loginView extends JFrame implements View {
 
 	private JTextField username;
 	private JPasswordField password;
-	private loginController controllerInternalRef;
+	private LoginController controllerInternalRef;
 
-	public loginView(loginController controller) {
+	public loginView(LoginController controller) {
 		
 		this.controllerInternalRef = controller;
 		attributeSetter();
