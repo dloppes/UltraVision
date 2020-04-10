@@ -1,81 +1,103 @@
 package View;
 
-import java.awt.event.ActionListener;
-
-//import java.awt.event.ActionListener;
-
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
+import javax.swing.*;
+import javax.swing.border.LineBorder;
 
 import controller.LoginController;
-//import Controller.adminLoginController;
-import interfaces.View;
 
-public class loginView extends JFrame implements View {
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.*;
 
-	private JTextField username;
-	private JPasswordField password;
-	private LoginController controllerInternalRef;
+public class LoginView implements ActionListener {
+	JPanel contentPanel;
+	JTextField usernameField;
+	JPasswordField passwordField;
+	LoginController loginController;
+	
+	public JFrame f;
 
-	public loginView(LoginController controller) {
-		
-		this.controllerInternalRef = controller;
-		attributeSetter();
-		components();
-		validation();
+	public LoginView() {
+		f = new JFrame();
+		f.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		JTextArea area = new JTextArea();
+		area.setBounds(20, 75, 250, 200);
+		f.add(area);
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		f.setBounds(100, 100, 605, 366);
+
+		contentPanel = new JPanel();
+		contentPanel.setBackground(new Color(0, 0, 0));
+		contentPanel.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+		contentPanel.setLayout(null);
+
+		JLabel lblNewLabel = new JLabel("New label");
+		lblNewLabel.setIcon(new ImageIcon(LoginView.class.getResource("/img/logo3-removebg-preview.png")));
+		lblNewLabel.setBounds(12, 0, 776, 136);
+		contentPanel.add(lblNewLabel);
+
+		JLabel lblUser = new JLabel("USER:");
+		lblUser.setBackground(new Color(255, 255, 255));
+		lblUser.setForeground(new Color(255, 255, 255));
+		lblUser.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblUser.setBounds(90, 151, 60, 32);
+		contentPanel.add(lblUser);
+
+		usernameField = new JTextField(20);
+		lblUser.setLabelFor(usernameField);
+		usernameField.setBounds(162, 149, 352, 38);
+		contentPanel.add(usernameField);
+		usernameField.setColumns(10);
+
+		JLabel lblPassword = new JLabel("PASSWORD:");
+		lblPassword.setForeground(new Color(255, 255, 255));
+		lblPassword.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblPassword.setBounds(48, 228, 114, 32);
+		contentPanel.add(lblPassword);
+
+		passwordField = new JPasswordField(20);
+		passwordField.setBounds(162, 226, 352, 38);
+		contentPanel.add(passwordField);
+
+		JButton btnLogin = new JButton("LOGIN");
+		btnLogin.setFont(new Font("Tahoma", Font.BOLD, 16));
+		btnLogin.setBounds(399, 296, 97, 25);
+		btnLogin.addActionListener(this);
+		btnLogin.setActionCommand("login");
+		contentPanel.add(btnLogin);
+
+		f.setLocationRelativeTo(null);
+		f.setUndecorated(true);
+
+		f.setContentPane(contentPanel);
+		f.validate();
+		f.repaint();
+
+		f.setVisible(true);
 	}
 
-	@Override
-	public void attributeSetter() {
-		// TODO Auto-generated method stub
-		this.setVisible(true);
-		this.setSize(300, 300);
-		this.setTitle("Welcome to UltraVision System!");
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	public void actionPerformed(ActionEvent e) {
+
+		// To keep this MVC, we have username and password here
+		// BUT the view should not know about business logic.
+
+		loginController = new LoginController();
+
+		if (e.getActionCommand().equals("login")) {
+
+			String username = usernameField.getText();
+			String password = passwordField.getText();
+
+			loginController.login(username, password);
+
+		}
+
+//    String words[]=text.split("\\s");  
+//    l1.setText("Words: "+words.length);  
+//    l2.setText("Characters: "+text.length());  
 	}
 
-	@Override
-	public void components() {
-		// TODO Auto-generated method stub
-
-		JPanel p = new JPanel();
-		this.add(p);
-
-		JLabel user = new JLabel("Username:");
-		username = new JTextField(20); // assigning size of text field tf1
-
-		JLabel psw = new JLabel("Password:");
-		password = new JPasswordField(20); // assigning size of text field tf2
-
-		JButton login = new JButton("Login"); // login button created
-		login.addActionListener((ActionListener) controllerInternalRef); // adding button to action listener
-		login.setActionCommand("login");// setting the value that actives action command
-
-		p.add(user); // adding JLabel "user" to the panel
-		p.add(username); // adding text field "username" to the panel
-		p.add(psw); // adding JLabel "psw" to the panel
-		p.add(password); // adding text field "password" to the panel
-		p.add(login); // adding button "submit" to the panel
-
-	}
-
-	@Override
-	public void validation() {
-		// TODO Auto-generated method stub
-		this.validate();
-		this.repaint();
-
-	}
-
-	public String getUsername() {
-		return username.getText();
-	}
-
-	public String getPassword() {
-		return new String(password.getPassword());
+	public static void main(String[] args) {
+		new LoginView();
 	}
 }

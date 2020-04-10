@@ -5,16 +5,20 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
-import View.login;
-import View.loginView;
+import View.LoginView;
 import model.Employee;
 import model.userLogged;
 
-public class LoginController {
+public class LoginController implements ActionListener {
 
 //	loginView loginView;
-//	login Loginview;
+	LoginView loginview;
 	Employee employee;
+	
+	public LoginController() {
+		loginview = new LoginView();
+	}
+	
 
 	public void login(String username, String password) {
 
@@ -27,9 +31,10 @@ public class LoginController {
 		boolean login = eLogin.loginValidator(user);
 
 		if (login) {
+//			loginview.contentPanel.setVisible(false);
+			loginview.f.setVisible(false);
 			new menuController();
-			//Loginview
-
+			
 		}
 
 		else {
@@ -37,6 +42,13 @@ public class LoginController {
 
 		}
 
+	}
+
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
