@@ -5,17 +5,17 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
-import View.newCustomerView;
+import View.NewCustomerView;
 import model.Customer;
 
-public class newCustomerController implements ActionListener{
+public class NewCustomerController implements ActionListener{
 
-	newCustomerView newCustomerView;
+	NewCustomerView newCustomerView;
 	
 	
-	public newCustomerController() {
+	public NewCustomerController() {
 		
-		newCustomerView = new newCustomerView(this);
+		newCustomerView = new NewCustomerView(this);
 	}
 
 

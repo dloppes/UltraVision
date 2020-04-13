@@ -5,6 +5,7 @@ import java.sql.SQLException;
 
 public class Customer {
 
+	protected Membership membership;
 	protected String fName;
 	protected String lName;
 	protected int phoneNumber;
@@ -97,29 +98,47 @@ public class Customer {
 
 		public void newLoyaltyCard(Customer customer) {
 
-			
 			loyaltyCard mermbershipCard = new loyaltyCard(customer);
 			int cardPoints = 0;
-			int id=0;
+			int id = 0;
 
 			String query = "SELECT customerID FROM customer WHERE email = '" + customer.getEmail() + "'";
 			ResultSet rs = conn.executeQuery(query);
-			
+
 			try {
-				while(rs.next()) {
+				while (rs.next()) {
 					id = rs.getInt("customerID");
 				}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
 
-			query = "INSERT INTO loyaltyCard (numberOfPoints, customerID) " + "VALUES ( '" + cardPoints + "', '"
-					+ id + "');";
+			query = "INSERT INTO loyaltyCard (numberOfPoints, customerID) " + "VALUES ( '" + cardPoints + "', '" + id
+					+ "');";
 
 			conn.ExecuteSet(query);
 
+		}
+
+	}
+
+	public class updateCustomer {
+
+		connection conn = new connection();
+
+		public boolean updateCustomerDetails(Customer customer, String userID) {
+			
+			boolean updatedCustomer = false;
+			
+			String query = "UPDATE customer SET fName = '" + customer.getfName() + "', lName = '" + customer.getlName() + "',"
+	                + "email = '" + customer.getEmail() + "', cardNumber = '" + customer.getCardNumber() + "', plan = '" + customer.getPlan() + "', phoneNumber = '" + customer.getPhoneNumber() + "'"
+	                + "WHERE customerID='" + userID + "');";
+
+			updatedCustomer = conn.ExecuteSet(query);
+
+	        return updatedCustomer;
+			
 		}
 
 	}
