@@ -8,7 +8,7 @@ public class Customer {
 	protected Membership membership;
 	protected String fName;
 	protected String lName;
-	protected int phoneNumber;
+	protected String phoneNumber;
 	protected String email;
 	protected String[] collection = new String[4];// object instead of string
 	protected String plan;
@@ -16,7 +16,7 @@ public class Customer {
 	protected String customerID;
 	protected Customer c;
 
-	public Customer(String fName, String lName, int phoneNumber, String email, String plan, String cardNumber) {
+	public Customer(String fName, String lName, String phoneNumber, String email, String plan, String cardNumber) {
 
 		this.email = email;
 		this.fName = fName;
@@ -128,17 +128,18 @@ public class Customer {
 		connection conn = new connection();
 
 		public boolean updateCustomerDetails(Customer customer, String userID) {
-			
+
 			boolean updatedCustomer = false;
-			
-			String query = "UPDATE customer SET fName = '" + customer.getfName() + "', lName = '" + customer.getlName() + "',"
-	                + "email = '" + customer.getEmail() + "', cardNumber = '" + customer.getCardNumber() + "', plan = '" + customer.getPlan() + "', phoneNumber = '" + customer.getPhoneNumber() + "'"
-	                + "WHERE customerID='" + userID + "');";
+
+			String query = "UPDATE customer SET fName = '" + customer.getfName() + "', lName = '" + customer.getlName()
+					+ "'," + "email = '" + customer.getEmail() + "', cardNumber = '" + customer.getCardNumber()
+					+ "', plan = '" + customer.getPlan() + "', phoneNumber = '" + customer.getPhoneNumber() + "'"
+					+ "WHERE customerID='" + userID + "');";
 
 			updatedCustomer = conn.ExecuteSet(query);
 
-	        return updatedCustomer;
-			
+			return updatedCustomer;
+
 		}
 
 	}
@@ -191,11 +192,11 @@ public class Customer {
 			this.cardNumber = cardNumber;
 	}
 
-	public int getPhoneNumber() {
+	public String getPhoneNumber() {
 		return phoneNumber;
 	}
 
-	public void setPhoneNumber(int phoneNumber) {
+	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 

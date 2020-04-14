@@ -31,6 +31,7 @@ public class CustomerListView extends JFrame implements ActionListener {
 	private JComboBox customerComboBox;
 	private JButton selectButton;
 	private JFrame frame;
+	
 
 	public CustomerListView() {
 
@@ -110,7 +111,7 @@ public class CustomerListView extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		try {
-			String selectedCustomerID = customerComboBox.getSelectedItem().toString();
+			selectedCustomerID = customerComboBox.getSelectedItem().toString();
 			selectedCustomerID = selectedCustomerID.split(" ")[0];
 
 			String query = "Select * FROM customer WHERE customerID = '" + selectedCustomerID + "'";

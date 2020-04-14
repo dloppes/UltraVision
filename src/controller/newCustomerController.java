@@ -26,7 +26,7 @@ public class NewCustomerController implements ActionListener{
 		String fName = newCustomerView.getFirstName();
         String lName = newCustomerView.getLastName();
         String email = newCustomerView.getEmail();
-        int phoneNumber = newCustomerView.getPhoneNumber();
+        String phoneNumber = newCustomerView.getPhoneNumber();
         String cardNumber = newCustomerView.getCardNumber();
         String plan = newCustomerView.getPlan();
 		

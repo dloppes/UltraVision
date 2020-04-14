@@ -3,6 +3,8 @@ package View;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -15,6 +17,11 @@ import javax.swing.border.LineBorder;
 
 import controller.UpdateCustomerController;
 import model.connection;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
+
+import model.Customer;
+import model.Membership;
 
 public class UpdateCustomerView extends JFrame {
 
@@ -24,32 +31,58 @@ public class UpdateCustomerView extends JFrame {
 	private JTextField lNameTextField;
 	private JTextField emailTextField;
 	private JTextField cardNumberTextField;
-	private JTextField planTextField;
 	private JTextField phoneNumberTextField;
 	private String userID;
+	private JComboBox planBox;
+	private ResultSet rs;
+	private connection conn;
+	private Customer customer;
 
 	public UpdateCustomerView(UpdateCustomerController controllerInternalRef, String userID) {
 
 		this.controllerInternalRef = controllerInternalRef;
 		this.userID = userID;
+
+		getCustomerDetails(userID);
+
 		components(controllerInternalRef, userID);
 
 	}
 
+	public Object getCustomerDetails(String userID) {
+
+		String fName = "";
+		String lName = "";
+		String email = "";
+		String cardNumber = "";
+		String phoneNumber = "";
+		String plan = "";
+
+		try {
+			conn = new connection();
+
+			String query = "Select * FROM customer WHERE customerID = '" + userID + "'";
+			rs = conn.executeQuery(query);
+
+			while (rs.next()) {
+				fName = rs.getString("fName");
+				lName = rs.getString("lName");
+				email = rs.getString("email");
+				cardNumber = rs.getString("cardNumber");
+				phoneNumber = rs.getString("phoneNumber");
+				plan = rs.getString("plan");
+			}
+		} catch (Exception e) {
+			System.out.println("SOmething went wrong");
+		}
+
+		customer = new Customer(fName, lName, email, cardNumber, phoneNumber, plan);
+
+		return customer;
+
+	}
+
 	public void components(UpdateCustomerController controllerInternalRef, String userID) {
-
-//		String fName = "";
-//		String lName = "";
-//		String email = "";
-//		String cardNumber = "";
-//		String plan = "";
-//		int phoneNumber;
-
-//		conn = new connection();
-//
-//		String query = "Select * FROM customer WHERE customerID = '" + userID + "'";
-//		ResultSet rs = conn.executeQuery(query);
-
 
 		JFrame frame = new JFrame();
 
@@ -73,8 +106,8 @@ public class UpdateCustomerView extends JFrame {
 		txtpnNewCustomer.setBackground(new Color(0, 0, 0));
 		txtpnNewCustomer.setForeground(new Color(189, 183, 107));
 		txtpnNewCustomer.setFont(new Font("Calibri", Font.BOLD, 30));
-		txtpnNewCustomer.setText("  New Customer");
-		txtpnNewCustomer.setBounds(413, 52, 215, 53);
+		txtpnNewCustomer.setText("Update Customer");
+		txtpnNewCustomer.setBounds(394, 52, 234, 53);
 		contentPane.add(txtpnNewCustomer);
 
 		JLabel lblFirstName = new JLabel("First Name:");
@@ -89,7 +122,7 @@ public class UpdateCustomerView extends JFrame {
 		firstNameField.setBounds(188, 162, 415, 32);
 		contentPane.add(firstNameField);
 		firstNameField.setColumns(10);
-		//firstNameField.setText(fName);
+		firstNameField.setText(customer.getfName());
 
 		JLabel lblLastName = new JLabel("Last Name:");
 		lblLastName.setForeground(Color.WHITE);
@@ -103,7 +136,7 @@ public class UpdateCustomerView extends JFrame {
 		lNameTextField.setColumns(10);
 		lNameTextField.setBounds(188, 225, 415, 32);
 		contentPane.add(lNameTextField);
-		//lNameTextField.setText(lName);
+		lNameTextField.setText(customer.getlName());
 
 		JLabel lblEmail = new JLabel("Email:");
 		lblEmail.setForeground(Color.WHITE);
@@ -117,7 +150,7 @@ public class UpdateCustomerView extends JFrame {
 		emailTextField.setColumns(10);
 		emailTextField.setBounds(188, 287, 415, 32);
 		contentPane.add(emailTextField);
-		//emailTextField.setText(email);
+		emailTextField.setText(customer.getEmail());
 
 		JLabel lblCardNumber = new JLabel("Card Number:");
 		lblCardNumber.setForeground(Color.WHITE);
@@ -131,7 +164,7 @@ public class UpdateCustomerView extends JFrame {
 		cardNumberTextField.setColumns(10);
 		cardNumberTextField.setBounds(188, 346, 415, 32);
 		contentPane.add(cardNumberTextField);
-		//cardNumberTextField.setText(cardNumber);
+		cardNumberTextField.setText(customer.getCardNumber());
 
 		JLabel lblPlan = new JLabel("Plan:");
 		lblPlan.setForeground(Color.WHITE);
@@ -139,13 +172,6 @@ public class UpdateCustomerView extends JFrame {
 		lblPlan.setBackground(Color.WHITE);
 		lblPlan.setBounds(118, 405, 58, 32);
 		contentPane.add(lblPlan);
-
-		planTextField = new JTextField(10);
-		lblPlan.setLabelFor(planTextField);
-		planTextField.setColumns(10);
-		planTextField.setBounds(188, 408, 415, 32);
-		contentPane.add(planTextField);
-		//planTextField.setText(plan);
 
 		JLabel lblPhoneNumber = new JLabel("Phone Number:");
 		lblPhoneNumber.setForeground(Color.WHITE);
@@ -159,15 +185,20 @@ public class UpdateCustomerView extends JFrame {
 		phoneNumberTextField.setColumns(10);
 		phoneNumberTextField.setBounds(188, 467, 415, 32);
 		contentPane.add(phoneNumberTextField);
-		// phoneNumberTextField.setText(phoneNumber);
+		phoneNumberTextField.setText(customer.getPhoneNumber());
 
-		JButton createButton = new JButton("Create");
-		createButton.setBorder(new LineBorder(Color.ORANGE, 1, true));
-		createButton.setFont(new Font("Tahoma", Font.BOLD, 20));
-		createButton.setBounds(476, 525, 127, 38);
-		createButton.addActionListener((ActionListener) controllerInternalRef);
-		createButton.setActionCommand("update");
-		contentPane.add(createButton);
+		JButton updateButton = new JButton("Update");
+		updateButton.setBorder(new LineBorder(Color.ORANGE, 1, true));
+		updateButton.setFont(new Font("Tahoma", Font.BOLD, 20));
+		updateButton.setBounds(476, 525, 127, 38);
+		updateButton.addActionListener((ActionListener) controllerInternalRef);
+		updateButton.setActionCommand("update");
+		contentPane.add(updateButton);
+
+		planBox = new JComboBox();
+		planBox.setModel(new DefaultComboBoxModel(Membership.values()));
+		planBox.setBounds(188, 401, 415, 36);
+		contentPane.add(planBox);
 
 		frame.validate();
 		frame.repaint();
@@ -200,11 +231,12 @@ public class UpdateCustomerView extends JFrame {
 
 //------------------------------------------------------------------Get  Plan---------------------------------------------------------------------       
 	public String getPlan() {
-		return planTextField.getText();
+		String planTextField;
+		planTextField = planBox.getSelectedItem().toString();
+		return planTextField;
 	}
 
-	public int getPhoneNumber() {
-		int number = Integer.parseInt(phoneNumberTextField.getText());
-		return number;
+	public String getPhoneNumber() {
+		return phoneNumberTextField.getText();
 	}
 }

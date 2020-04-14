@@ -177,8 +177,7 @@ public class NewCustomerView extends JFrame {
 		return planTextField;
 	}
 
-	public int getPhoneNumber() {
-		int number = Integer.parseInt(phoneNumberTextField.getText());
-		return number;
+	public String getPhoneNumber() {
+		return phoneNumberTextField.getText();
 	}
 }

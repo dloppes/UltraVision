@@ -22,17 +22,22 @@ public class UpdateCustomerController implements ActionListener {
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
+	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
+		
+		String ac = e.getActionCommand();
+		if(ac.equals("update")){
+			
+		
 
 		String fName = UpdateCustomerView.getFirstName();
 		String lName = UpdateCustomerView.getLastName();
 		String email = UpdateCustomerView.getEmail();
 		String cardNumber = UpdateCustomerView.getCardNumber();
 		String plan = UpdateCustomerView.getPlan();
-		int phoneNumber = UpdateCustomerView.getPhoneNumber();
+		String phoneNumber = UpdateCustomerView.getPhoneNumber();
 
-		Customer customer = new Customer(fName, lName, phoneNumber, cardNumber, plan, email);
+		Customer customer = new Customer(fName, lName, phoneNumber, email, plan, cardNumber );
 
 		Customer.updateCustomer updateCustomer = customer.new updateCustomer();
 
@@ -41,12 +46,14 @@ public class UpdateCustomerController implements ActionListener {
 		if (updatedCustomer) {
 
 			this.UpdateCustomerView.dispose();
+			JOptionPane.showMessageDialog(null, customer.getfName() + " " + customer.getlName() + " Updated Successfuly!");
 
 		} else {
 			JOptionPane.showMessageDialog(null, "Something went wrong, please try again!");
 
 		}
 
+	}
 	}
 
 }
