@@ -10,7 +10,7 @@ public class Customer {
 	protected String lName;
 	protected String phoneNumber;
 	protected String email;
-	protected String[] collection = new String[4];// object instead of string
+	protected Object[] collection = new Object[4];// object instead of string
 	protected String plan;
 	protected String cardNumber;
 	protected String customerID;
@@ -134,7 +134,7 @@ public class Customer {
 			String query = "UPDATE customer SET fName = '" + customer.getfName() + "', lName = '" + customer.getlName()
 					+ "'," + "email = '" + customer.getEmail() + "', cardNumber = '" + customer.getCardNumber()
 					+ "', plan = '" + customer.getPlan() + "', phoneNumber = '" + customer.getPhoneNumber() + "'"
-					+ "WHERE customerID='" + userID + "');";
+					+ "WHERE customerID='" + userID + "';";
 
 			updatedCustomer = conn.ExecuteSet(query);
 
@@ -208,11 +208,11 @@ public class Customer {
 		this.email = email;
 	}
 
-	public String[] getCollection() {
+	public Object[] getCollection() {
 		return collection;
 	}
 
-	public void setCollection(String[] collection) {
+	public void setCollection(Object[] collection) {
 		this.collection = collection;
 	}
 

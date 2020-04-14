@@ -35,54 +35,19 @@ public class UpdateCustomerView extends JFrame {
 	private String userID;
 	private JComboBox planBox;
 	private ResultSet rs;
-	private connection conn;
 	private Customer customer;
 
-	public UpdateCustomerView(UpdateCustomerController controllerInternalRef, String userID) {
+	public UpdateCustomerView(UpdateCustomerController controllerInternalRef, Customer customer) {
 
 		this.controllerInternalRef = controllerInternalRef;
-		this.userID = userID;
-
-		getCustomerDetails(userID);
-
-		components(controllerInternalRef, userID);
+		this.customer =customer;
+		components(controllerInternalRef);
 
 	}
 
-	public Object getCustomerDetails(String userID) {
+	
 
-		String fName = "";
-		String lName = "";
-		String email = "";
-		String cardNumber = "";
-		String phoneNumber = "";
-		String plan = "";
-
-		try {
-			conn = new connection();
-
-			String query = "Select * FROM customer WHERE customerID = '" + userID + "'";
-			rs = conn.executeQuery(query);
-
-			while (rs.next()) {
-				fName = rs.getString("fName");
-				lName = rs.getString("lName");
-				email = rs.getString("email");
-				cardNumber = rs.getString("cardNumber");
-				phoneNumber = rs.getString("phoneNumber");
-				plan = rs.getString("plan");
-			}
-		} catch (Exception e) {
-			System.out.println("SOmething went wrong");
-		}
-
-		customer = new Customer(fName, lName, email, cardNumber, phoneNumber, plan);
-
-		return customer;
-
-	}
-
-	public void components(UpdateCustomerController controllerInternalRef, String userID) {
+	public void components(UpdateCustomerController controllerInternalRef) {
 
 		JFrame frame = new JFrame();
 
@@ -123,6 +88,7 @@ public class UpdateCustomerView extends JFrame {
 		contentPane.add(firstNameField);
 		firstNameField.setColumns(10);
 		firstNameField.setText(customer.getfName());
+		
 
 		JLabel lblLastName = new JLabel("Last Name:");
 		lblLastName.setForeground(Color.WHITE);
