@@ -70,6 +70,7 @@ public class CustomerListView extends JFrame implements ActionListener {
 		contentPane.add(txtrCustomerList);
 
 		customerComboBox = new JComboBox();
+		customerComboBox.setFont(new Font("Verdana", Font.PLAIN, 18));
 		customerComboBox.setBounds(50, 172, 448, 38);
 		contentPane.add(customerComboBox);
 

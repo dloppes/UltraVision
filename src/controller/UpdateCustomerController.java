@@ -8,7 +8,10 @@ import javax.swing.JOptionPane;
 
 import View.UpdateCustomerView;
 import model.Customer;
+import model.Queries;
 import model.connection;
+import model.Queries.newCustomer;
+import model.Queries.updateCustomer;
 
 public class UpdateCustomerController implements ActionListener {
 
@@ -19,83 +22,80 @@ public class UpdateCustomerController implements ActionListener {
 	private String userID;
 
 	public UpdateCustomerController(String userID) {
-		
+
 		this.userID = userID;
 		this.customer = getCustomerDetails(userID);
 		this.UpdateCustomerView = new UpdateCustomerView(this, customer);
-		
-		
+
 	}
-		
-		
-		public Customer getCustomerDetails(String userID) {
 
-			String fName = "";
-			String lName = "";
-			String email = "";
-			String cardNumber = "";
-			String phoneNumber = "";
-			String plan = "";
+	public Customer getCustomerDetails(String userID) {
 
-			try {
-				conn = new connection();
+		String fName = "";
+		String lName = "";
+		String email = "";
+		String cardNumber = "";
+		String phoneNumber = "";
+		String plan = "";
 
-				String query = "Select * FROM customer WHERE customerID = '" + userID + "'";
-				rs = conn.executeQuery(query);
+		try {
+			conn = new connection();
 
-				while (rs.next()) {
-					fName = rs.getString("fName");
-					lName = rs.getString("lName");
-					email = rs.getString("email");
-					cardNumber = rs.getString("cardNumber");
-					phoneNumber = rs.getString("phoneNumber");
-					plan = rs.getString("plan");
-				}
-			} catch (Exception e) {
-				System.out.println("SOmething went wrong");
+			String query = "Select * FROM customer WHERE customerID = '" + userID + "'";
+			rs = conn.executeQuery(query);
+
+			while (rs.next()) {
+				fName = rs.getString("fName");
+				lName = rs.getString("lName");
+				email = rs.getString("email");
+				cardNumber = rs.getString("cardNumber");
+				phoneNumber = rs.getString("phoneNumber");
+				plan = rs.getString("plan");
 			}
-
-			customer = new Customer(fName, lName, phoneNumber, email, plan, cardNumber );
-
-			return customer;
-
+		} catch (Exception e) {
+			System.out.println("SOmething went wrong");
 		}
-		
-	
+
+		customer = new Customer(fName, lName, phoneNumber, email, plan, cardNumber);
+
+		return customer;
+
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		
+
 		String ac = e.getActionCommand();
-		if(ac.equals("update")){
-			
-		
+		if (ac.equals("update")) {
 
-		String fName = UpdateCustomerView.getFirstName();
-		String lName = UpdateCustomerView.getLastName();
-		String email = UpdateCustomerView.getEmail();
-		String cardNumber = UpdateCustomerView.getCardNumber();
-		String plan = UpdateCustomerView.getPlan();
-		String phoneNumber = UpdateCustomerView.getPhoneNumber();
+			String fName = UpdateCustomerView.getFirstName();
+			String lName = UpdateCustomerView.getLastName();
+			String email = UpdateCustomerView.getEmail();
+			String cardNumber = UpdateCustomerView.getCardNumber();
+			String plan = UpdateCustomerView.getPlan();
+			String phoneNumber = UpdateCustomerView.getPhoneNumber();
 
-		Customer customer = new Customer(fName, lName, phoneNumber, email, plan, cardNumber );
+			Customer customer = new Customer(fName, lName, phoneNumber, email, plan, cardNumber);
 
-		Customer.updateCustomer updateCustomer = customer.new updateCustomer();
+			Queries newCustomerQuery = new Queries();
 
-		boolean updatedCustomer = updateCustomer.updateCustomerDetails(customer, userID);
+			updateCustomer updateDetails = newCustomerQuery.new updateCustomer();
 
-		if (updatedCustomer) {
+			boolean updatedCustomerBoolean = updateDetails.updateCustomerDetails(customer, userID);
 
-			this.UpdateCustomerView.dispose();
-			JOptionPane.showMessageDialog(null, customer.getfName() + " " + customer.getlName() + " Updated Successfuly!");
+			if (updatedCustomerBoolean) {
 
-		} else {
-			JOptionPane.showMessageDialog(null, "Something went wrong, please try again!");
+				this.UpdateCustomerView.dispose();
+				JOptionPane.showMessageDialog(null,
+						customer.getfName() + " " + customer.getlName() + " Updated Successfuly!");
+
+			} else {
+				JOptionPane.showMessageDialog(null, "Something went wrong, please try again!");
+
+			}
 
 		}
-
-	}
 	}
 
 }

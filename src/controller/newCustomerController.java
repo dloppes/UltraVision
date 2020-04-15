@@ -7,6 +7,8 @@ import javax.swing.JOptionPane;
 
 import View.NewCustomerView;
 import model.Customer;
+import model.Queries;
+import model.Queries.newCustomer;
 
 public class NewCustomerController implements ActionListener{
 
@@ -34,13 +36,16 @@ public class NewCustomerController implements ActionListener{
 		
 		if(e.getActionCommand().equals("create")) {
 			
-			Customer.newCustomer customermodel = customer.new newCustomer();
+			Queries newCustomerQuery = new Queries();
 			
-			boolean newCustomer = customermodel.insertNewCustomer(customer);
+			newCustomer newCustomer = newCustomerQuery.new newCustomer();
 			
-			if(newCustomer) {
+			boolean newCustomerBoolean = newCustomer.insertNewCustomer(customer);
+			
+			
+			if(newCustomerBoolean) {
 				newCustomerView.dispose();
-				customermodel.newLoyaltyCard(customer);
+				newCustomer.newLoyaltyCard(customer);
 				JOptionPane.showMessageDialog(null,"New Customer " +  customer.getEmail() +  " Successfully Created!");
 			}
 		}

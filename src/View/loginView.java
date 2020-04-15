@@ -22,7 +22,7 @@ public class LoginView implements ActionListener {
 		f.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		JTextArea area = new JTextArea();
 		area.setBounds(20, 75, 250, 200);
-		f.add(area);
+		f.getContentPane().add(area);
 		f.setBounds(100, 100, 605, 366);
 
 		contentPane = new JPanel();
@@ -43,6 +43,7 @@ public class LoginView implements ActionListener {
 		contentPane.add(lblUser);
 
 		usernameField = new JTextField(20);
+		usernameField.setFont(new Font("Verdana", Font.PLAIN, 18));
 		lblUser.setLabelFor(usernameField);
 		usernameField.setBounds(162, 149, 352, 38);
 		contentPane.add(usernameField);
@@ -55,6 +56,7 @@ public class LoginView implements ActionListener {
 		contentPane.add(lblPassword);
 
 		passwordField = new JPasswordField(20);
+		passwordField.setFont(new Font("Verdana", Font.PLAIN, 18));
 		passwordField.setBounds(162, 226, 352, 38);
 		contentPane.add(passwordField);
 

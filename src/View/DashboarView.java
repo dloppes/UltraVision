@@ -107,7 +107,7 @@ public class DashboarView extends JFrame {
 		mntmNewMusic.setBorder(new LineBorder(Color.WHITE, 1, true));
 		mnNewMenu.add(mntmNewMusic);
 		mntmNewMusic.addActionListener((ActionListener)controllerInternalRef);
-		mntmNewMusic.setActionCommand("newTitle");
+		mntmNewMusic.setActionCommand("newMusic");
 		
 		JMenuItem mntmNewMovie = new JMenuItem("New Movie");
 		mntmNewMovie.setIcon(new ImageIcon(DashboarView.class.getResource("/img/movies_menu_icon.png")));

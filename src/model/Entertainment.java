@@ -6,13 +6,29 @@ public abstract class Entertainment {
 	protected String title;
 	protected String genre;
 	protected boolean rented = false;
+	protected double price;
+	protected String format;
 	
-	public Entertainment(int yearOfRelease, String title, String genre, boolean rented) {
+	public Entertainment(int yearOfRelease, String title, String genre, double price, String format) {
 		
 		this.yearOfRelease = yearOfRelease;
 		this.title = title;
 		this.genre = genre;
-		this.rented = rented;
+		this.rented = false;
+		this.price = price;
+		this.format = format;
+	}
+
+	public String getFormat() {
+		return format;
+	}
+
+	public void setFormat(String format) {
+		this.format = format;
+	}
+
+	public double getPrice() {
+		return price;
 	}
 
 	public int getYearOfRelease() {

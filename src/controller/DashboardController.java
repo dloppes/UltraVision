@@ -25,9 +25,13 @@ public class DashboardController implements ActionListener {
 		case "newCustomer":
 			new NewCustomerController();
 			break;
-	
+
 		case "updateCustomer":
 			new CustomerListView();
+			break;
+
+		case "newMusic":
+			new NewMusicController();
 			break;
 		}
 

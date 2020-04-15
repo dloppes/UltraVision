@@ -65,6 +65,7 @@ public class NewCustomerView extends JFrame {
 		contentPane.add(lblFirstName);
 
 		firstNameField = new JTextField(20);
+		firstNameField.setFont(new Font("Verdana", Font.PLAIN, 18));
 		lblFirstName.setLabelFor(firstNameField);
 		firstNameField.setBounds(188, 162, 415, 32);
 		contentPane.add(firstNameField);
@@ -78,6 +79,7 @@ public class NewCustomerView extends JFrame {
 		contentPane.add(lblLastName);
 
 		lNameTextField = new JTextField(50);
+		lNameTextField.setFont(new Font("Verdana", Font.PLAIN, 18));
 		lblLastName.setLabelFor(lNameTextField);
 		lNameTextField.setColumns(10);
 		lNameTextField.setBounds(188, 225, 415, 32);
@@ -91,6 +93,7 @@ public class NewCustomerView extends JFrame {
 		contentPane.add(lblEmail);
 
 		emailTextField = new JTextField(40);
+		emailTextField.setFont(new Font("Verdana", Font.PLAIN, 18));
 		lblEmail.setLabelFor(emailTextField);
 		emailTextField.setColumns(10);
 		emailTextField.setBounds(188, 287, 415, 32);
@@ -104,6 +107,7 @@ public class NewCustomerView extends JFrame {
 		contentPane.add(lblCardNumber);
 
 		cardNumberTextField = new JTextField(16);
+		cardNumberTextField.setFont(new Font("Verdana", Font.PLAIN, 18));
 		lblCardNumber.setLabelFor(cardNumberTextField);
 		cardNumberTextField.setColumns(10);
 		cardNumberTextField.setBounds(188, 346, 415, 32);
@@ -124,6 +128,7 @@ public class NewCustomerView extends JFrame {
 		contentPane.add(lblPhoneNumber);
 
 		phoneNumberTextField = new JTextField(15);
+		phoneNumberTextField.setFont(new Font("Verdana", Font.PLAIN, 18));
 		lblPhoneNumber.setLabelFor(phoneNumberTextField);
 		phoneNumberTextField.setColumns(10);
 		phoneNumberTextField.setBounds(188, 467, 415, 32);
