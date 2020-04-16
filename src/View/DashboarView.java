@@ -95,7 +95,7 @@ public class DashboarView extends JFrame {
 		mntmUpdateCustomer.setActionCommand("updateCustomer");
 		
 		JMenu mnNewMenu = new JMenu("Titles");
-		mnNewMenu.setBackground(Color.WHITE);
+		mnNewMenu.setBackground(Color.BLACK);
 		mnNewMenu.setIcon(new ImageIcon(DashboarView.class.getResource("/img/titles.png")));
 		mnNewMenu.setFont(new Font("Verdana", Font.BOLD, 20));
 		mnNewMenu.setBorder(new LineBorder(Color.WHITE, 2, true));
@@ -113,22 +113,28 @@ public class DashboarView extends JFrame {
 		mntmNewMovie.setIcon(new ImageIcon(DashboarView.class.getResource("/img/movies_menu_icon.png")));
 		mntmNewMovie.setFont(new Font("Verdana", Font.BOLD, 18));
 		mnNewMenu.add(mntmNewMovie);
+		mntmNewMovie.addActionListener((ActionListener)controllerInternalRef);
+		mntmNewMovie.setActionCommand("newMovie");
 		
 		JMenuItem mntmNewLiveConcert = new JMenuItem("New Live Concert");
 		mntmNewLiveConcert.setIcon(new ImageIcon(DashboarView.class.getResource("/img/liveCOncert_menu_icon.png")));
 		mntmNewLiveConcert.setFont(new Font("Verdana", Font.BOLD, 18));
 		mnNewMenu.add(mntmNewLiveConcert);
+		mntmNewLiveConcert.addActionListener((ActionListener)controllerInternalRef);
+		mntmNewLiveConcert.setActionCommand("newLiveConcert");
 		
 		JMenuItem mntmNewTvBox = new JMenuItem("New TV BOX");
 		mntmNewTvBox.setIcon(new ImageIcon(DashboarView.class.getResource("/img/tvBox_menu_icon.png")));
 		mntmNewTvBox.setFont(new Font("Verdana", Font.BOLD, 18));
 		mnNewMenu.add(mntmNewTvBox);
+		mntmNewTvBox.addActionListener((ActionListener)controllerInternalRef);
+		mntmNewTvBox.setActionCommand("newTVBox");
 		
 		JMenu mnStock = new JMenu("Stock");
 		mnStock.setIcon(new ImageIcon(DashboarView.class.getResource("/img/stock_icon.png")));
 		mnStock.setFont(new Font("Verdana", Font.BOLD, 20));
 		mnStock.setBorder(new LineBorder(Color.WHITE, 2, true));
-		mnStock.setBackground(Color.WHITE);
+		mnStock.setBackground(Color.BLACK);
 		menuBar.add(mnStock);
 		
 		JMenuItem mntmAvailable = new JMenuItem("Available");
@@ -149,6 +155,8 @@ public class DashboarView extends JFrame {
 		mntmRented.setActionCommand("titlesRented");
 		
 		JMenu mnNewMenu_1 = new JMenu("Loyalty Card");
+		mnNewMenu_1.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
+		mnNewMenu_1.setBackground(Color.BLACK);
 		mnNewMenu_1.setIcon(new ImageIcon(DashboarView.class.getResource("/img/loyaltycard_menu_icon.png")));
 		mnNewMenu_1.setFont(new Font("Verdana", Font.BOLD, 20));
 		menuBar.add(mnNewMenu_1);
@@ -159,6 +167,8 @@ public class DashboarView extends JFrame {
 		mnNewMenu_1.add(mntmCheckPoints);
 		
 		JMenu mnRent = new JMenu("Rent");
+		mnRent.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
+		mnRent.setBackground(Color.BLACK);
 		mnRent.setIcon(new ImageIcon(DashboarView.class.getResource("/img/rent_icon_menu.png")));
 		mnRent.setFont(new Font("Verdana", Font.BOLD, 20));
 		menuBar.add(mnRent);
@@ -184,9 +194,10 @@ public class DashboarView extends JFrame {
 		mnRent.add(mntmNewMenuItem);
 		
 		JMenu mnLogout = new JMenu("Logout");
+		mnLogout.setBackground(Color.BLACK);
 		mnLogout.setIcon(new ImageIcon(DashboarView.class.getResource("/img/logout_icon.png")));
 		mnLogout.setFont(new Font("Verdana", Font.BOLD, 20));
-		mnLogout.setBorder(new LineBorder(Color.WHITE, 1, true));
+		mnLogout.setBorder(new LineBorder(new Color(255, 255, 255), 2, true));
 		menuBar.add(mnLogout);
 		
 		JMenuItem mntmExit = new JMenuItem("Exit");

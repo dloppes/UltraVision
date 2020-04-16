@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 import View.NewCustomerView;
 import model.Customer;
 import model.Queries;
-import model.Queries.newCustomer;
+import model.Queries.customerClass;
 
 public class NewCustomerController implements ActionListener{
 
@@ -38,7 +38,7 @@ public class NewCustomerController implements ActionListener{
 			
 			Queries newCustomerQuery = new Queries();
 			
-			newCustomer newCustomer = newCustomerQuery.new newCustomer();
+			customerClass newCustomer = newCustomerQuery.new customerClass();
 			
 			boolean newCustomerBoolean = newCustomer.insertNewCustomer(customer);
 			

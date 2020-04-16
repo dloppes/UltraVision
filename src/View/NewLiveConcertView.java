@@ -11,139 +11,137 @@ import java.awt.event.ActionListener;
 
 import javax.swing.border.LineBorder;
 
-import controller.NewMovieController;
+import controller.NewLiveConcertController;
 
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
-import interfaces.FilmGenres;
+import interfaces.MusicGenres;
 import interfaces.Format;
 import javax.swing.JButton;
 
-public class NewMovieView extends JFrame {
+public class NewLiveConcertView extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField titleTextField;
-	private JTextField directorTextField;
+	private JTextField bandTextField;
 	private JTextField yearOfReleaseTextField;
 	private JComboBox genreComboBox;
 	private JComboBox formatComboBox;
 	private JComboBox priceComboBox;
-	private NewMovieController controllerInternalRef;
+	private NewLiveConcertController controllerInternalRef;
 
-	public NewMovieView(NewMovieController controllerInternalRef) {
+	public NewLiveConcertView(NewLiveConcertController controllerInternalRef) {
 		
 		JFrame frame = new JFrame();
-		
 		frame.setVisible(true);
 		
-		frame.setTitle("New Movie");
+		frame.setTitle("New Live Concert");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setBounds(100, 100, 742, 635);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(0, 0, 0));
+		contentPane.setBackground(Color.BLACK);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		frame.setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setIcon(new ImageIcon(NewMovieView.class.getResource("/img/logo3-removebg-preview.png")));
-		lblNewLabel.setBounds(-130, 0, 456, 122);
-		contentPane.add(lblNewLabel);
+		JLabel logoLabel = new JLabel("New label");
+		logoLabel.setIcon(new ImageIcon(NewLiveConcertView.class.getResource("/img/logo3-removebg-preview.png")));
+		logoLabel.setBounds(-140, 0, 472, 136);
+		contentPane.add(logoLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("NEW MOVIE");
-		lblNewLabel_1.setBorder(new LineBorder(new Color(189, 183, 107), 3, true));
-		lblNewLabel_1.setIcon(new ImageIcon(NewMovieView.class.getResource("/img/movies_menu_icon.png")));
-		lblNewLabel_1.setFont(new Font("Verdana", Font.BOLD, 20));
-		lblNewLabel_1.setForeground(new Color(255, 255, 255));
-		lblNewLabel_1.setBackground(new Color(0, 0, 0));
-		lblNewLabel_1.setBounds(498, 29, 204, 59);
-		contentPane.add(lblNewLabel_1);
+		JLabel lblNewLiveConcert = new JLabel("NEW LIVE CONCERT");
+		lblNewLiveConcert.setBorder(new LineBorder(new Color(189, 183, 107), 4, true));
+		lblNewLiveConcert.setIcon(new ImageIcon(NewLiveConcertView.class.getResource("/img/liveCOncert_menu_icon.png")));
+		lblNewLiveConcert.setFont(new Font("Verdana", Font.BOLD, 20));
+		lblNewLiveConcert.setForeground(Color.WHITE);
+		lblNewLiveConcert.setBounds(414, 32, 298, 66);
+		contentPane.add(lblNewLiveConcert);
 		
 		JLabel lblNewLabel_2 = new JLabel("             Title:");
-		lblNewLabel_2.setBorder(new LineBorder(new Color(189, 183, 107), 3, true));
-		lblNewLabel_2.setForeground(new Color(255, 255, 255));
+		lblNewLabel_2.setForeground(Color.WHITE);
 		lblNewLabel_2.setFont(new Font("Verdana", Font.BOLD, 18));
-		lblNewLabel_2.setBounds(12, 148, 212, 42);
+		lblNewLabel_2.setBorder(new LineBorder(new Color(189, 183, 107), 3, true));
+		lblNewLabel_2.setBounds(12, 174, 212, 42);
 		contentPane.add(lblNewLabel_2);
 		
-		JLabel lblNewLabel_2_1 = new JLabel("          Director:");
+		JLabel lblNewLabel_2_1 = new JLabel("            Band:");
 		lblNewLabel_2_1.setForeground(Color.WHITE);
 		lblNewLabel_2_1.setFont(new Font("Verdana", Font.BOLD, 18));
 		lblNewLabel_2_1.setBorder(new LineBorder(new Color(189, 183, 107), 3, true));
-		lblNewLabel_2_1.setBounds(12, 208, 212, 42);
+		lblNewLabel_2_1.setBounds(12, 234, 212, 42);
 		contentPane.add(lblNewLabel_2_1);
 		
 		JLabel lblNewLabel_2_2 = new JLabel("             Genre:");
 		lblNewLabel_2_2.setForeground(Color.WHITE);
 		lblNewLabel_2_2.setFont(new Font("Verdana", Font.BOLD, 18));
 		lblNewLabel_2_2.setBorder(new LineBorder(new Color(189, 183, 107), 3, true));
-		lblNewLabel_2_2.setBounds(12, 267, 212, 42);
+		lblNewLabel_2_2.setBounds(12, 293, 212, 42);
 		contentPane.add(lblNewLabel_2_2);
 		
 		JLabel lblNewLabel_2_3 = new JLabel("   Year of Release:");
 		lblNewLabel_2_3.setForeground(Color.WHITE);
 		lblNewLabel_2_3.setFont(new Font("Verdana", Font.BOLD, 18));
 		lblNewLabel_2_3.setBorder(new LineBorder(new Color(189, 183, 107), 3, true));
-		lblNewLabel_2_3.setBounds(12, 329, 212, 42);
+		lblNewLabel_2_3.setBounds(12, 355, 212, 42);
 		contentPane.add(lblNewLabel_2_3);
 		
 		JLabel lblNewLabel_2_4 = new JLabel("           Format:");
 		lblNewLabel_2_4.setForeground(Color.WHITE);
 		lblNewLabel_2_4.setFont(new Font("Verdana", Font.BOLD, 18));
 		lblNewLabel_2_4.setBorder(new LineBorder(new Color(189, 183, 107), 3, true));
-		lblNewLabel_2_4.setBounds(12, 388, 212, 42);
+		lblNewLabel_2_4.setBounds(12, 414, 212, 42);
 		contentPane.add(lblNewLabel_2_4);
 		
 		JLabel lblNewLabel_2_5 = new JLabel("             Price:");
 		lblNewLabel_2_5.setForeground(Color.WHITE);
 		lblNewLabel_2_5.setFont(new Font("Verdana", Font.BOLD, 18));
 		lblNewLabel_2_5.setBorder(new LineBorder(new Color(189, 183, 107), 3, true));
-		lblNewLabel_2_5.setBounds(12, 446, 212, 42);
+		lblNewLabel_2_5.setBounds(12, 472, 212, 42);
 		contentPane.add(lblNewLabel_2_5);
 		
 		titleTextField = new JTextField();
 		titleTextField.setFont(new Font("Verdana", Font.PLAIN, 18));
-		titleTextField.setBounds(236, 148, 468, 42);
-		contentPane.add(titleTextField);
 		titleTextField.setColumns(10);
+		titleTextField.setBounds(244, 174, 468, 42);
+		contentPane.add(titleTextField);
 		
-		directorTextField = new JTextField();
-		directorTextField.setFont(new Font("Verdana", Font.PLAIN, 18));
-		directorTextField.setColumns(10);
-		directorTextField.setBounds(234, 208, 468, 42);
-		contentPane.add(directorTextField);
+		bandTextField = new JTextField();
+		bandTextField.setFont(new Font("Verdana", Font.PLAIN, 18));
+		bandTextField.setColumns(10);
+		bandTextField.setBounds(242, 234, 468, 42);
+		contentPane.add(bandTextField);
 		
 		genreComboBox = new JComboBox();
-		genreComboBox.setModel(new DefaultComboBoxModel(FilmGenres.values()));
+		genreComboBox.setModel(new DefaultComboBoxModel(MusicGenres.values()));
 		genreComboBox.setFont(new Font("Verdana", Font.PLAIN, 18));
-		genreComboBox.setBounds(236, 267, 466, 42);
+		genreComboBox.setBounds(244, 293, 466, 42);
 		contentPane.add(genreComboBox);
 		
 		yearOfReleaseTextField = new JTextField();
 		yearOfReleaseTextField.setFont(new Font("Verdana", Font.PLAIN, 18));
 		yearOfReleaseTextField.setColumns(10);
-		yearOfReleaseTextField.setBounds(234, 329, 468, 42);
+		yearOfReleaseTextField.setBounds(242, 355, 468, 42);
 		contentPane.add(yearOfReleaseTextField);
 		
 		formatComboBox = new JComboBox();
 		formatComboBox.setModel(new DefaultComboBoxModel(Format.values()));
 		formatComboBox.setFont(new Font("Verdana", Font.PLAIN, 18));
-		formatComboBox.setBounds(236, 388, 466, 42);
+		formatComboBox.setBounds(244, 414, 466, 42);
 		contentPane.add(formatComboBox);
 		
 		priceComboBox = new JComboBox();
-		priceComboBox.setModel(new DefaultComboBoxModel(new String[] {"2.00", "3.50", "5.00", "7.50", "10.00"}));
+		priceComboBox.setModel(new DefaultComboBoxModel(new String[] {"1.00", "2.00", "2.50", "5.00", "7.50", "8.00", "10.00", "15.00", "18.00", "20.00"}));
 		priceComboBox.setFont(new Font("Verdana", Font.PLAIN, 18));
-		priceComboBox.setBounds(236, 446, 468, 42);
+		priceComboBox.setBounds(244, 472, 468, 42);
 		contentPane.add(priceComboBox);
 		
 		JButton createButton = new JButton("CREATE");
-		createButton.setBorder(new LineBorder(new Color(189, 183, 107), 3, true));
 		createButton.setFont(new Font("Verdana", Font.BOLD, 20));
-		createButton.setBounds(572, 516, 116, 42);
+		createButton.setBorder(new LineBorder(new Color(189, 183, 107), 3, true));
+		createButton.setBounds(596, 533, 116, 42);
 		contentPane.add(createButton);
-		createButton.addActionListener((ActionListener)controllerInternalRef);
+		createButton.addActionListener((ActionListener) controllerInternalRef);
 		createButton.setActionCommand("create");
 		
 		frame.validate();
@@ -180,7 +178,7 @@ public class NewMovieView extends JFrame {
 		
 	}
 	
-	public String getDirector() {
-		return directorTextField.getText();
+	public String getBand() {
+		return bandTextField.getText();
 	}
 }

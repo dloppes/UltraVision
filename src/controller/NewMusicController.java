@@ -40,7 +40,7 @@ public class NewMusicController implements ActionListener{
 			
 			Queries musicQuery = new Queries();
 			
-			Queries.newMusic innerMusic = musicQuery.new newMusic();
+			Queries.musicClass innerMusic = musicQuery.new musicClass();
 			
 			boolean newMusic = innerMusic.insertNewMusic(music);
 			

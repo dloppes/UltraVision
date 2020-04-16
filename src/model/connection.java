@@ -18,8 +18,6 @@ public class connection {
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 
 			String dbServer = "jdbc:mysql://apontejaj.com:3306/daniel?";
-			//String dbServer = "jdbc:mysql://apontejaj.com:3306/daniel?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-
 			String user = "daniel";
 			String password = "Pass1234!";
 			

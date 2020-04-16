@@ -5,17 +5,55 @@ import java.sql.SQLException;
 
 public class Queries {
 
-	connection conn;
+	public class tvBoxClass {
+		connection conn = new connection();
+
+		public boolean insertNewTVBox(TVBox tvBox) {
+
+			boolean newTVBox = false;
+			// boolean rented=false;
+
+			String query = "INSERT INTO TVBox (season, title, numberOfDisks, rented, price, format) "
+					+ "VALUES ( '" + tvBox.getSeason() + "', '" + tvBox.getTitle() + "', '"
+					+ tvBox.getNumberOfDisks() + "', '" + tvBox.rented + "', '" + tvBox.getPrice() + "', '"
+					+ tvBox.getFormat() + "');";
+
+			newTVBox = conn.ExecuteSet(query);
+
+			return newTVBox;
+		}
+
+	}
+
+	public class liveConcertClass {
+		connection conn = new connection();
+
+		public boolean insertNewLiveConcert(LiveConcert liveConcert) {
+
+			boolean newLiveConcert = false;
+			// boolean rented=false;
+
+			String query = "INSERT INTO liveConcert (yearOfRelease, title, genre, rented, band, price, format) "
+					+ "VALUES ( '" + liveConcert.getYearOfRelease() + "', '" + liveConcert.getTitle() + "', '"
+					+ liveConcert.getGenre() + "', '" + liveConcert.rented + "', '" + liveConcert.getBand() + "', '"
+					+ liveConcert.getPrice() + "' , '" + liveConcert.getFormat() + "');";
+
+			newLiveConcert = conn.ExecuteSet(query);
+
+			return newLiveConcert;
+		}
+
+	}
 
 	public class movieClass {
 		connection conn = new connection();
 
-		public boolean newMovie(Movies movie) {
+		public boolean insertNewMovie(Movies movie) {
 
 			boolean newMovie = false;
 			// boolean rented=false;
 
-			String query = "INSERT INTO music (yearOfRelease, title, genre, rented, director, price, format) "
+			String query = "INSERT INTO movies (yearOfRelease, title, genre, rented, director, price, format) "
 					+ "VALUES ( '" + movie.getYearOfRelease() + "', '" + movie.getTitle() + "', '" + movie.getGenre()
 					+ "', '" + movie.rented + "', '" + movie.getDirector() + "', '" + movie.getPrice() + "' , '"
 					+ movie.getFormat() + "');";
@@ -27,14 +65,12 @@ public class Queries {
 
 	}
 
-	public class newMusic {
-		connection conn= new connection();
+	public class musicClass {
+		connection conn = new connection();
 
 		public boolean insertNewMusic(Music music) {
-			
 
 			boolean newMusic = false;
-			
 
 			String query = "INSERT INTO music (yearOfRelease, title, genre, rented, singer, price, format) "
 					+ "VALUES ( '" + music.getYearOfRelease() + "', '" + music.getTitle() + "', '" + music.getGenre()
@@ -45,10 +81,46 @@ public class Queries {
 
 			return newMusic;
 		}
+		
+		public Music getMusicDetails(String musicID) {
+
+			Music music;
+			ResultSet rs; 
+			
+			int yearOfRelease=0;
+			String title = "";
+			String genre = "";
+			String singer = "";
+			double price=0;
+			String format = "";
+
+			try {
+				conn = new connection();
+
+				String query = "Select * FROM music WHERE musicID = '" + musicID + "'";
+				rs = conn.executeQuery(query);
+
+				while (rs.next()) {
+					yearOfRelease = Integer.parseInt(rs.getString("fName"));
+					title = rs.getString("lName");
+					genre = rs.getString("email");
+					singer = rs.getString("cardNumber");
+					price = Double.parseDouble(rs.getString("phoneNumber"));
+					format = rs.getString("plan");
+				}
+			} catch (Exception e) {
+				System.out.println("SOmething went wrong");
+			}
+
+			music = new Music(yearOfRelease, title, genre, price,singer, format);
+
+			return music;
+
+		}
 
 	}
 
-	public class newCustomer {
+	public class customerClass {
 
 		connection conn = new connection();
 
@@ -91,6 +163,7 @@ public class Queries {
 			conn.ExecuteSet(query);
 
 		}
+		
 	}
 
 	public class loyaltyCard {

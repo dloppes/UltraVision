@@ -33,6 +33,18 @@ public class DashboardController implements ActionListener {
 		case "newMusic":
 			new NewMusicController();
 			break;
+			
+		case "newMovie":
+			new NewMovieController();
+			break;
+			
+		case "newLiveConcert":
+			new NewLiveConcertController();
+			break;
+			
+		case "newTVBox":
+			new NewTVBoxController();
+			break;
 		}
 
 	}

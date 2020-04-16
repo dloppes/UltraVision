@@ -31,6 +31,7 @@ public class CustomerListView extends JFrame implements ActionListener {
 	private JComboBox customerComboBox;
 	private JButton selectButton;
 	private JFrame frame;
+	private JLabel customerLabel;
 	
 
 	public CustomerListView() {
@@ -60,15 +61,6 @@ public class CustomerListView extends JFrame implements ActionListener {
 		lblNewLabel.setBounds(-139, 0, 580, 159);
 		contentPane.add(lblNewLabel);
 
-		JTextArea txtrCustomerList = new JTextArea();
-		txtrCustomerList.setBorder(new LineBorder(new Color(189, 183, 107), 3, true));
-		txtrCustomerList.setFont(new Font("Calibri", Font.BOLD, 22));
-		txtrCustomerList.setForeground(new Color(255, 255, 255));
-		txtrCustomerList.setBackground(new Color(0, 0, 0));
-		txtrCustomerList.setText("  Customer List");
-		txtrCustomerList.setBounds(438, 63, 150, 38);
-		contentPane.add(txtrCustomerList);
-
 		customerComboBox = new JComboBox();
 		customerComboBox.setFont(new Font("Verdana", Font.PLAIN, 18));
 		customerComboBox.setBounds(50, 172, 448, 38);
@@ -77,10 +69,18 @@ public class CustomerListView extends JFrame implements ActionListener {
 		selectButton = new JButton("Select");
 		selectButton.setFont(new Font("Tahoma", Font.BOLD, 18));
 		selectButton.setBorder(new LineBorder(new Color(189, 183, 107), 3, true));
-		selectButton.setBounds(510, 179, 97, 25);
+		selectButton.setBounds(510, 172, 97, 38);
 		contentPane.add(selectButton);
 		selectButton.addActionListener(this);
 		selectButton.setActionCommand("select");
+		
+		customerLabel = new JLabel(" CUSTOMER LIST");
+		customerLabel.setForeground(Color.WHITE);
+		customerLabel.setFont(new Font("Verdana", Font.BOLD, 20));
+		customerLabel.setBorder(new LineBorder(new Color(189, 183, 107), 3, true));
+		customerLabel.setBackground(Color.BLACK);
+		customerLabel.setBounds(403, 46, 204, 59);
+		contentPane.add(customerLabel);
 
 	}
 

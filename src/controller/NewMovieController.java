@@ -15,7 +15,7 @@ public class NewMovieController implements ActionListener {
 
 	public NewMovieController() {
 
-		this.NewMovieView = new NewMovieView();
+		this.NewMovieView = new NewMovieView(this);
 	}
 
 	@Override
@@ -39,7 +39,7 @@ public class NewMovieController implements ActionListener {
 
 			Queries.movieClass innerMovie = movieQuery.new movieClass();
 
-			boolean newMovie = innerMovie.newMovie(movie);
+			boolean newMovie = innerMovie.insertNewMovie(movie);
 
 			if (newMovie) {
 				this.NewMovieView.dispose();

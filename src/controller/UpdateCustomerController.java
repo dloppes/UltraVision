@@ -10,7 +10,6 @@ import View.UpdateCustomerView;
 import model.Customer;
 import model.Queries;
 import model.connection;
-import model.Queries.newCustomer;
 import model.Queries.updateCustomer;
 
 public class UpdateCustomerController implements ActionListener {
