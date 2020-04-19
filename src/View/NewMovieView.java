@@ -38,7 +38,6 @@ public class NewMovieView extends JFrame {
 		frame.setVisible(true);
 		
 		frame.setTitle("New Movie");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setBounds(100, 100, 742, 635);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(0, 0, 0));

@@ -48,7 +48,7 @@ public class CustomerListView extends JFrame implements ActionListener {
 		frame.setVisible(true);
 
 		frame.setTitle("Customer List");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setBounds(100, 100, 657, 535);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.BLACK);

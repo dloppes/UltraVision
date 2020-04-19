@@ -17,11 +17,13 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 import controller.DashboardController;
+import javax.swing.UIManager;
 
 public class DashboarView extends JFrame {
 	
 	private JPanel contentPane;
 	private DashboardController controllerInternalRef;
+	private JFrame frame;
 	
 	public DashboarView(DashboardController controller) {
 		
@@ -34,13 +36,11 @@ public class DashboarView extends JFrame {
 			
 		
 		
-		JFrame frame = new JFrame();
+		frame = new JFrame();
+		frame.setUndecorated(true);
 		
 		frame.setVisible(true);
-		
-		
-		//frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setBounds(100, 100, 933, 567);
+		frame.setBounds(100, 100, 935, 632);
 		contentPane = new JPanel();
 		contentPane.setForeground(Color.BLACK);
 		contentPane.setIgnoreRepaint(true);
@@ -61,18 +61,18 @@ public class DashboarView extends JFrame {
 		
 		Panel panel = new Panel();
 		panel.setBackground(Color.WHITE);
-		panel.setBounds(10, 138, 890, 117);
+		panel.setBounds(10, 137, 890, 118);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
 		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBackground(Color.BLACK);
-		menuBar.setBounds(0, 0, 894, 117);
+		menuBar.setBackground(Color.WHITE);
+		menuBar.setBounds(0, 0, 894, 118);
 		panel.add(menuBar);
 		
 		JMenu mnCustomer = new JMenu("Customer");
-		mnCustomer.setBackground(Color.BLACK);
-		mnCustomer.setBorder(new LineBorder(null, 2, true));
+		mnCustomer.setBackground(Color.WHITE);
+		mnCustomer.setBorder(new LineBorder(new Color(255, 255, 255), 2, true));
 		mnCustomer.setIcon(new ImageIcon(DashboarView.class.getResource("/img/customer.png")));
 		mnCustomer.setFont(new Font("Verdana", Font.BOLD, 20));
 		menuBar.add(mnCustomer);
@@ -95,7 +95,7 @@ public class DashboarView extends JFrame {
 		mntmUpdateCustomer.setActionCommand("updateCustomer");
 		
 		JMenu mnNewMenu = new JMenu("Titles");
-		mnNewMenu.setBackground(Color.BLACK);
+		mnNewMenu.setBackground(Color.WHITE);
 		mnNewMenu.setIcon(new ImageIcon(DashboarView.class.getResource("/img/titles.png")));
 		mnNewMenu.setFont(new Font("Verdana", Font.BOLD, 20));
 		mnNewMenu.setBorder(new LineBorder(Color.WHITE, 2, true));
@@ -134,29 +134,29 @@ public class DashboarView extends JFrame {
 		mnStock.setIcon(new ImageIcon(DashboarView.class.getResource("/img/stock_icon.png")));
 		mnStock.setFont(new Font("Verdana", Font.BOLD, 20));
 		mnStock.setBorder(new LineBorder(Color.WHITE, 2, true));
-		mnStock.setBackground(Color.BLACK);
+		mnStock.setBackground(Color.WHITE);
 		menuBar.add(mnStock);
 		
-		JMenuItem mntmAvailable = new JMenuItem("Available");
-		mntmAvailable.setIcon(new ImageIcon(DashboarView.class.getResource("/img/available_icon..png")));
-		mntmAvailable.setFont(new Font("Verdana", Font.BOLD, 18));
-		mntmAvailable.setBorder(new LineBorder(Color.WHITE, 1, true));
-		mnStock.add(mntmAvailable);
-		mntmAvailable.addActionListener((ActionListener)controllerInternalRef);
-		mntmAvailable.setActionCommand("titlesAvailable");
+		JMenuItem availableMusicLabel = new JMenuItem("Available Titles");
+		availableMusicLabel.setIcon(new ImageIcon(DashboarView.class.getResource("/img/available_icon..png")));
+		availableMusicLabel.setFont(new Font("Verdana", Font.BOLD, 18));
+		availableMusicLabel.setBorder(new LineBorder(Color.WHITE, 1, true));
+		mnStock.add(availableMusicLabel);
+		availableMusicLabel.addActionListener((ActionListener)controllerInternalRef);
+		availableMusicLabel.setActionCommand("availableTitles");
 		
-		JMenuItem mntmRented = new JMenuItem("Rented");
-		mntmRented.setIcon(new ImageIcon(DashboarView.class.getResource("/img/rented_icon.png")));
-		mntmRented.setFont(new Font("Verdana", Font.BOLD, 18));
-		mntmRented.setBorder(new LineBorder(Color.WHITE, 1, true));
-		mntmRented.setBackground(Color.BLACK);
-		mnStock.add(mntmRented);
-		mntmRented.addActionListener((ActionListener)controllerInternalRef);
-		mntmRented.setActionCommand("titlesRented");
+		JMenuItem rentedMusicLabel = new JMenuItem("Rented Titles");
+		rentedMusicLabel.setIcon(new ImageIcon(DashboarView.class.getResource("/img/rented_icon.png")));
+		rentedMusicLabel.setFont(new Font("Verdana", Font.BOLD, 18));
+		rentedMusicLabel.setBorder(new LineBorder(Color.WHITE, 1, true));
+		rentedMusicLabel.setBackground(new Color(245, 245, 245));
+		mnStock.add(rentedMusicLabel);
+		rentedMusicLabel.addActionListener((ActionListener)controllerInternalRef);
+		rentedMusicLabel.setActionCommand("rentedTitles");
 		
 		JMenu mnNewMenu_1 = new JMenu("Loyalty Card");
-		mnNewMenu_1.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
-		mnNewMenu_1.setBackground(Color.BLACK);
+		mnNewMenu_1.setBorder(new LineBorder(new Color(255, 255, 255), 2, true));
+		mnNewMenu_1.setBackground(Color.WHITE);
 		mnNewMenu_1.setIcon(new ImageIcon(DashboarView.class.getResource("/img/loyaltycard_menu_icon.png")));
 		mnNewMenu_1.setFont(new Font("Verdana", Font.BOLD, 20));
 		menuBar.add(mnNewMenu_1);
@@ -165,36 +165,25 @@ public class DashboarView extends JFrame {
 		mntmCheckPoints.setIcon(new ImageIcon(DashboarView.class.getResource("/img/checkPoints_menu_icon.png")));
 		mntmCheckPoints.setFont(new Font("Verdana", Font.BOLD, 18));
 		mnNewMenu_1.add(mntmCheckPoints);
+		mntmCheckPoints.addActionListener((ActionListener)controllerInternalRef);
+		mntmCheckPoints.setActionCommand("searchPoints");
 		
 		JMenu mnRent = new JMenu("Rent");
-		mnRent.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
-		mnRent.setBackground(Color.BLACK);
+		mnRent.setBorder(new LineBorder(new Color(255, 255, 255), 2, true));
+		mnRent.setBackground(Color.WHITE);
 		mnRent.setIcon(new ImageIcon(DashboarView.class.getResource("/img/rent_icon_menu.png")));
 		mnRent.setFont(new Font("Verdana", Font.BOLD, 20));
 		menuBar.add(mnRent);
 		
-		JMenuItem mntmRentMusic = new JMenuItem("Rent Music");
-		mntmRentMusic.setIcon(new ImageIcon(DashboarView.class.getResource("/img/music_menu_icon.png")));
-		mntmRentMusic.setFont(new Font("Verdana", Font.BOLD, 18));
-		mnRent.add(mntmRentMusic);
-		
-		JMenuItem mntmRentMovie = new JMenuItem("Rent Movie");
-		mntmRentMovie.setIcon(new ImageIcon(DashboarView.class.getResource("/img/movies_menu_icon.png")));
-		mntmRentMovie.setFont(new Font("Verdana", Font.BOLD, 18));
-		mnRent.add(mntmRentMovie);
-		
-		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Rent Live Concert");
-		mntmNewMenuItem_1.setIcon(new ImageIcon(DashboarView.class.getResource("/img/liveCOncert_menu_icon.png")));
-		mntmNewMenuItem_1.setFont(new Font("Verdana", Font.BOLD, 18));
-		mnRent.add(mntmNewMenuItem_1);
-		
-		JMenuItem mntmNewMenuItem = new JMenuItem("Rent TV BOX");
-		mntmNewMenuItem.setIcon(new ImageIcon(DashboarView.class.getResource("/img/tvBox_menu_icon.png")));
-		mntmNewMenuItem.setFont(new Font("Verdana", Font.BOLD, 18));
-		mnRent.add(mntmNewMenuItem);
+		JMenuItem mntmRentTitles = new JMenuItem("RENT TITLES");
+		mntmRentTitles.setIcon(new ImageIcon(DashboarView.class.getResource("/img/atm-money-icon.png")));
+		mntmRentTitles.setFont(new Font("Verdana", Font.BOLD, 18));
+		mnRent.add(mntmRentTitles);
+		mntmRentTitles.addActionListener((ActionListener)controllerInternalRef);
+		mntmRentTitles.setActionCommand("rentTitles");
 		
 		JMenu mnLogout = new JMenu("Logout");
-		mnLogout.setBackground(Color.BLACK);
+		mnLogout.setBackground(Color.WHITE);
 		mnLogout.setIcon(new ImageIcon(DashboarView.class.getResource("/img/logout_icon.png")));
 		mnLogout.setFont(new Font("Verdana", Font.BOLD, 20));
 		mnLogout.setBorder(new LineBorder(new Color(255, 255, 255), 2, true));

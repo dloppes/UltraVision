@@ -2,8 +2,12 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import View.StockAvailableView;
+import View.CheckPointsView;
 import View.CustomerListView;
 import View.DashboarView;
+import View.StockRentedView;
 
 public class DashboardController implements ActionListener {
 
@@ -18,7 +22,7 @@ public class DashboardController implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		
 		String ac = e.getActionCommand();
 
 		switch (ac) {
@@ -33,18 +37,38 @@ public class DashboardController implements ActionListener {
 		case "newMusic":
 			new NewMusicController();
 			break;
-			
+
 		case "newMovie":
 			new NewMovieController();
 			break;
-			
+
 		case "newLiveConcert":
 			new NewLiveConcertController();
 			break;
-			
+
 		case "newTVBox":
 			new NewTVBoxController();
 			break;
+
+		case "availableTitles":
+			new StockAvailableView();
+			break;
+
+		case "rentedTitles":
+			new StockRentedView();
+			break;
+
+		case "searchPoints":
+			new CheckPointsController();
+			break;
+			
+		case "rentTitles":
+			new RentTitlesController();
+			break;
+
+		case "exit":
+			System.exit(0);
+			new LoginController();
 		}
 
 	}

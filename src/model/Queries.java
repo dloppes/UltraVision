@@ -13,16 +13,16 @@ public class Queries {
 			boolean newTVBox = false;
 			// boolean rented=false;
 
-			String query = "INSERT INTO TVBox (season, title, numberOfDisks, rented, price, format) "
-					+ "VALUES ( '" + tvBox.getSeason() + "', '" + tvBox.getTitle() + "', '"
-					+ tvBox.getNumberOfDisks() + "', '" + tvBox.rented + "', '" + tvBox.getPrice() + "', '"
-					+ tvBox.getFormat() + "');";
+			String query = "INSERT INTO TVBox (season, title, numberOfDisks, rented, price, format) " + "VALUES ( '"
+					+ tvBox.getSeason() + "', '" + tvBox.getTitle() + "', '" + tvBox.getNumberOfDisks() + "', '"
+					+ tvBox.rented + "', '" + tvBox.getPrice() + "', '" + tvBox.getFormat() + "');";
 
 			newTVBox = conn.ExecuteSet(query);
 
 			return newTVBox;
 		}
 
+	
 	}
 
 	public class liveConcertClass {
@@ -81,17 +81,17 @@ public class Queries {
 
 			return newMusic;
 		}
-		
+
 		public Music getMusicDetails(String musicID) {
 
 			Music music;
-			ResultSet rs; 
-			
-			int yearOfRelease=0;
+			ResultSet rs;
+
+			int yearOfRelease = 0;
 			String title = "";
 			String genre = "";
 			String singer = "";
-			double price=0;
+			double price = 0;
 			String format = "";
 
 			try {
@@ -112,7 +112,44 @@ public class Queries {
 				System.out.println("SOmething went wrong");
 			}
 
-			music = new Music(yearOfRelease, title, genre, price,singer, format);
+			music = new Music(yearOfRelease, title, genre, price, singer, format);
+
+			return music;
+
+		}
+
+		public Music getMusicDetails() {
+
+			Music music;
+			ResultSet rs;
+
+			int yearOfRelease = 0;
+			String title = "";
+			String genre = "";
+			String singer = "";
+			double price = 0;
+			String format = "";
+			boolean rented = false;
+
+			try {
+				conn = new connection();
+
+				String query = "Select * FROM music WHERE rented = '" + rented + "'";
+				rs = conn.executeQuery(query);
+
+				while (rs.next()) {
+					yearOfRelease = Integer.parseInt(rs.getString("fName"));
+					title = rs.getString("lName");
+					genre = rs.getString("email");
+					singer = rs.getString("cardNumber");
+					price = Double.parseDouble(rs.getString("phoneNumber"));
+					format = rs.getString("plan");
+				}
+			} catch (Exception e) {
+				System.out.println("SOmething went wrong");
+			}
+
+			music = new Music(yearOfRelease, title, genre, price, singer, format);
 
 			return music;
 
@@ -163,10 +200,12 @@ public class Queries {
 			conn.ExecuteSet(query);
 
 		}
-		
+
 	}
 
 	public class loyaltyCard {
+
+		connection conn = new connection();
 
 		Customer c; // instance of customer
 		protected int points;
@@ -232,6 +271,40 @@ public class Queries {
 			return updatedCustomer;
 
 		}
+
+	}
+
+	public int getCardPoints(String email) {
+		connection conn = new connection();
+
+		int cardPoints = 0;
+		int id = 0;
+
+		String query = "SELECT customerID FROM customer WHERE email = '" + email + "'";
+		ResultSet rs = conn.executeQuery(query);
+
+		try {
+			while (rs.next()) {
+				id = rs.getInt("customerID");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		query = "SELECT numberOfPoints FROM loyaltyCard WHERE loyaltyCardID = '" + id + "'";
+		rs = conn.executeQuery(query);
+
+		try {
+			while (rs.next()) {
+				cardPoints = rs.getInt("numberOfPoints");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return cardPoints;
 
 	}
 

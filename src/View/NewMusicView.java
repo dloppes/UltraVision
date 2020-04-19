@@ -44,7 +44,6 @@ public class NewMusicView extends JFrame {
 		frame.setVisible(true);
 		
 		frame.setTitle("New Music");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setBounds(100, 100, 651, 605);
 		contentPane = new JPanel();
 		contentPane.setName("");
