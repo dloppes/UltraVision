@@ -3,7 +3,6 @@ package View;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Panel;
-import java.awt.SystemColor;
 import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
@@ -17,7 +16,6 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 import controller.DashboardController;
-import javax.swing.UIManager;
 
 public class DashboarView extends JFrame {
 	

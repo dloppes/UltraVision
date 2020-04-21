@@ -10,10 +10,9 @@ import javax.swing.ImageIcon;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.ResultSet;
-
 import javax.swing.border.LineBorder;
 
+import model.Queries;
 import model.connection;
 
 import javax.swing.SwingConstants;
@@ -25,11 +24,9 @@ public class StockAvailableView extends JFrame implements ActionListener {
 	private JPanel contentPane;
 	private JTable table;
 	private JFrame frame;
-	private connection conn;
-
 	public StockAvailableView() {
 
-		conn = new connection();
+		new connection();
 
 		frame = new JFrame();
 
@@ -110,32 +107,15 @@ public class StockAvailableView extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent action) {
 
 		if (action.getActionCommand().equals("music")) {
-			boolean rented = false;
-			int row = 0;
+
 			String[] columnNames = new String[] { "Music ID", "Title", "Singer", "Genre", "Format", "Price" };
 
 			String[][] data = new String[100][columnNames.length];
 
-			String query = "Select * FROM music WHERE rented = '" + rented + "'";
-			ResultSet rs = conn.executeQuery(query);
+			Queries musicQuery = new Queries();
+			Queries.musicClass innerMusic = musicQuery.new musicClass();
 
-			try {
-				while (rs.next()) {
-
-					data[row][0] = rs.getString("musicID");
-					data[row][1] = rs.getString("title");
-					data[row][2] = rs.getString("singer");
-					data[row][3] = rs.getString("genre");
-					data[row][4] = rs.getString("format");
-					data[row][5] = rs.getString("price");
-
-					row++;
-
-				}
-
-			} catch (Exception e) {
-
-			}
+			data = innerMusic.getAvailableMusic();
 
 			JScrollPane scrollPane = new JScrollPane();
 			scrollPane.setBounds(12, 287, 871, 262);
@@ -148,32 +128,14 @@ public class StockAvailableView extends JFrame implements ActionListener {
 
 		else if (action.getActionCommand().equals("movie")) {
 
-			boolean rented = false;
-			int row = 0;
 			String[] columnNames = new String[] { "Movie ID", "Title", "Director", "Genre", "Format", "Price" };
 
 			String[][] data = new String[100][columnNames.length];
 
-			String query = "Select * FROM movies WHERE rented = '" + rented + "'";
-			ResultSet rs = conn.executeQuery(query);
+			Queries movieQuery = new Queries();
+			Queries.movieClass innerMovie = movieQuery.new movieClass();
 
-			try {
-				while (rs.next()) {
-
-					data[row][0] = rs.getString("movieID");
-					data[row][1] = rs.getString("title");
-					data[row][2] = rs.getString("director");
-					data[row][3] = rs.getString("genre");
-					data[row][4] = rs.getString("format");
-					data[row][5] = rs.getString("price");
-
-					row++;
-
-				}
-
-			} catch (Exception e) {
-
-			}
+			data = innerMovie.getAvailableMovie();
 
 			JScrollPane scrollPane = new JScrollPane();
 			scrollPane.setBounds(12, 287, 871, 262);
@@ -185,31 +147,14 @@ public class StockAvailableView extends JFrame implements ActionListener {
 		}
 
 		else if (action.getActionCommand().equals("TVBox")) {
-			boolean rented = false;
-			int row = 0;
 			String[] columnNames = new String[] { "Title ID", "Title", "Season", "Number of Disks", "Format", "Price" };
 
 			String[][] data = new String[100][columnNames.length];
 
-			String query = "Select * FROM TVBox WHERE rented = '" + rented + "'";
-			ResultSet rs = conn.executeQuery(query);
+			Queries tvBoxQuery = new Queries();
+			Queries.tvBoxClass innerTVBox = tvBoxQuery.new tvBoxClass();
 
-			try {
-				while (rs.next()) {
-					data[row][0] = rs.getString("titleID");
-					data[row][1] = rs.getString("title");
-					data[row][2] = rs.getString("season");
-					data[row][3] = rs.getString("numberOfDisks");
-					data[row][4] = rs.getString("format");
-					data[row][5] = rs.getString("price");
-
-					row++;
-
-				}
-
-			} catch (Exception e) {
-
-			}
+			data = innerTVBox.getAvailableTVBox();
 
 			JScrollPane scrollPane = new JScrollPane();
 			scrollPane.setBounds(12, 287, 871, 262);
@@ -221,31 +166,14 @@ public class StockAvailableView extends JFrame implements ActionListener {
 		}
 
 		else if (action.getActionCommand().equals("liveConcert")) {
-			boolean rented = false;
-			int row = 0;
 			String[] columnNames = new String[] { "Band ID", "Title", "Band", "Genre", "Format", "Price" };
 
 			String[][] data = new String[100][columnNames.length];
 
-			String query = "Select * FROM liveConcert WHERE rented = '" + rented + "'";
-			ResultSet rs = conn.executeQuery(query);
+			Queries liveConcertQuery = new Queries();
+			Queries.liveConcertClass innerLiveConcert = liveConcertQuery.new liveConcertClass();
 
-			try {
-				while (rs.next()) {
-					data[row][0] = rs.getString("bandID");
-					data[row][1] = rs.getString("title");
-					data[row][2] = rs.getString("band");
-					data[row][3] = rs.getString("genre");
-					data[row][4] = rs.getString("format");
-					data[row][5] = rs.getString("price");
-
-					row++;
-
-				}
-
-			} catch (Exception e) {
-
-			}
+			data = innerLiveConcert.getAvailableLiveConcert();
 
 			JScrollPane scrollPane = new JScrollPane();
 			scrollPane.setBounds(12, 287, 871, 262);

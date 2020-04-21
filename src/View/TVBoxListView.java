@@ -1,8 +1,5 @@
 package View;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -18,32 +15,18 @@ public class TVBoxListView extends JFrame {
 
 	private JPanel contentPane;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TVBoxListView frame = new TVBoxListView();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
-	/**
-	 * Create the frame.
-	 */
 	public TVBoxListView() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 657, 535);
+		
+		JFrame frame = new JFrame();
+		
+		frame.setVisible(true);
+		
+		frame.setBounds(100, 100, 657, 535);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.BLACK);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
+		frame.setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JLabel logoLabel = new JLabel("New label");
@@ -59,7 +42,7 @@ public class TVBoxListView extends JFrame {
 		lblTvBoxList.setBounds(398, 40, 204, 59);
 		contentPane.add(lblTvBoxList);
 		
-		JComboBox tvBoxListComboBox = new JComboBox();
+		JComboBox<Object> tvBoxListComboBox = new JComboBox<Object>();
 		tvBoxListComboBox.setFont(new Font("Verdana", Font.PLAIN, 18));
 		tvBoxListComboBox.setBounds(28, 172, 448, 38);
 		contentPane.add(tvBoxListComboBox);

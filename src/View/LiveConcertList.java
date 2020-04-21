@@ -1,6 +1,5 @@
 package View;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -59,7 +58,7 @@ public class LiveConcertList extends JFrame {
 		lblLiveConcertList.setBounds(358, 40, 239, 59);
 		contentPane.add(lblLiveConcertList);
 		
-		JComboBox liveConcertListComboBox = new JComboBox();
+		JComboBox<Object> liveConcertListComboBox = new JComboBox<Object>();
 		liveConcertListComboBox.setFont(new Font("Verdana", Font.PLAIN, 18));
 		liveConcertListComboBox.setBounds(23, 172, 448, 38);
 		contentPane.add(liveConcertListComboBox);

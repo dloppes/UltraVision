@@ -23,10 +23,10 @@ public class NewTVBoxView extends JFrame{
 
 	private JPanel contentPane;
 	private JTextField titleTextField;
-	private JComboBox numberOfDisksComboBox;
-	private JComboBox formatComboBox;
-	private JComboBox priceComboBox;
-	private JComboBox seasonComboBox;
+	private JComboBox<Object> numberOfDisksComboBox;
+	private JComboBox<Object> formatComboBox;
+	private JComboBox<Object> priceComboBox;
+	private JComboBox<Object> seasonComboBox;
 	private NewTVBoxController controllerInternalRef;
 
 	public NewTVBoxView(NewTVBoxController controllerInternalRef) {
@@ -82,8 +82,8 @@ public class NewTVBoxView extends JFrame{
 		numberOfDisksLabel.setBounds(12, 318, 212, 42);
 		contentPane.add(numberOfDisksLabel);
 
-		numberOfDisksComboBox = new JComboBox();
-		numberOfDisksComboBox.setModel(new DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5" }));
+		numberOfDisksComboBox = new JComboBox<Object>();
+		numberOfDisksComboBox.setModel(new DefaultComboBoxModel<Object>(new String[] { "1", "2", "3", "4", "5" }));
 		numberOfDisksComboBox.setFont(new Font("Verdana", Font.PLAIN, 18));
 		numberOfDisksComboBox.setBounds(236, 318, 466, 42);
 		contentPane.add(numberOfDisksComboBox);
@@ -95,8 +95,8 @@ public class NewTVBoxView extends JFrame{
 		formatLabel.setBounds(12, 385, 212, 42);
 		contentPane.add(formatLabel);
 
-		formatComboBox = new JComboBox();
-		formatComboBox.setModel(new DefaultComboBoxModel(Format.values()));
+		formatComboBox = new JComboBox<Object>();
+		formatComboBox.setModel(new DefaultComboBoxModel<Object>(Format.values()));
 		formatComboBox.setFont(new Font("Verdana", Font.PLAIN, 18));
 		formatComboBox.setBounds(236, 385, 466, 42);
 		contentPane.add(formatComboBox);
@@ -108,8 +108,8 @@ public class NewTVBoxView extends JFrame{
 		priceLabel.setBounds(12, 458, 212, 42);
 		contentPane.add(priceLabel);
 
-		priceComboBox = new JComboBox();
-		priceComboBox.setModel(new DefaultComboBoxModel(
+		priceComboBox = new JComboBox<Object>();
+		priceComboBox.setModel(new DefaultComboBoxModel<Object>(
 				new String[] { "2.00", "3.00", "5.00", "7.50", "9.00", "10.00", "15.00", "20.00" }));
 		priceComboBox.setFont(new Font("Verdana", Font.PLAIN, 18));
 		priceComboBox.setBounds(236, 458, 468, 42);
@@ -123,8 +123,8 @@ public class NewTVBoxView extends JFrame{
 		createButton.addActionListener((ActionListener)controllerInternalRef);
 		createButton.setActionCommand("create");
 
-		seasonComboBox = new JComboBox();
-		seasonComboBox.setModel(new DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9",
+		seasonComboBox = new JComboBox<Object>();
+		seasonComboBox.setModel(new DefaultComboBoxModel<Object>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9",
 				"10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20" }));
 		seasonComboBox.setFont(new Font("Verdana", Font.PLAIN, 18));
 		seasonComboBox.setBounds(236, 240, 466, 42);

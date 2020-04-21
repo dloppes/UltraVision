@@ -26,12 +26,13 @@ public class NewLiveConcertView extends JFrame {
 	private JTextField titleTextField;
 	private JTextField bandTextField;
 	private JTextField yearOfReleaseTextField;
-	private JComboBox genreComboBox;
-	private JComboBox formatComboBox;
-	private JComboBox priceComboBox;
+	private JComboBox<Object> genreComboBox;
+	private JComboBox<Object> formatComboBox;
+	private JComboBox<Object> priceComboBox;
 	private NewLiveConcertController controllerInternalRef;
 
 	public NewLiveConcertView(NewLiveConcertController controllerInternalRef) {
+		this.controllerInternalRef = controllerInternalRef;
 		
 		JFrame frame = new JFrame();
 		frame.setVisible(true);
@@ -111,8 +112,8 @@ public class NewLiveConcertView extends JFrame {
 		bandTextField.setBounds(242, 234, 468, 42);
 		contentPane.add(bandTextField);
 		
-		genreComboBox = new JComboBox();
-		genreComboBox.setModel(new DefaultComboBoxModel(MusicGenres.values()));
+		genreComboBox = new JComboBox<Object>();
+		genreComboBox.setModel(new DefaultComboBoxModel<Object>(MusicGenres.values()));
 		genreComboBox.setFont(new Font("Verdana", Font.PLAIN, 18));
 		genreComboBox.setBounds(244, 293, 466, 42);
 		contentPane.add(genreComboBox);
@@ -123,14 +124,14 @@ public class NewLiveConcertView extends JFrame {
 		yearOfReleaseTextField.setBounds(242, 355, 468, 42);
 		contentPane.add(yearOfReleaseTextField);
 		
-		formatComboBox = new JComboBox();
-		formatComboBox.setModel(new DefaultComboBoxModel(Format.values()));
+		formatComboBox = new JComboBox<Object>();
+		formatComboBox.setModel(new DefaultComboBoxModel<Object>(Format.values()));
 		formatComboBox.setFont(new Font("Verdana", Font.PLAIN, 18));
 		formatComboBox.setBounds(244, 414, 466, 42);
 		contentPane.add(formatComboBox);
 		
-		priceComboBox = new JComboBox();
-		priceComboBox.setModel(new DefaultComboBoxModel(new String[] {"1.00", "2.00", "2.50", "5.00", "7.50", "8.00", "10.00", "15.00", "18.00", "20.00"}));
+		priceComboBox = new JComboBox<Object>();
+		priceComboBox.setModel(new DefaultComboBoxModel<Object>(new String[] {"1.00", "2.00", "2.50", "5.00", "7.50", "8.00", "10.00", "15.00", "18.00", "20.00"}));
 		priceComboBox.setFont(new Font("Verdana", Font.PLAIN, 18));
 		priceComboBox.setBounds(244, 472, 468, 42);
 		contentPane.add(priceComboBox);

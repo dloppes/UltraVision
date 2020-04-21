@@ -3,6 +3,8 @@ package model;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.swing.JOptionPane;
+
 public class Queries {
 
 	public class tvBoxClass {
@@ -22,7 +24,101 @@ public class Queries {
 			return newTVBox;
 		}
 
-	
+		public String[][] getAvailableTVBox() {
+
+			boolean rented = false;
+			int row = 0;
+			String[] columnNames = new String[] { "Title ID", "Title", "Season", "Number of Disks", "Format", "Price" };
+
+			String[][] data = new String[100][columnNames.length];
+
+			String query = "Select * FROM TVBox WHERE rented = '" + rented + "'";
+			ResultSet rs = conn.executeQuery(query);
+
+			try {
+				while (rs.next()) {
+					data[row][0] = rs.getString("titleID");
+					data[row][1] = rs.getString("title");
+					data[row][2] = rs.getString("season");
+					data[row][3] = rs.getString("numberOfDisks");
+					data[row][4] = rs.getString("format");
+					data[row][5] = rs.getString("price");
+
+					row++;
+
+				}
+
+			} catch (Exception e) {
+
+			}
+
+			return data;
+
+		}
+
+		public String[][] getRentedTVBox() {
+
+			boolean rented = false;
+			int row = 0;
+			String[] columnNames = new String[] { "Title ID", "Title", "Season", "Number of Disks", "Format", "Price" };
+
+			String[][] data = new String[100][columnNames.length];
+
+			String query = "Select * FROM TVBox WHERE rented = '" + rented + "'";
+			ResultSet rs = conn.executeQuery(query);
+
+			try {
+				while (rs.next()) {
+					data[row][0] = rs.getString("titleID");
+					data[row][1] = rs.getString("title");
+					data[row][2] = rs.getString("season");
+					data[row][3] = rs.getString("numberOfDisks");
+					data[row][4] = rs.getString("format");
+					data[row][5] = rs.getString("price");
+
+					row++;
+
+				}
+
+			} catch (Exception e) {
+
+			}
+
+			return data;
+
+		}
+		
+		public TVBox searchTVBoxTitle(String tvBoxTitle) {
+
+			ResultSet rs = null;
+			int titleID = 0;
+			String title="";
+			String format = "";
+			int numberOfDisks=0;
+			double price = 0;
+			int season = 0;
+			boolean rented = false;
+
+			try {
+				String query = "Select * FROM TVBox WHERE  title = '" + tvBoxTitle + "' AND rented = '" + rented +  "'";
+				rs = conn.executeQuery(query);
+
+				while (rs.next()) {
+					titleID = Integer.parseInt(rs.getString("titleID"));
+					season = Integer.parseInt(rs.getString("season"));
+					title = rs.getString("title");
+					price = Double.parseDouble(rs.getString("price"));
+					format = rs.getString("format");
+					numberOfDisks = Integer.parseInt(rs.getString("numberOfDisks"));
+				}
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(null, "Title you are looking for is not available at the moment");
+			}
+
+			 TVBox tvBox = new TVBox(  title,  season,  numberOfDisks,  price);
+			return tvBox;
+		}
+
 	}
 
 	public class liveConcertClass {
@@ -41,6 +137,103 @@ public class Queries {
 			newLiveConcert = conn.ExecuteSet(query);
 
 			return newLiveConcert;
+		}
+
+		public String[][] getAvailableLiveConcert() {
+
+			boolean rented = false;
+			int row = 0;
+			String[] columnNames = new String[] { "Band ID", "Title", "Band", "Genre", "Format", "Price" };
+
+			String[][] data = new String[100][columnNames.length];
+
+			String query = "Select * FROM liveConcert WHERE rented = '" + rented + "'";
+			ResultSet rs = conn.executeQuery(query);
+
+			try {
+				while (rs.next()) {
+					data[row][0] = rs.getString("bandID");
+					data[row][1] = rs.getString("title");
+					data[row][2] = rs.getString("band");
+					data[row][3] = rs.getString("genre");
+					data[row][4] = rs.getString("format");
+					data[row][5] = rs.getString("price");
+
+					row++;
+
+				}
+
+			} catch (Exception e) {
+
+			}
+
+			return data;
+
+		}
+
+		public String[][] getRentedLiveConcert() {
+
+			boolean rented = false;
+			int row = 0;
+			String[] columnNames = new String[] { "Band ID", "Title", "Band", "Genre", "Format", "Price" };
+
+			String[][] data = new String[100][columnNames.length];
+
+			String query = "Select * FROM liveConcert WHERE rented = '" + rented + "'";
+			ResultSet rs = conn.executeQuery(query);
+
+			try {
+				while (rs.next()) {
+					data[row][0] = rs.getString("bandID");
+					data[row][1] = rs.getString("title");
+					data[row][2] = rs.getString("band");
+					data[row][3] = rs.getString("genre");
+					data[row][4] = rs.getString("format");
+					data[row][5] = rs.getString("price");
+
+					row++;
+
+				}
+
+			} catch (Exception e) {
+
+			}
+
+			return data;
+
+		}
+		
+		public LiveConcert searchLiveConcertTitle(String liveTitle) {
+
+			ResultSet rs = null;
+			int bandID = 0;
+			String title = "";
+			String band = "";
+			String genre = "";
+			String format = "";
+			double price = 0;
+			int yearOfRelease = 0;
+			boolean rented = false;
+
+			try {
+				String query = "Select * FROM liveConcert WHERE  title = '" + liveTitle + "' AND rented = '" + rented +  "'";
+				rs = conn.executeQuery(query);
+
+				while (rs.next()) {
+					bandID = Integer.parseInt(rs.getString("bandID"));
+					yearOfRelease = Integer.parseInt(rs.getString("yearOfRelease"));
+					title = rs.getString("title");
+					genre = rs.getString("genre");
+					band = rs.getString("band");
+					price = Double.parseDouble(rs.getString("price"));
+					format = rs.getString("format");
+				}
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(null, "Title you are looking for is not available at the moment");
+			}
+
+			 LiveConcert liveConcert = new LiveConcert( yearOfRelease,  title,  genre,  price,  band,  format);
+			return liveConcert;
 		}
 
 	}
@@ -63,6 +256,104 @@ public class Queries {
 			return newMovie;
 		}
 
+		public String[][] getAvailableMovie() {
+
+			boolean rented = false;
+			int row = 0;
+			String[] columnNames = new String[] { "Movie ID", "Title", "Director", "Genre", "Format", "Price" };
+
+			String[][] data = new String[100][columnNames.length];
+
+			String query = "Select * FROM movies WHERE rented = '" + rented + "'";
+			ResultSet rs = conn.executeQuery(query);
+
+			try {
+				while (rs.next()) {
+
+					data[row][0] = rs.getString("movieID");
+					data[row][1] = rs.getString("title");
+					data[row][2] = rs.getString("director");
+					data[row][3] = rs.getString("genre");
+					data[row][4] = rs.getString("format");
+					data[row][5] = rs.getString("price");
+
+					row++;
+
+				}
+
+			} catch (Exception e) {
+
+			}
+
+			return data;
+
+		}
+
+		public String[][] getRentedMovie() {
+
+			boolean rented = false;
+			int row = 0;
+			String[] columnNames = new String[] { "Music ID", "Title", "Singer", "Genre", "Format", "Price" };
+
+			String[][] data = new String[100][columnNames.length];
+
+			String query = "Select * FROM music WHERE rented = '" + rented + "'";
+			ResultSet rs = conn.executeQuery(query);
+
+			try {
+				while (rs.next()) {
+
+					data[row][0] = rs.getString("musicID");
+					data[row][1] = rs.getString("title");
+					data[row][2] = rs.getString("singer");
+					data[row][3] = rs.getString("genre");
+					data[row][4] = rs.getString("format");
+					data[row][5] = rs.getString("price");
+
+					row++;
+
+				}
+
+			} catch (Exception e) {
+
+			}
+
+			return data;
+
+		}
+		
+		public Movies searchMovieTitle(String movieTitle) {
+
+			ResultSet rs = null;
+			int movieID = 0;
+			String title = "";
+			String director = "";
+			String genre = "";
+			String format = "";
+			double price = 0;
+			int yearOfRelease = 0;
+			boolean rented = false;
+
+			try {
+				String query = "Select * FROM movies WHERE  title = '" + movieTitle + "' AND rented = '" + rented +  "'";
+				rs = conn.executeQuery(query);
+
+				while (rs.next()) {
+					movieID = Integer.parseInt(rs.getString("movieID"));
+					yearOfRelease = Integer.parseInt(rs.getString("yearOfRelease"));
+					title = rs.getString("title");
+					genre = rs.getString("genre");
+					director = rs.getString("director");
+					price = Double.parseDouble(rs.getString("price"));
+					format = rs.getString("format");
+				}
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(null, "Title you are looking for is not available at the moment");
+			}
+
+			 Movies movie = new Movies(yearOfRelease, title,  genre,  price,  director,  format);
+			return movie;
+		}
 	}
 
 	public class musicClass {
@@ -118,43 +409,105 @@ public class Queries {
 
 		}
 
-		public Music getMusicDetails() {
+		public String[][] getAvailableMusic() {
 
-			Music music;
-			ResultSet rs;
-
-			int yearOfRelease = 0;
-			String title = "";
-			String genre = "";
-			String singer = "";
-			double price = 0;
-			String format = "";
 			boolean rented = false;
+			int row = 0;
+			String[] columnNames = new String[] { "Music ID", "Title", "Singer", "Genre", "Format", "Price" };
+
+			String[][] data = new String[100][columnNames.length];
+
+			String query = "Select * FROM music WHERE rented = '" + rented + "'";
+			ResultSet rs = conn.executeQuery(query);
 
 			try {
-				conn = new connection();
-
-				String query = "Select * FROM music WHERE rented = '" + rented + "'";
-				rs = conn.executeQuery(query);
-
 				while (rs.next()) {
-					yearOfRelease = Integer.parseInt(rs.getString("fName"));
-					title = rs.getString("lName");
-					genre = rs.getString("email");
-					singer = rs.getString("cardNumber");
-					price = Double.parseDouble(rs.getString("phoneNumber"));
-					format = rs.getString("plan");
+
+					data[row][0] = rs.getString("musicID");
+					data[row][1] = rs.getString("title");
+					data[row][2] = rs.getString("singer");
+					data[row][3] = rs.getString("genre");
+					data[row][4] = rs.getString("format");
+					data[row][5] = rs.getString("price");
+
+					row++;
+
 				}
+
 			} catch (Exception e) {
-				System.out.println("SOmething went wrong");
+
 			}
 
-			music = new Music(yearOfRelease, title, genre, price, singer, format);
-
-			return music;
+			return data;
 
 		}
 
+		public String[][] getRentedMusic() {
+
+			boolean rented = false;
+			int row = 0;
+			String[] columnNames = new String[] { "Music ID", "Title", "Singer", "Genre", "Format", "Price" };
+
+			String[][] data = new String[100][columnNames.length];
+
+			String query = "Select * FROM music WHERE rented = '" + rented + "'";
+			ResultSet rs = conn.executeQuery(query);
+
+			try {
+				while (rs.next()) {
+
+					data[row][0] = rs.getString("musicID");
+					data[row][1] = rs.getString("title");
+					data[row][2] = rs.getString("singer");
+					data[row][3] = rs.getString("genre");
+					data[row][4] = rs.getString("format");
+					data[row][5] = rs.getString("price");
+
+					row++;
+
+				}
+
+			} catch (Exception e) {
+
+			}
+
+			return data;
+
+		}
+
+		public Music searchMusicTitle(String musicTitle) {
+
+			ResultSet rs = null;
+			int musicID = 0;
+			String title = "";
+			String singer = "";
+			String genre = "";
+			String format = "";
+			double price = 0;
+			int yearOfRelease = 0;
+			boolean rented = false;
+
+			try {
+				String query = "Select * FROM music WHERE title = '" + musicTitle + "' AND rented = '" + rented +  "'";
+				rs = conn.executeQuery(query);
+				
+
+				while (rs.next()) {
+					musicID = Integer.parseInt(rs.getString("musicID"));
+					yearOfRelease = Integer.parseInt(rs.getString("yearOfRelease"));
+					title = rs.getString("title");
+					genre = rs.getString("genre");
+					singer = rs.getString("singer");
+					price = Double.parseDouble(rs.getString("price"));
+					format = rs.getString("format");
+				}
+			} catch (Exception e) {
+				System.out.println("Title you are looking for is not available at the moment");
+			}
+
+			 Music music = new Music(yearOfRelease, title, genre, price, singer, format);
+			return music;
+		}
 	}
 
 	public class customerClass {
@@ -190,8 +543,7 @@ public class Queries {
 					id = rs.getInt("customerID");
 				}
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				JOptionPane.showMessageDialog(null, "Something went wrong");
 			}
 
 			query = "INSERT INTO loyaltyCard (numberOfPoints, customerID) " + "VALUES ( '" + cardPoints + "', '" + id
@@ -199,6 +551,36 @@ public class Queries {
 
 			conn.ExecuteSet(query);
 
+		}
+
+		public Customer getCustomer(String email) {
+
+			String fName = "";
+			String lName = "";
+			String phoneNumber = "";
+			String plan = "";
+			String cardNumber = "";
+			String customerID ="";
+
+			String query = "SELECT * FROM customer WHERE email = '" + email + "'";
+			ResultSet rs = conn.executeQuery(query);
+
+			try {
+				while (rs.next()) {
+					customerID = rs.getString("customerID");
+					fName = rs.getString("fName");
+					lName = rs.getString("lName");
+					phoneNumber = rs.getString("phoneNumber");
+					plan = rs.getString("plan");
+					cardNumber = rs.getString("cardNumber");
+				}
+			} catch (SQLException e) {
+				JOptionPane.showMessageDialog(null, "Something went wrong");
+			}
+
+			Customer customer = new Customer(fName, lName, phoneNumber, email, plan, cardNumber);
+
+			return customer;
 		}
 
 	}
@@ -288,8 +670,7 @@ public class Queries {
 				id = rs.getInt("customerID");
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Something went wrong");
 		}
 
 		query = "SELECT numberOfPoints FROM loyaltyCard WHERE loyaltyCardID = '" + id + "'";
@@ -300,8 +681,7 @@ public class Queries {
 				cardPoints = rs.getInt("numberOfPoints");
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Something went wrong");
 		}
 
 		return cardPoints;

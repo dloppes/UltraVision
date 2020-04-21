@@ -27,9 +27,9 @@ public class NewCustomerView extends JFrame {
 	private JTextField emailTextField;
 	private JTextField cardNumberTextField;
 	private JTextField phoneNumberTextField;
-	private JComboBox planBox;
+	private JComboBox<Object> planBox;
 
-	public NewCustomerView(NewCustomerController controller) {
+	public NewCustomerView(NewCustomerController controllerInternalRef) {
 
 		JFrame frame = new JFrame();
 
@@ -138,12 +138,12 @@ public class NewCustomerView extends JFrame {
 		createButton.setBorder(new LineBorder(Color.ORANGE, 1, true));
 		createButton.setFont(new Font("Tahoma", Font.BOLD, 20));
 		createButton.setBounds(476, 525, 127, 38);
-		createButton.addActionListener((ActionListener) controller);
+		createButton.addActionListener((ActionListener) controllerInternalRef);
 		createButton.setActionCommand("create");
 		contentPane.add(createButton);
 		
-		planBox = new JComboBox();
-		planBox.setModel(new DefaultComboBoxModel(Membership.values()));
+		planBox = new JComboBox<Object>();
+		planBox.setModel(new DefaultComboBoxModel<Object>(Membership.values()));
 		planBox.setBounds(188, 405, 415, 38);
 		contentPane.add(planBox);
 

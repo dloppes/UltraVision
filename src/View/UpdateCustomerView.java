@@ -3,8 +3,6 @@ package View;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionListener;
-import java.sql.ResultSet;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -16,7 +14,6 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 import controller.UpdateCustomerController;
-import model.connection;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 
@@ -32,9 +29,7 @@ public class UpdateCustomerView extends JFrame {
 	private JTextField emailTextField;
 	private JTextField cardNumberTextField;
 	private JTextField phoneNumberTextField;
-	private String userID;
-	private JComboBox planBox;
-	private ResultSet rs;
+	private JComboBox<Object> planBox;
 	private Customer customer;
 
 	public UpdateCustomerView(UpdateCustomerController controllerInternalRef, Customer customer) {
@@ -166,8 +161,8 @@ public class UpdateCustomerView extends JFrame {
 		updateButton.setActionCommand("update");
 		contentPane.add(updateButton);
 
-		planBox = new JComboBox();
-		planBox.setModel(new DefaultComboBoxModel(Membership.values()));
+		planBox = new JComboBox<Object>();
+		planBox.setModel(new DefaultComboBoxModel<Object>(Membership.values()));
 		planBox.setBounds(188, 401, 415, 36);
 		contentPane.add(planBox);
 

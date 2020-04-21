@@ -5,6 +5,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -18,7 +19,6 @@ import javax.swing.border.LineBorder;
 
 import controller.UpdateCustomerController;
 import model.connection;
-import javax.swing.JTextArea;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 
@@ -28,7 +28,7 @@ public class CustomerListView extends JFrame implements ActionListener {
 	private connection conn;
 	private ResultSet rs;
 	public String selectedCustomerID;
-	private JComboBox customerComboBox;
+	private JComboBox<Object> customerComboBox;
 	private JButton selectButton;
 	private JFrame frame;
 	private JLabel customerLabel;
@@ -61,7 +61,7 @@ public class CustomerListView extends JFrame implements ActionListener {
 		lblNewLabel.setBounds(-139, 0, 580, 159);
 		contentPane.add(lblNewLabel);
 
-		customerComboBox = new JComboBox();
+		customerComboBox = new JComboBox<Object>();
 		customerComboBox.setFont(new Font("Verdana", Font.PLAIN, 18));
 		customerComboBox.setBounds(50, 172, 448, 38);
 		contentPane.add(customerComboBox);
@@ -97,20 +97,18 @@ public class CustomerListView extends JFrame implements ActionListener {
 					customerComboBox.addItem(
 							rs.getString("customerID") + " " + rs.getString("fName") + " " + rs.getString("lName"));
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+				JOptionPane.showMessageDialog(null, "Something went wrong");
 				}
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Something went wrong");
 		}
 
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+
 		try {
 			selectedCustomerID = customerComboBox.getSelectedItem().toString();
 			selectedCustomerID = selectedCustomerID.split(" ")[0];

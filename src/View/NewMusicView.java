@@ -30,9 +30,9 @@ public class NewMusicView extends JFrame {
 	private JPanel contentPane;
 	private JTextField titleTextField;
 	private JTextField yearOfReleaseTextField;
-	private JComboBox genreComboBox;
-	private JComboBox formatComboBox;
-	private JComboBox priceComboBox;
+	private JComboBox<Object> genreComboBox;
+	private JComboBox<Object> formatComboBox;
+	private JComboBox<Object> priceComboBox;
 	private NewMusicController controllerInternalRef;
 	private JTextField singerTextField;
 
@@ -106,8 +106,8 @@ public class NewMusicView extends JFrame {
 		contentPane.add(titleTextField);
 		titleTextField.setColumns(10);
 		
-		genreComboBox = new JComboBox();
-		genreComboBox.setModel(new DefaultComboBoxModel(MusicGenres.values()));
+		genreComboBox = new JComboBox<Object>();
+		genreComboBox.setModel(new DefaultComboBoxModel<Object>(MusicGenres.values()));
 		genreComboBox.setFont(new Font("Verdana", Font.PLAIN, 18));
 		genreComboBox.setBounds(222, 263, 361, 35);
 		contentPane.add(genreComboBox);
@@ -118,14 +118,14 @@ public class NewMusicView extends JFrame {
 		contentPane.add(yearOfReleaseTextField);
 		yearOfReleaseTextField.setColumns(10);
 		
-		formatComboBox = new JComboBox();
-		formatComboBox.setModel(new DefaultComboBoxModel(Format.values()));
+		formatComboBox = new JComboBox<Object>();
+		formatComboBox.setModel(new DefaultComboBoxModel<Object>(Format.values()));
 		formatComboBox.setFont(new Font("Verdana", Font.PLAIN, 18));
 		formatComboBox.setBounds(222, 374, 361, 31);
 		contentPane.add(formatComboBox);
 		
-		priceComboBox = new JComboBox();
-		priceComboBox.setModel(new DefaultComboBoxModel(new String[] {"2.00", "3.50", "5.00", "7.50", "10.00"}));
+		priceComboBox = new JComboBox<Object>();
+		priceComboBox.setModel(new DefaultComboBoxModel<Object>(new String[] {"2.00", "3.50", "5.00", "7.50", "10.00"}));
 		priceComboBox.setFont(new Font("Verdana", Font.PLAIN, 18));
 		priceComboBox.setBounds(222, 433, 361, 31);
 		contentPane.add(priceComboBox);

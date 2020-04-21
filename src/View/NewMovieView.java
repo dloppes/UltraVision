@@ -26,9 +26,9 @@ public class NewMovieView extends JFrame {
 	private JTextField titleTextField;
 	private JTextField directorTextField;
 	private JTextField yearOfReleaseTextField;
-	private JComboBox genreComboBox;
-	private JComboBox formatComboBox;
-	private JComboBox priceComboBox;
+	private JComboBox<Object> genreComboBox;
+	private JComboBox <Object>formatComboBox;
+	private JComboBox<Object> priceComboBox;
 	private NewMovieController controllerInternalRef;
 
 	public NewMovieView(NewMovieController controllerInternalRef) {
@@ -113,8 +113,8 @@ public class NewMovieView extends JFrame {
 		directorTextField.setBounds(234, 208, 468, 42);
 		contentPane.add(directorTextField);
 		
-		genreComboBox = new JComboBox();
-		genreComboBox.setModel(new DefaultComboBoxModel(FilmGenres.values()));
+		genreComboBox = new JComboBox<Object>();
+		genreComboBox.setModel(new DefaultComboBoxModel<Object>(FilmGenres.values()));
 		genreComboBox.setFont(new Font("Verdana", Font.PLAIN, 18));
 		genreComboBox.setBounds(236, 267, 466, 42);
 		contentPane.add(genreComboBox);
@@ -125,14 +125,14 @@ public class NewMovieView extends JFrame {
 		yearOfReleaseTextField.setBounds(234, 329, 468, 42);
 		contentPane.add(yearOfReleaseTextField);
 		
-		formatComboBox = new JComboBox();
-		formatComboBox.setModel(new DefaultComboBoxModel(Format.values()));
+		formatComboBox = new JComboBox<Object>();
+		formatComboBox.setModel(new DefaultComboBoxModel<Object>(Format.values()));
 		formatComboBox.setFont(new Font("Verdana", Font.PLAIN, 18));
 		formatComboBox.setBounds(236, 388, 466, 42);
 		contentPane.add(formatComboBox);
 		
-		priceComboBox = new JComboBox();
-		priceComboBox.setModel(new DefaultComboBoxModel(new String[] {"2.00", "3.50", "5.00", "7.50", "10.00"}));
+		priceComboBox = new JComboBox<Object>();
+		priceComboBox.setModel(new DefaultComboBoxModel<Object>(new String[] {"2.00", "3.50", "5.00", "7.50", "10.00"}));
 		priceComboBox.setFont(new Font("Verdana", Font.PLAIN, 18));
 		priceComboBox.setBounds(236, 446, 468, 42);
 		contentPane.add(priceComboBox);

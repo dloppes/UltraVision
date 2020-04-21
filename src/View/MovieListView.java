@@ -1,6 +1,5 @@
 package View;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -18,32 +17,17 @@ public class MovieListView extends JFrame {
 
 	private JPanel contentPane;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MovieListView frame = new MovieListView();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public MovieListView() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 657, 535);
+		
+		JFrame frame = new JFrame();
+		
+		frame.setVisible(true);
+		
+		frame.setBounds(100, 100, 657, 535);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.BLACK);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
+		frame.setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JLabel logoLabel = new JLabel("New label");
@@ -59,7 +43,7 @@ public class MovieListView extends JFrame {
 		movieListLabel.setBounds(402, 40, 204, 59);
 		contentPane.add(movieListLabel);
 		
-		JComboBox movieListComboBox = new JComboBox();
+		JComboBox<Object> movieListComboBox = new JComboBox<Object>();
 		movieListComboBox.setFont(new Font("Verdana", Font.PLAIN, 18));
 		movieListComboBox.setBounds(32, 172, 448, 38);
 		contentPane.add(movieListComboBox);
@@ -70,6 +54,9 @@ public class MovieListView extends JFrame {
 		selectButton.setActionCommand("select");
 		selectButton.setBounds(492, 172, 114, 38);
 		contentPane.add(selectButton);
+		
+		frame.validate();
+		frame.repaint();
 	}
 
 }

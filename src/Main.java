@@ -7,7 +7,8 @@ public class Main {
 		// TODO Auto-generated method stub
 		//new LoginController();
 		
-		new DashboardController();
+		
+	new DashboardController();
 	}
 
 }

@@ -29,7 +29,7 @@ public class MusicListView extends JFrame implements ActionListener{
 	private JPanel contentPane;
 
 	private connection conn;
-	private JComboBox musicListComboBox;
+	private JComboBox<Object> musicListComboBox;
 	private ResultSet rs;
 	private JFrame frame;
 	public String selectedMusicID;
@@ -62,7 +62,7 @@ public class MusicListView extends JFrame implements ActionListener{
 		movieLabel.setBounds(407, 40, 204, 59);
 		contentPane.add(movieLabel);
 		
-		musicListComboBox = new JComboBox();
+		musicListComboBox = new JComboBox<Object>();
 		musicListComboBox.setFont(new Font("Verdana", Font.PLAIN, 18));
 		musicListComboBox.setBounds(37, 172, 448, 38);
 		contentPane.add(musicListComboBox);
