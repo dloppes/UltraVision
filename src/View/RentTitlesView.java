@@ -7,7 +7,6 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.border.LineBorder;
 
@@ -20,7 +19,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JSeparator;
 
-public class RentTitlesView extends JFrame implements ActionListener {
+public class RentTitlesView extends JFrame{
 
 	private JPanel contentPane;
 	private JTextField musicTitleTextField;
@@ -34,11 +33,13 @@ public class RentTitlesView extends JFrame implements ActionListener {
 	private JComboBox<Object> liveConcertComboBox;
 	private RentTitlesController controllerInternalRef;
 	private JTextField emailTextField;
+	private JTextArea customerIDTextField;
+	private JTextArea loyaltyCardIDTextField;
+	private JTextArea cardPointsBalanceTextField;
 
 	public RentTitlesView(RentTitlesController controllerInternalRef) {
-		
-		this.controllerInternalRef = controllerInternalRef;
 
+		this.controllerInternalRef = controllerInternalRef;
 
 		JFrame frame = new JFrame();
 
@@ -71,14 +72,14 @@ public class RentTitlesView extends JFrame implements ActionListener {
 		musicComboBox.setFont(new Font("Verdana", Font.PLAIN, 24));
 		musicComboBox.setBounds(12, 375, 626, 54);
 		contentPane.add(musicComboBox);
-		
+
 		JButton selectMusicButton = new JButton("SELECT");
 		selectMusicButton.setForeground(new Color(128, 128, 0));
 		selectMusicButton.setBackground(new Color(255, 255, 240));
 		selectMusicButton.setFont(new Font("Verdana", Font.BOLD, 15));
 		selectMusicButton.setBounds(650, 390, 104, 31);
 		contentPane.add(selectMusicButton);
-		selectMusicButton.addActionListener((ActionListener)this.controllerInternalRef);
+		selectMusicButton.addActionListener((ActionListener) this.controllerInternalRef);
 		selectMusicButton.setActionCommand("selectMusic");
 
 		JLabel lblTitle = new JLabel("Title:");
@@ -112,7 +113,7 @@ public class RentTitlesView extends JFrame implements ActionListener {
 		searchMusicButton.setBackground(new Color(255, 255, 240));
 		searchMusicButton.setBounds(650, 319, 104, 43);
 		contentPane.add(searchMusicButton);
-		searchMusicButton.addActionListener((ActionListener)this.controllerInternalRef);
+		searchMusicButton.addActionListener((ActionListener) this.controllerInternalRef);
 		searchMusicButton.setActionCommand("searchMusic");
 
 		JLabel lblNewLabel_1 = new JLabel("--------------------------------------------------------------------------");
@@ -152,7 +153,7 @@ public class RentTitlesView extends JFrame implements ActionListener {
 		searchMovieButton.setBackground(new Color(255, 255, 240));
 		searchMovieButton.setBounds(650, 489, 104, 43);
 		contentPane.add(searchMovieButton);
-		searchMovieButton.addActionListener((ActionListener)this.controllerInternalRef);
+		searchMovieButton.addActionListener((ActionListener) this.controllerInternalRef);
 		searchMovieButton.setActionCommand("searchMovie");
 
 		movieComboBox = new JComboBox<Object>();
@@ -166,7 +167,7 @@ public class RentTitlesView extends JFrame implements ActionListener {
 		selectMovieButton.setBackground(new Color(255, 255, 240));
 		selectMovieButton.setBounds(650, 560, 104, 31);
 		contentPane.add(selectMovieButton);
-		selectMovieButton.addActionListener((ActionListener)this.controllerInternalRef);
+		selectMovieButton.addActionListener((ActionListener) this.controllerInternalRef);
 		selectMovieButton.setActionCommand("selectMovie");
 
 		JLabel lblNewLabel_1_1 = new JLabel(
@@ -207,7 +208,7 @@ public class RentTitlesView extends JFrame implements ActionListener {
 		searchTVBoxButton.setBackground(new Color(255, 255, 240));
 		searchTVBoxButton.setBounds(650, 642, 104, 43);
 		contentPane.add(searchTVBoxButton);
-		searchTVBoxButton.addActionListener((ActionListener)this.controllerInternalRef);
+		searchTVBoxButton.addActionListener((ActionListener) this.controllerInternalRef);
 		searchTVBoxButton.setActionCommand("searchTVBox");
 
 		TVBoxComboBox = new JComboBox<Object>();
@@ -221,7 +222,7 @@ public class RentTitlesView extends JFrame implements ActionListener {
 		selectTVBoxButton.setBackground(new Color(255, 255, 240));
 		selectTVBoxButton.setBounds(650, 713, 104, 31);
 		contentPane.add(selectTVBoxButton);
-		selectTVBoxButton.addActionListener(this);
+		selectTVBoxButton.addActionListener((ActionListener) this.controllerInternalRef);
 		selectTVBoxButton.setActionCommand("selectTVBox");
 
 		JLabel lblNewLabel_1_2 = new JLabel(
@@ -256,13 +257,14 @@ public class RentTitlesView extends JFrame implements ActionListener {
 		contentPane.add(liveConcertTextField);
 
 		JButton searchLiveConcertButton = new JButton("");
-		searchLiveConcertButton.setIcon(new ImageIcon(RentTitlesView.class.getResource("/img/checkPoints_menu_icon.png")));
+		searchLiveConcertButton
+				.setIcon(new ImageIcon(RentTitlesView.class.getResource("/img/checkPoints_menu_icon.png")));
 		searchLiveConcertButton.setForeground(new Color(128, 128, 0));
 		searchLiveConcertButton.setFont(new Font("Verdana", Font.BOLD, 17));
 		searchLiveConcertButton.setBackground(new Color(255, 255, 240));
 		searchLiveConcertButton.setBounds(650, 798, 104, 43);
 		contentPane.add(searchLiveConcertButton);
-		searchLiveConcertButton.addActionListener((ActionListener)this.controllerInternalRef);
+		searchLiveConcertButton.addActionListener((ActionListener) this.controllerInternalRef);
 		searchLiveConcertButton.setActionCommand("searchLiveConcert");
 
 		liveConcertComboBox = new JComboBox<Object>();
@@ -276,7 +278,7 @@ public class RentTitlesView extends JFrame implements ActionListener {
 		selectLiveConcertButton.setBackground(new Color(255, 255, 240));
 		selectLiveConcertButton.setBounds(650, 869, 104, 31);
 		contentPane.add(selectLiveConcertButton);
-		selectLiveConcertButton.addActionListener(this);
+		selectLiveConcertButton.addActionListener((ActionListener) this.controllerInternalRef);
 		selectLiveConcertButton.setActionCommand("selectLiveConcert");
 
 		JLabel lblOrderDetails = new JLabel("ORDER DETAILS:");
@@ -303,7 +305,7 @@ public class RentTitlesView extends JFrame implements ActionListener {
 		customerIdLabel.setBounds(788, 253, 150, 37);
 		contentPane.add(customerIdLabel);
 
-		JTextArea customerIDTextField = new JTextArea();
+		customerIDTextField = new JTextArea();
 		customerIDTextField.setFont(new Font("Verdana", Font.PLAIN, 16));
 		customerIDTextField.setBounds(947, 253, 98, 37);
 		contentPane.add(customerIDTextField);
@@ -342,7 +344,7 @@ public class RentTitlesView extends JFrame implements ActionListener {
 		loyaltyCardIDLabel.setBounds(787, 319, 150, 37);
 		contentPane.add(loyaltyCardIDLabel);
 
-		JTextArea loyaltyCardIDTextField = new JTextArea();
+		loyaltyCardIDTextField = new JTextArea();
 		loyaltyCardIDTextField.setFont(new Font("Verdana", Font.PLAIN, 16));
 		loyaltyCardIDTextField.setBounds(949, 319, 95, 37);
 		contentPane.add(loyaltyCardIDTextField);
@@ -368,7 +370,7 @@ public class RentTitlesView extends JFrame implements ActionListener {
 		cardPointsBalanceLabel.setBounds(789, 380, 150, 37);
 		contentPane.add(cardPointsBalanceLabel);
 
-		JTextArea cardPointsBalanceTextField = new JTextArea();
+		cardPointsBalanceTextField = new JTextArea();
 		cardPointsBalanceTextField.setFont(new Font("Verdana", Font.PLAIN, 16));
 		cardPointsBalanceTextField.setBounds(951, 380, 95, 37);
 		contentPane.add(cardPointsBalanceTextField);
@@ -380,7 +382,7 @@ public class RentTitlesView extends JFrame implements ActionListener {
 		payButton.setBackground(new Color(255, 255, 240));
 		payButton.setBounds(878, 739, 167, 56);
 		contentPane.add(payButton);
-		payButton.addActionListener(this);
+		payButton.addActionListener((ActionListener) this.controllerInternalRef);
 		payButton.setActionCommand("pay");
 
 		JLabel totalLabel = new JLabel("Total:");
@@ -408,7 +410,7 @@ public class RentTitlesView extends JFrame implements ActionListener {
 		discountTextField.setFont(new Font("Verdana", Font.PLAIN, 16));
 		discountTextField.setBounds(949, 584, 95, 37);
 		contentPane.add(discountTextField);
-		
+
 		JLabel lblCustomerEmail = new JLabel("Customer Email:");
 		lblCustomerEmail.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCustomerEmail.setForeground(new Color(189, 183, 107));
@@ -416,18 +418,18 @@ public class RentTitlesView extends JFrame implements ActionListener {
 		lblCustomerEmail.setBorder(new LineBorder(new Color(189, 183, 107), 3, true));
 		lblCustomerEmail.setBounds(12, 138, 181, 43);
 		contentPane.add(lblCustomerEmail);
-		
+
 		emailTextField = new JTextField();
 		emailTextField.setFont(new Font("Verdana", Font.PLAIN, 18));
 		emailTextField.setColumns(10);
 		emailTextField.setBounds(211, 138, 427, 43);
 		contentPane.add(emailTextField);
-		
+
 		customerEmailComboBox = new JComboBox<Object>();
 		customerEmailComboBox.setFont(new Font("Verdana", Font.PLAIN, 24));
 		customerEmailComboBox.setBounds(12, 196, 626, 54);
 		contentPane.add(customerEmailComboBox);
-		
+
 		JButton searchEmailButton = new JButton("");
 		searchEmailButton.setIcon(new ImageIcon(RentTitlesView.class.getResource("/img/checkPoints_menu_icon.png")));
 		searchEmailButton.setForeground(new Color(128, 128, 0));
@@ -436,17 +438,20 @@ public class RentTitlesView extends JFrame implements ActionListener {
 		searchEmailButton.setActionCommand("searchEmail");
 		searchEmailButton.setBounds(650, 139, 104, 43);
 		contentPane.add(searchEmailButton);
-		searchEmailButton.addActionListener((ActionListener)controllerInternalRef);
+		searchEmailButton.addActionListener((ActionListener) controllerInternalRef);
 		searchEmailButton.setActionCommand("searchCustomer");
-		
-		JButton selectEmailButton = new JButton("SELECT");
-		selectEmailButton.setForeground(new Color(128, 128, 0));
-		selectEmailButton.setFont(new Font("Verdana", Font.BOLD, 15));
-		selectEmailButton.setBackground(new Color(255, 255, 240));
-		selectEmailButton.setBounds(650, 206, 104, 31);
-		contentPane.add(selectEmailButton);
-		
-		JLabel lblNewLabel_1_3 = new JLabel("--------------------------------------------------------------------------");
+
+		JButton selectCustomerButton = new JButton("SELECT");
+		selectCustomerButton.setForeground(new Color(128, 128, 0));
+		selectCustomerButton.setFont(new Font("Verdana", Font.BOLD, 15));
+		selectCustomerButton.setBackground(new Color(255, 255, 240));
+		selectCustomerButton.setBounds(650, 206, 104, 31);
+		contentPane.add(selectCustomerButton);
+		selectCustomerButton.addActionListener((ActionListener) controllerInternalRef);
+		selectCustomerButton.setActionCommand("selectCustomer");
+
+		JLabel lblNewLabel_1_3 = new JLabel(
+				"--------------------------------------------------------------------------");
 		lblNewLabel_1_3.setForeground(new Color(189, 183, 107));
 		lblNewLabel_1_3.setFont(new Font("Verdana", Font.BOLD, 20));
 		lblNewLabel_1_3.setBounds(14, 264, 741, 16);
@@ -456,73 +461,60 @@ public class RentTitlesView extends JFrame implements ActionListener {
 		frame.repaint();
 	}
 	
+	public void setCardPointsBalance(String cardPoints) {
+		this.cardPointsBalanceTextField.setText(cardPoints);
+	}
 	
+	public void setLoyaltyCardID(String cardID) {
+		this.loyaltyCardIDTextField.setText(cardID);
+	}
+	
+	public void setCustomerIDTextField(String customerID) {
+		this.customerIDTextField.setText(customerID);
+	}
+
 	public JComboBox<Object> getLiveTVBox() {
 		return TVBoxComboBox;
 	}
-	
+
 	public JComboBox<Object> getLiveConcertComboBox() {
 		return liveConcertComboBox;
 	}
+
 	public JComboBox<Object> getMovieComboBox() {
 		return movieComboBox;
 	}
-	
+
 	public JComboBox<Object> getCustomerEmailComboBox() {
 		return customerEmailComboBox;
 	}
-
-
-
 
 	public JComboBox<Object> getMusicComboBox() {
 		return musicComboBox;
 	}
 
-
-
 	public void setMusicComboBox(JComboBox<Object> musicComboBox) {
 		this.musicComboBox = musicComboBox;
 	}
-
-
 
 	public String getEmailTextField() {
 		return emailTextField.getText();
 	}
 
-
-
 	public String getMusicTitleTextField() {
 		return musicTitleTextField.getText();
 	}
-
-
 
 	public String getMovieTitleTextField() {
 		return movieTitleTextField.getText();
 	}
 
-
-
 	public String getTVBoxTitleTextField() {
 		return TVBoxTitleTextField.getText();
 	}
-
-
 
 	public String getLiveConcertTextField() {
 		return liveConcertTextField.getText();
 	}
 
-
-
-	@Override
-	public void actionPerformed(ActionEvent action) {
-
-		switch (action.getActionCommand()) {
-
-		}
-
-	}
 }

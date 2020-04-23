@@ -10,6 +10,7 @@ public class TVBox {
 	protected Format format = Format.DVD;
 	protected double price;
 	protected boolean rented;
+	protected String titleID;
 
 	public TVBox(String title, int season, int numberOfDisks, double price) {
 
@@ -18,6 +19,21 @@ public class TVBox {
 		this.numberOfDisks = numberOfDisks;
 		this.price = price;
 		this.rented=false;
+	}
+	
+	public TVBox(String title, int season, int numberOfDisks, double price, String titleID) {
+
+		this.title = title;
+		this.season = season;
+		this.numberOfDisks = numberOfDisks;
+		this.price = price;
+		this.rented=false;
+		this.titleID = titleID;
+	}
+
+	
+	public String getTitleID() {
+		return titleID;
 	}
 
 	public boolean isRented() {

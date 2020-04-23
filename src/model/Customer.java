@@ -7,7 +7,6 @@ public class Customer {
 	protected String lName;
 	protected String phoneNumber;
 	protected String email;
-	protected Object[] collection = new Object[4];// object instead of string
 	protected String plan;
 	protected String cardNumber;
 	protected String customerID;
@@ -24,8 +23,76 @@ public class Customer {
 
 	}
 
+	// constructor that has the ID
+	public Customer(String fName, String lName, String phoneNumber, String email, String plan, String cardNumber,
+			String customerID) {
+
+		this.email = email;
+		this.fName = fName;
+		this.lName = lName;
+		this.phoneNumber = phoneNumber;
+		this.plan = plan;
+		this.cardNumber = cardNumber;
+		this.customerID = customerID;
+	}
 
 //------------------------------------------------------------------------------------------------------------------------------------------//	
+
+	public boolean validateMusicPlan(Customer customer) {
+
+		boolean validMembership = false;
+
+		if (customer.getPlan().toString().equalsIgnoreCase("ML")
+				|| customer.getPlan().toString().equalsIgnoreCase("PR")) {
+
+			return validMembership = true;
+		} else {
+			return validMembership;
+		}
+
+	}
+
+	public boolean validateMoviePlan(Customer customer) {
+
+		boolean validMembership = false;
+
+		if (customer.getPlan().toString().equalsIgnoreCase("VL")
+				|| customer.getPlan().toString().equalsIgnoreCase("PR")) {
+
+			return validMembership = true;
+		} else {
+			return validMembership;
+		}
+
+	}
+
+	public boolean validateTVBoxPlan(Customer customer) {
+
+		boolean validMembership = false;
+
+		if (customer.getPlan().toString().equalsIgnoreCase("TV")
+				|| customer.getPlan().toString().equalsIgnoreCase("PR")) {
+
+			return validMembership = true;
+		} else {
+			return validMembership;
+		}
+
+	}
+
+	public boolean validateLiveConcertPlan(Customer customer) {
+
+		boolean validMembership = false;
+
+		if (customer.getPlan().toString().equalsIgnoreCase("ML")
+				|| customer.getPlan().toString().equalsIgnoreCase("PR")) {
+
+			return validMembership = true;
+		} else {
+			return validMembership;
+		}
+
+	}
 
 	public String getfName() {
 		return fName;
@@ -47,30 +114,8 @@ public class Customer {
 		return cardNumber;
 	}
 
-	public boolean validateCardNumber(String cardNumber) {
-
-		if (!cardNumber.matches("[0-9]+")) {
-
-			System.out.println("Invalid card details. ONLY NUMBERS AREA ACCEPTED");
-			return false;
-		}
-
-		int cardlength = cardNumber.length();
-
-		if (cardlength != 16) {
-			System.out.println("It is missing numbers, please insert the 16 numbers required for a valid card!");
-			return false;
-		}
-
-		else {
-			return true;
-		}
-
-	}
-
 	public void setCardNumber(String cardNumber) {
-		if (validateCardNumber(cardNumber) == true)
-			this.cardNumber = cardNumber;
+		this.cardNumber = cardNumber;
 	}
 
 	public String getPhoneNumber() {
@@ -89,14 +134,6 @@ public class Customer {
 		this.email = email;
 	}
 
-	public Object[] getCollection() {
-		return collection;
-	}
-
-	public void setCollection(Object[] collection) {
-		this.collection = collection;
-	}
-
 	public String getPlan() {
 		return plan;
 	}
@@ -109,8 +146,12 @@ public class Customer {
 		return customerID;
 	}
 
-	public void setCustomerID(String customerID) {
-		this.customerID = customerID;
+	public Membership getMembership() {
+		return membership;
+	}
+
+	public void setMembership(Membership membership) {
+		this.membership = membership;
 	}
 
 }

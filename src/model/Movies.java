@@ -4,6 +4,7 @@ public class Movies extends Entertainment {
 
 	private String director;
 	private String format;
+	private String movieID;
 
 	public Movies(int yearOfRelease, String title, String genre, double price, String director, String format) {
 		super(yearOfRelease, title, genre, price, director);
@@ -12,7 +13,18 @@ public class Movies extends Entertainment {
 		this.director = director;
 		this.format  =format;
 	}
+	public Movies(int yearOfRelease, String title, String genre, double price, String director, String format, String movieID) {
+		super(yearOfRelease, title, genre, price, director);
+		
+		this.movieID = movieID;
+		this.director = director;
+		this.format  =format;
+		
+	}
 
+	public String getMovieID() {
+		return movieID;
+	}
 	public String getFormat() {
 		return format;
 	}

@@ -4,6 +4,7 @@ public class LiveConcert extends Entertainment {
 
 	protected String band;
 	protected String format;
+	protected String liveConcertID;
 
 	public LiveConcert(int yearOfRelease, String title, String genre, double price, String band, String format) {
 		super(yearOfRelease, title, genre, price, band);
@@ -11,6 +12,20 @@ public class LiveConcert extends Entertainment {
 
 		this.band = band;
 		this.format = format;
+	}
+	
+	public LiveConcert(int yearOfRelease, String title, String genre, double price, String band, String format, String liveConcertID) {
+		super(yearOfRelease, title, genre, price, band);
+		
+		this.liveConcertID = liveConcertID;
+		this.band = band;
+		this.format = format;
+		
+	}
+	
+
+	public String getLiveConcertID() {
+		return liveConcertID;
 	}
 
 	public String getFormat() {
