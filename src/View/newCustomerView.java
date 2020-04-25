@@ -3,6 +3,8 @@ package View;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -12,9 +14,11 @@ import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
+import javax.swing.text.MaskFormatter;
 
 import controller.NewCustomerController;
 import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.DefaultComboBoxModel;
 import model.Membership;
 
@@ -25,18 +29,20 @@ public class NewCustomerView extends JFrame {
 	private JTextField firstNameField;
 	private JTextField lNameTextField;
 	private JTextField emailTextField;
-	private JTextField cardNumberTextField;
-	private JTextField phoneNumberTextField;
+	private JFormattedTextField cardNumberTextField;
+	private JFormattedTextField phoneNumberTextField;
 	private JComboBox<Object> planBox;
+	private MaskFormatter cardNumber;
+	private MaskFormatter phoneNumber;
 
-	public NewCustomerView(NewCustomerController controllerInternalRef) {
-
+	public NewCustomerView(NewCustomerController controllerInternalRef) throws ParseException {
+		this.controllerInternalRef = controllerInternalRef;
 		JFrame frame = new JFrame();
 
 		frame.setVisible(true);
 		frame.setTitle("New Customer");
 		frame.setBounds(100, 100, 673, 623);
-		
+
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.BLACK);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -64,7 +70,7 @@ public class NewCustomerView extends JFrame {
 		lblFirstName.setBounds(48, 159, 128, 32);
 		contentPane.add(lblFirstName);
 
-		firstNameField = new JTextField(20);
+		firstNameField = new JTextField();
 		firstNameField.setFont(new Font("Verdana", Font.PLAIN, 18));
 		lblFirstName.setLabelFor(firstNameField);
 		firstNameField.setBounds(188, 162, 415, 32);
@@ -78,7 +84,7 @@ public class NewCustomerView extends JFrame {
 		lblLastName.setBounds(48, 222, 128, 32);
 		contentPane.add(lblLastName);
 
-		lNameTextField = new JTextField(50);
+		lNameTextField = new JTextField();
 		lNameTextField.setFont(new Font("Verdana", Font.PLAIN, 18));
 		lblLastName.setLabelFor(lNameTextField);
 		lNameTextField.setColumns(10);
@@ -106,7 +112,8 @@ public class NewCustomerView extends JFrame {
 		lblCardNumber.setBounds(23, 343, 153, 32);
 		contentPane.add(lblCardNumber);
 
-		cardNumberTextField = new JTextField(16);
+		cardNumber = new MaskFormatter("####/####/####/####");
+		cardNumberTextField = new JFormattedTextField(cardNumber);
 		cardNumberTextField.setFont(new Font("Verdana", Font.PLAIN, 18));
 		lblCardNumber.setLabelFor(cardNumberTextField);
 		cardNumberTextField.setColumns(10);
@@ -127,7 +134,8 @@ public class NewCustomerView extends JFrame {
 		lblPhoneNumber.setBounds(12, 464, 164, 32);
 		contentPane.add(lblPhoneNumber);
 
-		phoneNumberTextField = new JTextField(15);
+		phoneNumber = new MaskFormatter("(###)#######");
+		phoneNumberTextField = new JFormattedTextField(phoneNumber);
 		phoneNumberTextField.setFont(new Font("Verdana", Font.PLAIN, 18));
 		lblPhoneNumber.setLabelFor(phoneNumberTextField);
 		phoneNumberTextField.setColumns(10);
@@ -141,7 +149,7 @@ public class NewCustomerView extends JFrame {
 		createButton.addActionListener((ActionListener) controllerInternalRef);
 		createButton.setActionCommand("create");
 		contentPane.add(createButton);
-		
+
 		planBox = new JComboBox<Object>();
 		planBox.setModel(new DefaultComboBoxModel<Object>(Membership.values()));
 		planBox.setBounds(188, 405, 415, 38);
@@ -156,9 +164,10 @@ public class NewCustomerView extends JFrame {
 
 //--------------------------------------------------------------Get First Name--------------------------------------------------------------------       
 	public String getFirstName() {
-		return  firstNameField.getText();
-		
+		return firstNameField.getText();
+
 	}
+
 //--------------------------------------------------------------Get Last Name---------------------------------------------------------------------       
 	public String getLastName() {
 		return lNameTextField.getText();
@@ -177,7 +186,7 @@ public class NewCustomerView extends JFrame {
 
 //------------------------------------------------------------------Get  Plan---------------------------------------------------------------------       
 	public String getPlan() {
-		 String planTextField;
+		String planTextField;
 		planTextField = planBox.getSelectedItem().toString();
 		return planTextField;
 	}

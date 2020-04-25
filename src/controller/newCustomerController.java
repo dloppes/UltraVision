@@ -2,6 +2,7 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 
 import javax.swing.JOptionPane;
 
@@ -15,7 +16,7 @@ public class NewCustomerController implements ActionListener{
 	NewCustomerView newCustomerView;
 	
 	
-	public NewCustomerController() {
+	public NewCustomerController() throws ParseException  {
 		
 		newCustomerView = new NewCustomerView(this);
 	}
@@ -32,7 +33,8 @@ public class NewCustomerController implements ActionListener{
         String cardNumber = newCustomerView.getCardNumber();
         String plan = newCustomerView.getPlan();
 		
-		Customer customer = new Customer(fName, lName, phoneNumber, email, cardNumber, plan);
+		Customer customer = new Customer(fName, lName, phoneNumber, email, plan, cardNumber);
+		
 		
 		if(e.getActionCommand().equals("create")) {
 			

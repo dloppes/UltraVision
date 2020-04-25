@@ -8,13 +8,16 @@ import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 
 import javax.swing.border.LineBorder;
+import javax.swing.text.MaskFormatter;
 
 import controller.NewLiveConcertController;
 
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.DefaultComboBoxModel;
 import interfaces.MusicGenres;
 import interfaces.Format;
@@ -25,13 +28,14 @@ public class NewLiveConcertView extends JFrame {
 	private JPanel contentPane;
 	private JTextField titleTextField;
 	private JTextField bandTextField;
-	private JTextField yearOfReleaseTextField;
+	private JFormattedTextField yearOfReleaseTextField;
 	private JComboBox<Object> genreComboBox;
 	private JComboBox<Object> formatComboBox;
 	private JComboBox<Object> priceComboBox;
 	private NewLiveConcertController controllerInternalRef;
+	private MaskFormatter year;
 
-	public NewLiveConcertView(NewLiveConcertController controllerInternalRef) {
+	public NewLiveConcertView(NewLiveConcertController controllerInternalRef) throws ParseException {
 		this.controllerInternalRef = controllerInternalRef;
 		
 		JFrame frame = new JFrame();
@@ -118,7 +122,8 @@ public class NewLiveConcertView extends JFrame {
 		genreComboBox.setBounds(244, 293, 466, 42);
 		contentPane.add(genreComboBox);
 		
-		yearOfReleaseTextField = new JTextField();
+		year = new MaskFormatter("####");
+		yearOfReleaseTextField = new JFormattedTextField(year);
 		yearOfReleaseTextField.setFont(new Font("Verdana", Font.PLAIN, 18));
 		yearOfReleaseTextField.setColumns(10);
 		yearOfReleaseTextField.setBounds(242, 355, 468, 42);

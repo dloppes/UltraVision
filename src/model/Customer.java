@@ -1,5 +1,7 @@
 package model;
 
+import javax.swing.JOptionPane;
+
 public class Customer {
 
 	protected Membership membership;
@@ -37,7 +39,48 @@ public class Customer {
 	}
 
 //------------------------------------------------------------------------------------------------------------------------------------------//	
+	
+	public int totalPointsEarned() {
+		
+		int totalPointsEarned = Integer.parseInt(JOptionPane.showInputDialog("Please insert how many points this customer earned in this transaction", null));
+		
+		return totalPointsEarned;
+	}
+	
+	public double  totalDiscount() {
+		
+		double finalDiscount = Double.parseDouble(JOptionPane.showInputDialog("Please insert how much is the discount due to this customer", null));
+		
+		return finalDiscount;
+	}
+	
+	public double totalToPay(double priceTitle, double priceScreen, double discount ) {
+		
+		return priceTitle + priceScreen - discount;
+		
+	}
 
+	public int totalNumberOfTitlesRented(Customer customer) {
+		
+		//method to go through database and check with every table how many titles that customer has rented already
+		
+		Queries queries = new Queries();
+		Queries.liveConcertClass totalLiveConcertTitlesRented = queries.new liveConcertClass();
+		Queries.musicClass totalMusicTitlesRented = queries.new musicClass();
+		Queries.tvBoxClass totalTVBoxTitlesRented = queries.new tvBoxClass();
+		Queries.movieClass totalMovieTitlesRented = queries.new movieClass();
+		
+		 int totalLiveConcert = totalLiveConcertTitlesRented.numberOfLiveConcertRented(customer);
+		 int totalMusic = totalMusicTitlesRented.numberOfMusicRented(customer);
+		 int totalTVBox = totalTVBoxTitlesRented.numberOfTVBoxRented(customer);
+		 int totalMovie = totalMovieTitlesRented.numberOfMovieRented(customer);
+		 
+		 
+		 int count= totalLiveConcert + totalMusic + totalTVBox + totalMovie;
+		 
+		 return count; // it returns the total amount rented in the 4 tables.
+		
+	}
 	public boolean validateMusicPlan(Customer customer) {
 
 		boolean validMembership = false;

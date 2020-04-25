@@ -19,7 +19,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JSeparator;
 
-public class RentTitlesView extends JFrame{
+public class RentTitlesView extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField musicTitleTextField;
@@ -36,6 +36,11 @@ public class RentTitlesView extends JFrame{
 	private JTextArea customerIDTextField;
 	private JTextArea loyaltyCardIDTextField;
 	private JTextArea cardPointsBalanceTextField;
+	private JTextArea rentedDateTextField;
+	private JTextArea totalTextField;
+	private JTextArea creditCardTextField;
+	private JTextArea discountTextField;
+	private JTextArea cardPointsEarnedTextField;
 
 	public RentTitlesView(RentTitlesController controllerInternalRef) {
 
@@ -294,7 +299,7 @@ public class RentTitlesView extends JFrame{
 		separator.setBorder(new LineBorder(new Color(189, 183, 107), 2));
 		separator.setFont(new Font("Verdana", Font.PLAIN, 18));
 		separator.setForeground(new Color(189, 183, 107));
-		separator.setBounds(778, 138, 281, 775);
+		separator.setBounds(779, 138, 281, 775);
 		contentPane.add(separator);
 
 		JLabel customerIdLabel = new JLabel("Customer ID:");
@@ -318,23 +323,10 @@ public class RentTitlesView extends JFrame{
 		rentedDateLabel.setBounds(789, 439, 150, 37);
 		contentPane.add(rentedDateLabel);
 
-		JTextArea rentedDateTextField = new JTextArea();
+		rentedDateTextField = new JTextArea();
 		rentedDateTextField.setFont(new Font("Verdana", Font.PLAIN, 16));
 		rentedDateTextField.setBounds(951, 439, 95, 37);
 		contentPane.add(rentedDateTextField);
-
-		JLabel returnDateLabel = new JLabel("Return Date:");
-		returnDateLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		returnDateLabel.setForeground(new Color(189, 183, 107));
-		returnDateLabel.setFont(new Font("Verdana", Font.BOLD, 15));
-		returnDateLabel.setBorder(new LineBorder(new Color(189, 183, 107), 3, true));
-		returnDateLabel.setBounds(790, 508, 150, 37);
-		contentPane.add(returnDateLabel);
-
-		JTextArea returnDateTextField = new JTextArea();
-		returnDateTextField.setFont(new Font("Verdana", Font.PLAIN, 16));
-		returnDateTextField.setBounds(952, 508, 95, 37);
-		contentPane.add(returnDateTextField);
 
 		JLabel loyaltyCardIDLabel = new JLabel("Loyalty Card ID:");
 		loyaltyCardIDLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -357,7 +349,7 @@ public class RentTitlesView extends JFrame{
 		cardPointsEarnedLabel.setBounds(787, 850, 150, 37);
 		contentPane.add(cardPointsEarnedLabel);
 
-		JTextArea cardPointsEarnedTextField = new JTextArea();
+		cardPointsEarnedTextField = new JTextArea();
 		cardPointsEarnedTextField.setFont(new Font("Verdana", Font.PLAIN, 16));
 		cardPointsEarnedTextField.setBounds(949, 850, 95, 37);
 		contentPane.add(cardPointsEarnedTextField);
@@ -390,12 +382,12 @@ public class RentTitlesView extends JFrame{
 		totalLabel.setForeground(new Color(189, 183, 107));
 		totalLabel.setFont(new Font("Verdana", Font.BOLD, 15));
 		totalLabel.setBorder(new LineBorder(new Color(189, 183, 107), 3, true));
-		totalLabel.setBounds(788, 659, 150, 37);
+		totalLabel.setBounds(788, 595, 150, 37);
 		contentPane.add(totalLabel);
 
-		JTextArea totalTextField = new JTextArea();
+		totalTextField = new JTextArea();
 		totalTextField.setFont(new Font("Verdana", Font.PLAIN, 16));
-		totalTextField.setBounds(950, 659, 95, 37);
+		totalTextField.setBounds(950, 595, 95, 37);
 		contentPane.add(totalTextField);
 
 		JLabel discountLabel = new JLabel("Discount:");
@@ -403,12 +395,12 @@ public class RentTitlesView extends JFrame{
 		discountLabel.setForeground(new Color(189, 183, 107));
 		discountLabel.setFont(new Font("Verdana", Font.BOLD, 15));
 		discountLabel.setBorder(new LineBorder(new Color(189, 183, 107), 3, true));
-		discountLabel.setBounds(787, 584, 150, 37);
+		discountLabel.setBounds(787, 520, 150, 37);
 		contentPane.add(discountLabel);
 
-		JTextArea discountTextField = new JTextArea();
+		discountTextField = new JTextArea();
 		discountTextField.setFont(new Font("Verdana", Font.PLAIN, 16));
-		discountTextField.setBounds(949, 584, 95, 37);
+		discountTextField.setBounds(949, 520, 95, 37);
 		contentPane.add(discountTextField);
 
 		JLabel lblCustomerEmail = new JLabel("Customer Email:");
@@ -456,19 +448,78 @@ public class RentTitlesView extends JFrame{
 		lblNewLabel_1_3.setFont(new Font("Verdana", Font.BOLD, 20));
 		lblNewLabel_1_3.setBounds(14, 264, 741, 16);
 		contentPane.add(lblNewLabel_1_3);
+		
+		JLabel creditCardsLabel = new JLabel("");
+		creditCardsLabel.setIcon(new ImageIcon(RentTitlesView.class.getResource("/img/credit-cards-icon.png")));
+		creditCardsLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		creditCardsLabel.setForeground(new Color(189, 183, 107));
+		creditCardsLabel.setFont(new Font("Verdana", Font.BOLD, 15));
+		creditCardsLabel.setBorder(new LineBorder(new Color(189, 183, 107), 3, true));
+		creditCardsLabel.setBounds(787, 676, 74, 43);
+		contentPane.add(creditCardsLabel);
+		
+		creditCardTextField = new JTextArea();
+		creditCardTextField.setFont(new Font("Verdana", Font.PLAIN, 16));
+		creditCardTextField.setBounds(866, 676, 180, 44);
+		contentPane.add(creditCardTextField);
 
 		frame.validate();
 		frame.repaint();
 	}
+
 	
+	public void setCardPointsEarnedTextField(int points) {
+		String pointsEarned = Integer.toString(points);
+		this.cardPointsEarnedTextField.setText(pointsEarned);;
+	}
+	public String getCardPointsEarnedTextField() {
+		return this.cardPointsEarnedTextField.getText();
+	}
+	
+	public void setDiscountTextField(double discount) {
+		String totalDiscount = Double.toString(discount);
+		this.discountTextField.setText(totalDiscount);
+	}
+	
+	public JTextArea getDiscountTextField() {
+		return this.discountTextField;
+	}
+	public void setCreditCardNumber(String creditCard) {
+		this.creditCardTextField.setText(creditCard);
+	}
+	
+	public JTextArea getTotalTextField() {
+		return totalTextField;
+	}
+
+
+	public void setTotalTextField(double price) {
+		String total = Double.toString(price);
+		this.totalTextField.setText(total);
+	}
+	
+	
+	public JTextArea getRentedDateTextField() {
+		return rentedDateTextField;
+	}
+
+
+	public void setRentedDate(String rentedDate) {
+		this.rentedDateTextField.setText(rentedDate);
+	}
+
 	public void setCardPointsBalance(String cardPoints) {
 		this.cardPointsBalanceTextField.setText(cardPoints);
 	}
 	
+	public String getCardPointsBalance() {
+		return this.cardPointsBalanceTextField.getText();
+	}
+
 	public void setLoyaltyCardID(String cardID) {
 		this.loyaltyCardIDTextField.setText(cardID);
 	}
-	
+
 	public void setCustomerIDTextField(String customerID) {
 		this.customerIDTextField.setText(customerID);
 	}
@@ -516,5 +567,4 @@ public class RentTitlesView extends JFrame{
 	public String getLiveConcertTextField() {
 		return liveConcertTextField.getText();
 	}
-
 }

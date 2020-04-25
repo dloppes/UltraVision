@@ -2,6 +2,7 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 
 import javax.swing.JOptionPane;
 
@@ -13,7 +14,7 @@ public class NewMusicController implements ActionListener{
 
 	NewMusicView NewMusicView;
 	
-	public NewMusicController() {
+	public NewMusicController() throws ParseException {
 		
 		this.NewMusicView = new NewMusicView(this);
 		

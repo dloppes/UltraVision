@@ -8,13 +8,16 @@ import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 
 import javax.swing.border.LineBorder;
+import javax.swing.text.MaskFormatter;
 
 import controller.NewMovieController;
 
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.DefaultComboBoxModel;
 import interfaces.FilmGenres;
 import interfaces.Format;
@@ -25,13 +28,15 @@ public class NewMovieView extends JFrame {
 	private JPanel contentPane;
 	private JTextField titleTextField;
 	private JTextField directorTextField;
-	private JTextField yearOfReleaseTextField;
+	private JFormattedTextField yearOfReleaseTextField;
 	private JComboBox<Object> genreComboBox;
 	private JComboBox <Object>formatComboBox;
 	private JComboBox<Object> priceComboBox;
 	private NewMovieController controllerInternalRef;
+	private MaskFormatter year;
+	
 
-	public NewMovieView(NewMovieController controllerInternalRef) {
+	public NewMovieView(NewMovieController controllerInternalRef) throws ParseException {
 		
 		JFrame frame = new JFrame();
 		
@@ -119,7 +124,8 @@ public class NewMovieView extends JFrame {
 		genreComboBox.setBounds(236, 267, 466, 42);
 		contentPane.add(genreComboBox);
 		
-		yearOfReleaseTextField = new JTextField();
+		year = new MaskFormatter("####");
+		yearOfReleaseTextField = new JFormattedTextField(year);
 		yearOfReleaseTextField.setFont(new Font("Verdana", Font.PLAIN, 18));
 		yearOfReleaseTextField.setColumns(10);
 		yearOfReleaseTextField.setBounds(234, 329, 468, 42);

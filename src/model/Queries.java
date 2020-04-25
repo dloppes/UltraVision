@@ -128,11 +128,11 @@ public class Queries {
 
 		}
 
-		public boolean InsertIntoTVBoxRentedTable(TVBox tvBox, Customer customer) {
+		public boolean InsertIntoTVBoxRentedTable(TVBox tvBox, Customer customer, String rentedDate) {
 			boolean newTVBoxRented = false;
 
 			String query = "INSERT INTO rentedTVBox (titleID, customerID, rentedDate, returnDate) " + "VALUES ('"
-					+ tvBox.getTitleID() + "','" + customer.getCustomerID() + "');";
+					+ tvBox.getTitleID() + "','" + customer.getCustomerID() + "', '" + rentedDate + "');";
 
 			newTVBoxRented = conn.ExecuteSet(query);
 
@@ -287,11 +287,11 @@ public class Queries {
 
 		}
 
-		public boolean InsertIntoLiveConcertRentedTable(LiveConcert liveConcert, Customer customer) {
+		public boolean InsertIntoLiveConcertRentedTable(LiveConcert liveConcert, Customer customer, String rentedDate) {
 			boolean newLiveConcertRented = false;
 
 			String query = "INSERT INTO rentedLiveConcert (bandID, customerID, rentedDate, returnDate) " + "VALUES ('"
-					+ liveConcert.getLiveConcertID() + "','" + customer.getCustomerID() + "');";
+					+ liveConcert.getLiveConcertID() + "','" + customer.getCustomerID() + "', '" + rentedDate + "');";
 
 			newLiveConcertRented = conn.ExecuteSet(query);
 
@@ -446,11 +446,11 @@ public class Queries {
 
 		}
 
-		public boolean InsertIntoMovieRentedTable(Movies movie, Customer customer) {
+		public boolean InsertIntoMovieRentedTable(Movies movie, Customer customer, String rentedDate) {
 			boolean newMovieRented = false;
 
 			String query = "INSERT INTO rentedMovie (movieID, customerID, rentedDate, returnDate) " + "VALUES ('"
-					+ movie.getMovieID() + "','" + customer.getCustomerID() + "');";
+					+ movie.getMovieID() + "','" + customer.getCustomerID() + "', '" + rentedDate + "');";
 
 			newMovieRented = conn.ExecuteSet(query);
 
@@ -640,11 +640,11 @@ public class Queries {
 
 		}
 
-		public boolean InsertIntoMusicRentedTable(Music music, Customer customer) {
+		public boolean InsertIntoMusicRentedTable(Music music, Customer customer, String rentedDate) {
 			boolean newMusicRented = false;
 
-			String query = "INSERT INTO rentedMusic (musicID, customerID, rentedDate, returnDate) " + "VALUES ('"
-					+ music.getMusicID() + "','" + customer.getCustomerID() + "');";
+			String query = "INSERT INTO rentedMusic (musicID, customerID, rentedDate) " + "VALUES ('"
+					+ music.getMusicID() + "','" + customer.getCustomerID() + "', '" + rentedDate + "');";
 
 			newMusicRented = conn.ExecuteSet(query);
 
@@ -693,7 +693,6 @@ public class Queries {
 
 		public void newLoyaltyCard(Customer customer) {
 
-			loyaltyCard mermbershipCard = new loyaltyCard(customer);
 			int cardPoints = 0;
 			int id = 0;
 
@@ -751,47 +750,16 @@ public class Queries {
 
 		connection conn = new connection();
 
-		Customer c; // instance of customer
-		protected int points;
-		protected boolean freeRentAllowed;
+		public boolean insertPointsLoyaltyCard(int points, Customer customer) {
 
-		public loyaltyCard(Customer c) {
-			// passing the object of c (customer) to attach it to the new card.
-			this.c = c;
-			points = 0; // zero value because it is a brand new card.
+			int totalPoints = points + getCardPoints(customer.getEmail());
+			boolean insertedCardPoints = false;
 
-		}
+			String query = "UPDATE loyaltyCard SET numberOfPoints = '" + totalPoints + "' WHERE customerID='"
+					+ customer.getCustomerID() + "';";
+			insertedCardPoints = conn.ExecuteSet(query);
 
-		public void addPoints(int points) {
-
-			this.points += points;
-
-		}
-
-		public boolean availFreeRent() {
-			if (this.isfreeRentAllowed()) {
-				this.points -= 100;
-				setRentAllowed();
-				return true;
-			} else {
-				return false;
-			}
-		}
-
-		private void setRentAllowed() {
-			if (this.points >= 100) {
-				this.freeRentAllowed = true;
-			} else {
-				this.freeRentAllowed = false;
-			}
-		}
-
-		public int getNumberOfPoints() {
-			return points;
-		}
-
-		public boolean isfreeRentAllowed() {
-			return freeRentAllowed;
+			return insertedCardPoints;
 
 		}
 

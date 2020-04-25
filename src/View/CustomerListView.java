@@ -12,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -133,7 +134,12 @@ public class CustomerListView extends JFrame implements ActionListener {
 		String ac = e.getActionCommand();
 		if (ac.equals("select")) {
 			frame.dispose();
-			 new UpdateCustomerController(selectedCustomerID);
+			 try {
+				new UpdateCustomerController(selectedCustomerID);
+			} catch (ParseException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 
 	}

@@ -3,6 +3,7 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
+import java.text.ParseException;
 
 import javax.swing.JOptionPane;
 
@@ -20,7 +21,7 @@ public class UpdateCustomerController implements ActionListener {
 	connection conn;
 	private String userID;
 
-	public UpdateCustomerController(String userID) {
+	public UpdateCustomerController(String userID) throws ParseException {
 
 		this.userID = userID;
 		this.customer = getCustomerDetails(userID);

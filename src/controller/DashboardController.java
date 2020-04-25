@@ -2,6 +2,9 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
+
+import javax.swing.JOptionPane;
 
 import View.StockAvailableView;
 import View.CheckPointsView;
@@ -27,7 +30,11 @@ public class DashboardController implements ActionListener {
 
 		switch (ac) {
 		case "newCustomer":
-			new NewCustomerController();
+			try {
+				new NewCustomerController();
+			} catch (ParseException e1) {
+				JOptionPane.showMessageDialog(null, e1);
+			}
 			break;
 
 		case "updateCustomer":
@@ -35,15 +42,28 @@ public class DashboardController implements ActionListener {
 			break;
 
 		case "newMusic":
-			new NewMusicController();
+			try {
+				new NewMusicController();
+			} catch (ParseException e3) {
+				// TODO Auto-generated catch block
+				JOptionPane.showMessageDialog(null, e3);
+			}
 			break;
 
 		case "newMovie":
-			new NewMovieController();
+			try {
+				new NewMovieController();
+			} catch (ParseException e2) {
+				JOptionPane.showMessageDialog(null, e2);
+			}
 			break;
 
 		case "newLiveConcert":
-			new NewLiveConcertController();
+			try {
+				new NewLiveConcertController();
+			} catch (ParseException e1) {
+				JOptionPane.showMessageDialog(null, "Oops. Something went wrong");
+			}
 			break;
 
 		case "newTVBox":

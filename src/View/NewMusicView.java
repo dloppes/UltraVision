@@ -12,8 +12,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JTextArea;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 
 import javax.swing.border.MatteBorder;
+import javax.swing.text.MaskFormatter;
 
 import controller.NewMusicController;
 import interfaces.Format;
@@ -22,6 +24,7 @@ import interfaces.MusicGenres;
 import javax.swing.border.LineBorder;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 
@@ -29,15 +32,16 @@ public class NewMusicView extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField titleTextField;
-	private JTextField yearOfReleaseTextField;
+	private JFormattedTextField yearOfReleaseTextField;
 	private JComboBox<Object> genreComboBox;
 	private JComboBox<Object> formatComboBox;
 	private JComboBox<Object> priceComboBox;
 	private NewMusicController controllerInternalRef;
 	private JTextField singerTextField;
+	private MaskFormatter year;
 
 	
-	public NewMusicView(NewMusicController controllerInternalRef) {
+	public NewMusicView(NewMusicController controllerInternalRef) throws ParseException {
 		
 		JFrame frame = new JFrame();
 		
@@ -112,14 +116,16 @@ public class NewMusicView extends JFrame {
 		genreComboBox.setBounds(222, 263, 361, 35);
 		contentPane.add(genreComboBox);
 		
-		yearOfReleaseTextField = new JTextField();
+		
+		year = new MaskFormatter("####");
+		yearOfReleaseTextField = new JFormattedTextField(year);
 		yearOfReleaseTextField.setFont(new Font("Verdana", Font.PLAIN, 18));
 		yearOfReleaseTextField.setBounds(222, 315, 361, 31);
 		contentPane.add(yearOfReleaseTextField);
 		yearOfReleaseTextField.setColumns(10);
 		
 		formatComboBox = new JComboBox<Object>();
-		formatComboBox.setModel(new DefaultComboBoxModel<Object>(Format.values()));
+		formatComboBox.setModel(new DefaultComboBoxModel(new String[] {"CD"}));
 		formatComboBox.setFont(new Font("Verdana", Font.PLAIN, 18));
 		formatComboBox.setBounds(222, 374, 361, 31);
 		contentPane.add(formatComboBox);
