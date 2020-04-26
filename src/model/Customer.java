@@ -42,14 +42,14 @@ public class Customer {
 	
 	public int totalPointsEarned() {
 		
-		int totalPointsEarned = Integer.parseInt(JOptionPane.showInputDialog("Please insert how many points this customer earned in this transaction", null));
+		int totalPointsEarned = Integer.parseInt(JOptionPane.showInputDialog("Please insert how many points this customer earned in this transaction"));
 		
 		return totalPointsEarned;
 	}
 	
 	public double  totalDiscount() {
 		
-		double finalDiscount = Double.parseDouble(JOptionPane.showInputDialog("Please insert how much is the discount due to this customer", null));
+		double finalDiscount = Double.parseDouble(JOptionPane.showInputDialog("Please insert how much is the discount due to this customer"));
 		
 		return finalDiscount;
 	}

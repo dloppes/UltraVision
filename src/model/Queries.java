@@ -58,7 +58,7 @@ public class Queries {
 
 		public String[][] getRentedTVBox() {
 
-			boolean rented = false;
+			boolean rented = true;
 			int row = 0;
 			String[] columnNames = new String[] { "Title ID", "Title", "Season", "Number of Disks", "Format", "Price" };
 
@@ -115,7 +115,7 @@ public class Queries {
 				JOptionPane.showMessageDialog(null, "Title you are looking for is not available at the moment");
 			}
 
-			TVBox tvBox = new TVBox(title, season, numberOfDisks, price, titleID);
+			TVBox tvBox = new TVBox(title, season, numberOfDisks, price, titleID, format);
 			return tvBox;
 		}
 
@@ -213,7 +213,7 @@ public class Queries {
 
 		public String[][] getRentedLiveConcert() {
 
-			boolean rented = false;
+			boolean rented = true;
 			int row = 0;
 			String[] columnNames = new String[] { "Band ID", "Title", "Band", "Genre", "Format", "Price" };
 
@@ -373,21 +373,21 @@ public class Queries {
 
 		public String[][] getRentedMovie() {
 
-			boolean rented = false;
+			boolean rented = true;
 			int row = 0;
-			String[] columnNames = new String[] { "Music ID", "Title", "Singer", "Genre", "Format", "Price" };
+			String[] columnNames = new String[] { "Movie ID", "Title", "Director", "Genre", "Format", "Price" };
 
 			String[][] data = new String[100][columnNames.length];
 
-			String query = "Select * FROM music WHERE rented = '" + rented + "'";
+			String query = "Select * FROM movie WHERE rented = '" + rented + "'";
 			ResultSet rs = conn.executeQuery(query);
 
 			try {
 				while (rs.next()) {
 
-					data[row][0] = rs.getString("musicID");
+					data[row][0] = rs.getString("movieID");
 					data[row][1] = rs.getString("title");
-					data[row][2] = rs.getString("singer");
+					data[row][2] = rs.getString("director");
 					data[row][3] = rs.getString("genre");
 					data[row][4] = rs.getString("format");
 					data[row][5] = rs.getString("price");
@@ -567,7 +567,7 @@ public class Queries {
 
 		public String[][] getRentedMusic() {
 
-			boolean rented = false;
+			boolean rented = true;
 			int row = 0;
 			String[] columnNames = new String[] { "Music ID", "Title", "Singer", "Genre", "Format", "Price" };
 

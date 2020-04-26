@@ -7,21 +7,22 @@ public class TVBox {
 	protected String title;
 	protected int season;
 	protected int numberOfDisks;
-	protected Format format = Format.DVD;
+	protected String format;
 	protected double price;
 	protected boolean rented;
 	protected String titleID;
 
-	public TVBox(String title, int season, int numberOfDisks, double price) {
+	public TVBox(String title, int season, int numberOfDisks, double price, String format) {
 
 		this.title = title;
 		this.season = season;
 		this.numberOfDisks = numberOfDisks;
 		this.price = price;
 		this.rented=false;
+		this.format = format;
 	}
 	
-	public TVBox(String title, int season, int numberOfDisks, double price, String titleID) {
+	public TVBox(String title, int season, int numberOfDisks, double price, String titleID, String format) {
 
 		this.title = title;
 		this.season = season;
@@ -29,6 +30,7 @@ public class TVBox {
 		this.price = price;
 		this.rented=false;
 		this.titleID = titleID;
+		this.format = format;
 	}
 
 	
@@ -68,11 +70,11 @@ public class TVBox {
 		this.numberOfDisks = numberOfDisks;
 	}
 
-	public Format getFormat() {
+	public String getFormat() {
 		return format;
 	}
 
-	public void setFormat(Format format) {
+	public void setFormat(String format) {
 		this.format = format;
 	}
 

@@ -6,6 +6,7 @@ import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 import View.RentTitlesView;
@@ -47,7 +48,8 @@ public class RentTitlesController implements ActionListener {
 		case "selectCustomer":
 			/*
 			 * once customer is selected I can check in the system what is his ID,
-			 * loyaltyCardID and cardPoints and display it on the screen in Order Details.
+			 * loyaltyCardID and cardPoints and display it on the screen in Order Details
+			 * along with todays date.
 			 */
 			this.RentTitlesView.setCustomerIDTextField(customer.getCustomerID());
 
@@ -57,9 +59,13 @@ public class RentTitlesController implements ActionListener {
 			String cardPoints = Integer.toString(queries.getCardPoints(customer.getEmail()));
 			this.RentTitlesView.setCardPointsBalance(cardPoints);
 
+			// using Java Library to bring today`s date to the screen.
 			LocalDate todaysDate = LocalDate.now();
-			DateTimeFormatter dateFormatted = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-			this.RentTitlesView.setRentedDate(todaysDate.format(dateFormatted));
+			DateTimeFormatter dateFormatted = DateTimeFormatter.ofPattern("dd-MM-yyyy"); // formatting the text to look
+																							// similar to Europe
+																							// Standard
+			this.RentTitlesView.setRentedDate(todaysDate.format(dateFormatted)); // then passing the value formatted to
+																					// the date field
 
 			double initialTotal = 0;
 			this.RentTitlesView.setTotalTextField(initialTotal);
@@ -128,13 +134,12 @@ public class RentTitlesController implements ActionListener {
 
 					double discount = 0;
 
-//					boolean updateMusic = musicQuery.UpdateMusicToRented(music, customer);
-//					if (updateMusic == true) {
+					boolean updateMusic = musicQuery.UpdateMusicToRented(music, customer);
+					if (updateMusic == true) {
 
 						String date = this.RentTitlesView.getRentedDateTextField().getText();
 
-						JOptionPane.showMessageDialog(null, date);
-					//	musicQuery.InsertIntoMusicRentedTable(music, customer, date);
+						musicQuery.InsertIntoMusicRentedTable(music, customer, date);
 
 						if (this.RentTitlesView.getCardPointsBalance().equals("100")) {
 							this.RentTitlesView.setDiscountTextField(customer.totalDiscount());
@@ -142,11 +147,10 @@ public class RentTitlesController implements ActionListener {
 
 						discount = Double.parseDouble(this.RentTitlesView.getDiscountTextField().getText());
 						double price = Double.parseDouble(this.RentTitlesView.getTotalTextField().getText());
-						double newTotal = customer.totalToPay(movie.getPrice(), price, discount);
-						JOptionPane.showMessageDialog(null, discount);
+						double newTotal = customer.totalToPay(music.getPrice(), price, discount);
 						this.RentTitlesView.setTotalTextField(newTotal);
 
-				//	}
+					}
 				} else {
 					JOptionPane.showMessageDialog(null,
 							"Sorry you are not allowed to rent this Title. In order to do so update your plan");
@@ -178,20 +182,30 @@ public class RentTitlesController implements ActionListener {
 
 				else if (movieRentedCounter < 4) {
 					/* method to insert the movie Object into database */
-//					movieQuery.UpdateMovieToRented(movie, customer);
-//					movieQuery.InsertIntoMovieRentedTable(movie, customer, this.RentTitlesView.getRentedDateTextField().toString());
 
-					JOptionPane.showMessageDialog(null, movieRentedCounter);
-					double price = Double.parseDouble(this.RentTitlesView.getTotalTextField().getText());
-					// double newTotal = customer.totalToPay(movie.getPrice(), price);
+					double discount = 0;
 
-					// this.RentTitlesView.setTotalTextField(newTotal);
+					boolean updateMovie = movieQuery.UpdateMovieToRented(movie, customer);
+					if (updateMovie == true) {
 
+						String date = this.RentTitlesView.getRentedDateTextField().getText();
+
+						movieQuery.InsertIntoMovieRentedTable(movie, customer, date);
+
+						if (this.RentTitlesView.getCardPointsBalance().equals("100")) {
+							this.RentTitlesView.setDiscountTextField(customer.totalDiscount());
+						}
+
+						discount = Double.parseDouble(this.RentTitlesView.getDiscountTextField().getText());
+						double price = Double.parseDouble(this.RentTitlesView.getTotalTextField().getText());
+						double newTotal = customer.totalToPay(movie.getPrice(), price, discount);
+						this.RentTitlesView.setTotalTextField(newTotal);
+
+					}
+				} else {
+					JOptionPane.showMessageDialog(null,
+							"Sorry you are not allowed to rent this Title. In order to do so update your plan");
 				}
-
-			} else {
-				JOptionPane.showMessageDialog(null,
-						"Sorry you are not allowed to rent this Title. In order to do so update your plan");
 			}
 
 			break;
@@ -213,19 +227,30 @@ public class RentTitlesController implements ActionListener {
 
 				else if (liveConcertRentedCounter < 4) {
 					/* method to insert the movie Object into database */
-//					liveConcertQuery.UpdateLiveConcertToRented(liveConcert, customer);
-//					liveConcertQuery.InsertIntoLiveConcertRentedTable(liveConcert, customer, this.RentTitlesView.getRentedDateTextField().toString());
-					JOptionPane.showMessageDialog(null, liveConcertRentedCounter);
-					double price = Double.parseDouble(this.RentTitlesView.getTotalTextField().getText());
-					// double newTotal = customer.totalToPay(liveConcert.getPrice(), price);
 
-					// this.RentTitlesView.setTotalTextField(newTotal);
+					double discount = 0;
 
+					boolean updateLiveConcert = liveConcertQuery.UpdateLiveConcertToRented(liveConcert, customer);
+					if (updateLiveConcert == true) {
+
+						String date = this.RentTitlesView.getRentedDateTextField().getText();
+
+						liveConcertQuery.InsertIntoLiveConcertRentedTable(liveConcert, customer, date);
+
+						if (this.RentTitlesView.getCardPointsBalance().equals("100")) {
+							this.RentTitlesView.setDiscountTextField(customer.totalDiscount());
+						}
+
+						discount = Double.parseDouble(this.RentTitlesView.getDiscountTextField().getText());
+						double price = Double.parseDouble(this.RentTitlesView.getTotalTextField().getText());
+						double newTotal = customer.totalToPay(liveConcert.getPrice(), price, discount);
+						this.RentTitlesView.setTotalTextField(newTotal);
+
+					}
+				} else {
+					JOptionPane.showMessageDialog(null,
+							"Sorry you are not allowed to rent this Title. In order to do so update your plan");
 				}
-
-			} else {
-				JOptionPane.showMessageDialog(null,
-						"Sorry you are not allowed to rent this Title. In order to do so update your plan");
 			}
 
 			break;
@@ -248,31 +273,47 @@ public class RentTitlesController implements ActionListener {
 
 				else if (TVBoxRentedCounter < 4) {
 					/* method to insert the movie Object into database */
-//					TVBoxQuery.UpdateTVBoxToRented(tvBox, customer);
-//					TVBoxQuery.InsertIntoTVBoxRentedTable(tvBox, customer, this.RentTitlesView.getRentedDateTextField().toString());
-					JOptionPane.showMessageDialog(null, TVBoxRentedCounter);
-					double price = Double.parseDouble(this.RentTitlesView.getTotalTextField().getText());
-					// double newTotal = customer.totalToPay(tvBox.getPrice(), price);
 
-					// this.RentTitlesView.setTotalTextField(newTotal);
+					double discount = 0;
 
+					boolean updateTVBox = TVBoxQuery.UpdateTVBoxToRented(tvBox, customer);
+					if (updateTVBox == true) {
+
+						String date = this.RentTitlesView.getRentedDateTextField().getText();
+
+						TVBoxQuery.InsertIntoTVBoxRentedTable(tvBox, customer, date);
+
+						if (this.RentTitlesView.getCardPointsBalance().equals("100")) {
+							this.RentTitlesView.setDiscountTextField(customer.totalDiscount());
+						}
+
+						discount = Double.parseDouble(this.RentTitlesView.getDiscountTextField().getText());
+						double price = Double.parseDouble(this.RentTitlesView.getTotalTextField().getText());
+						double newTotal = customer.totalToPay(tvBox.getPrice(), price, discount);
+						this.RentTitlesView.setTotalTextField(newTotal);
+
+					}
+				} else {
+					JOptionPane.showMessageDialog(null,
+							"Sorry you are not allowed to rent this Title. In order to do so update your plan");
 				}
-
-			} else {
-				JOptionPane.showMessageDialog(null,
-						"Sorry you are not allowed to rent this Title. In order to do so update your plan");
 			}
 
 			break;
 
 		case "pay":
-			if (this.RentTitlesView.getDiscountTextField().equals("0.0")) {
+			if (this.RentTitlesView.getDiscountTextField().getText().equals("0.0")) {
 
 				int pointsEarned = customer.totalPointsEarned();
 				this.RentTitlesView.setCardPointsEarnedTextField(pointsEarned);
 
 				Queries.loyaltyCard loyaltyPoints = queries.new loyaltyCard();
 				loyaltyPoints.insertPointsLoyaltyCard(pointsEarned, customer);
+
+				ImageIcon image = new ImageIcon(RentTitlesController.class.getResource("/img/shopping-bag-icon.png"));
+				JOptionPane.showMessageDialog(null,
+						"Thank you for shopping with us! Don`t forget to bring the items back in 3 days!", "Thanks",
+						JOptionPane.INFORMATION_MESSAGE, image);
 
 			}
 			break;

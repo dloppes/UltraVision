@@ -26,8 +26,9 @@ public class NewTVBoxController implements ActionListener {
 		int season = this.NewTVBoxView.getSeason();
 		int numberOfDisks = this.NewTVBoxView.getNumberOfDisks();
 		double price = this.NewTVBoxView.getPrice();
+		String format = this.NewTVBoxView.getFormat();
 
-		TVBox tvBox = new TVBox(title, season, numberOfDisks, price);
+		TVBox tvBox = new TVBox(title, season, numberOfDisks, price, format);
 
 		String action = ae.getActionCommand();
 
