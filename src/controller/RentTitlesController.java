@@ -17,6 +17,16 @@ import model.Music;
 import model.Queries;
 import model.TVBox;
 
+/**
+ * 
+ * @author Daniel Lopes
+ * 
+ *         This controller gathers the information that comes from Rent Titles
+ *         View and the result of Queries. Many tasks are managed on this screen
+ *         such as summing up total to pay, credits earned, search for titles
+ *         and search for customers.
+ *
+ */
 public class RentTitlesController implements ActionListener {
 
 	RentTitlesView RentTitlesView;
@@ -34,7 +44,7 @@ public class RentTitlesController implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent action) {
 
-		Queries queries = new Queries();
+		Queries queries = new Queries(); // Instance of Queries
 
 		switch (action.getActionCommand()) {
 		case "searchCustomer":
@@ -61,22 +71,30 @@ public class RentTitlesController implements ActionListener {
 
 			// using Java Library to bring today`s date to the screen.
 			LocalDate todaysDate = LocalDate.now();
-			DateTimeFormatter dateFormatted = DateTimeFormatter.ofPattern("dd-MM-yyyy"); // formatting the text to look
-																							// similar to Europe
-																							// Standard
+			DateTimeFormatter dateFormatted = DateTimeFormatter
+					.ofPattern("dd-MM-yyyy"); /*
+												 * formatting the text to look similar to Europe Standard
+												 */
 			this.RentTitlesView.setRentedDate(todaysDate.format(dateFormatted)); // then passing the value formatted to
 																					// the date field
 
-			double initialTotal = 0;
+			double initialTotal = 0; // using initial value 0 as there is not title rented at this point.
 			this.RentTitlesView.setTotalTextField(initialTotal);
 
-			double initialDiscount = 0;
+			double initialDiscount = 0; // using initial discount 0 as well as there is no discount due at the beginning
+										// of transaction.
 			this.RentTitlesView.setDiscountTextField(initialDiscount);
 
-			this.RentTitlesView.setCreditCardNumber(customer.getCardNumber());
+			this.RentTitlesView.setCreditCardNumber(customer.getCardNumber()); // getting the information from the
+																				// customer object and setting it on the
+																				// screen
 
 			break;
 
+		/*
+		 * the only validation for search is that the title is whether or not the title
+		 * is available. further validations are available once it is selected
+		 */
 		case "searchMusic":
 			String musicTitle = this.RentTitlesView.getMusicTitleTextField();
 			Queries.musicClass innerMusic = queries.new musicClass();
@@ -113,9 +131,27 @@ public class RentTitlesController implements ActionListener {
 					.addItem(liveConcert.getTitle() + " | " + liveConcert.getBand() + " | " + liveConcert.getFormat());
 			break;
 
+		/*
+		 * For selections there are a few validations that are necessary 1 - Check
+		 * customer plan and title being rented 2 - check how many titles the customer
+		 * has rented or if there is any to be returned. 3 - once the title limit per
+		 * customer has been reached he is not allowed to rent anything else until he
+		 * returns any.
+		 */
 		case "selectMusic":
 
 			boolean musicPlanValidator = customer.validateMusicPlan(customer);
+			if (musicPlanValidator == false) {
+
+				/*
+				 * Message to be shown on the screen in case the customer does not have the
+				 * adequate plan that allows him to rent music
+				 */
+				JOptionPane.showMessageDialog(null,
+						"Sorry you are not allowed to rent this Title. In order to do so update your plan");
+
+			}
+
 			if (musicPlanValidator == true) {
 				/*
 				 * method to verify how many titles user has registered as rented on his name.
@@ -134,6 +170,13 @@ public class RentTitlesController implements ActionListener {
 
 					double discount = 0;
 
+					/*
+					 * Calling method to: 1 - update music rented field to true, therefore music is
+					 * not available anymore for rent until its returned 2 - method to insert object
+					 * selected into the rented music table 3 - check if the customer has reached
+					 * 100 points in the field loyalty card points. If so concede a discount (free
+					 * rental)
+					 */
 					boolean updateMusic = musicQuery.UpdateMusicToRented(music, customer);
 					if (updateMusic == true) {
 
@@ -141,8 +184,13 @@ public class RentTitlesController implements ActionListener {
 
 						musicQuery.InsertIntoMusicRentedTable(music, customer, date);
 
-						if (this.RentTitlesView.getCardPointsBalance().equals("100")) {
-							this.RentTitlesView.setDiscountTextField(customer.totalDiscount());
+						if (this.RentTitlesView.getCardPointsBalance().equals("100")) { // method requires an boolean
+																						// price to concede discount
+							this.RentTitlesView.setDiscountTextField(
+									customer.totalDiscount()); /*
+																 * after value is retrieved it has been set in the
+																 * discount field
+																 */
 						}
 
 						discount = Double.parseDouble(this.RentTitlesView.getDiscountTextField().getText());
@@ -151,9 +199,6 @@ public class RentTitlesController implements ActionListener {
 						this.RentTitlesView.setTotalTextField(newTotal);
 
 					}
-				} else {
-					JOptionPane.showMessageDialog(null,
-							"Sorry you are not allowed to rent this Title. In order to do so update your plan");
 				}
 			}
 
@@ -164,6 +209,11 @@ public class RentTitlesController implements ActionListener {
 			boolean moviePlanValidator = customer.validateMoviePlan(customer);
 
 			// validating customer plan (VL)
+			if (moviePlanValidator == false) {
+
+				JOptionPane.showMessageDialog(null,
+						"Sorry you are not allowed to rent this Title. In order to do so update your plan");
+			}
 			if (moviePlanValidator == true) {
 				/*
 				 * method to verify how many titles user has registered as rented on his name.
@@ -185,6 +235,13 @@ public class RentTitlesController implements ActionListener {
 
 					double discount = 0;
 
+					/*
+					 * Calling method to: 1 - update music rented field to true, therefore music is
+					 * not available anymore for rent until its returned 2 - method to insert object
+					 * selected into the rented movie table 3 - check if the customer has reached
+					 * 100 points in the field loyalty card points. If so concede a discount (free
+					 * rental)
+					 */
 					boolean updateMovie = movieQuery.UpdateMovieToRented(movie, customer);
 					if (updateMovie == true) {
 
@@ -202,9 +259,6 @@ public class RentTitlesController implements ActionListener {
 						this.RentTitlesView.setTotalTextField(newTotal);
 
 					}
-				} else {
-					JOptionPane.showMessageDialog(null,
-							"Sorry you are not allowed to rent this Title. In order to do so update your plan");
 				}
 			}
 
@@ -212,7 +266,14 @@ public class RentTitlesController implements ActionListener {
 
 		case "selectLiveConcert":
 			boolean liveConcertValidator = customer.validateLiveConcertPlan(customer);
+			if (liveConcertValidator == false) {
+
+				JOptionPane.showMessageDialog(null,
+						"Sorry you are not allowed to rent this Title. In order to do so update your plan");
+			}
+
 			if (liveConcertValidator == true) {
+
 				/*
 				 * method to verify how many titles user has registered as rented on his name.
 				 * If it is == 4 he cannot rent anything anymore until he returns titles
@@ -230,6 +291,13 @@ public class RentTitlesController implements ActionListener {
 
 					double discount = 0;
 
+					/*
+					 * Calling method to: 1 - update music rented field to true, therefore music is
+					 * not available anymore for rent until its returned 2 - method to insert object
+					 * selected into the rented live concert table 3 - check if the customer has
+					 * reached 100 points in the field loyalty card points. If so concede a discount
+					 * (free rental)
+					 */
 					boolean updateLiveConcert = liveConcertQuery.UpdateLiveConcertToRented(liveConcert, customer);
 					if (updateLiveConcert == true) {
 
@@ -247,9 +315,6 @@ public class RentTitlesController implements ActionListener {
 						this.RentTitlesView.setTotalTextField(newTotal);
 
 					}
-				} else {
-					JOptionPane.showMessageDialog(null,
-							"Sorry you are not allowed to rent this Title. In order to do so update your plan");
 				}
 			}
 
@@ -257,6 +322,12 @@ public class RentTitlesController implements ActionListener {
 
 		case "selectTVBox":
 			boolean tvBoxValidator = customer.validateTVBoxPlan(customer);
+			if (tvBoxValidator == false) {
+
+				JOptionPane.showMessageDialog(null,
+						"Sorry you are not allowed to rent this Title. In order to do so update your plan");
+			}
+
 			if (tvBoxValidator == true) {
 				/*
 				 * method to verify how many titles user has registered as rented on customer
@@ -276,6 +347,13 @@ public class RentTitlesController implements ActionListener {
 
 					double discount = 0;
 
+					/*
+					 * Calling method to: 1 - update music rented field to true, therefore music is
+					 * not available anymore for rent until its returned 2 - method to insert object
+					 * selected into the rented TVBox table 3 - check if the customer has reached
+					 * 100 points in the field loyalty card points. If so concede a discount (free
+					 * rental)
+					 */
 					boolean updateTVBox = TVBoxQuery.UpdateTVBoxToRented(tvBox, customer);
 					if (updateTVBox == true) {
 
@@ -293,22 +371,28 @@ public class RentTitlesController implements ActionListener {
 						this.RentTitlesView.setTotalTextField(newTotal);
 
 					}
-				} else {
-					JOptionPane.showMessageDialog(null,
-							"Sorry you are not allowed to rent this Title. In order to do so update your plan");
 				}
 			}
 
 			break;
 
 		case "pay":
+			/*
+			 * If field is 0.0 it means that the customer has not reached 100 points on his
+			 * loyalty card yet. Therefore, ask the employee to insert how many points the
+			 * customer earned in this transaction for each rental the customer earns 10
+			 * points
+			 */
 			if (this.RentTitlesView.getDiscountTextField().getText().equals("0.0")) {
 
 				int pointsEarned = customer.totalPointsEarned();
 				this.RentTitlesView.setCardPointsEarnedTextField(pointsEarned);
 
 				Queries.loyaltyCard loyaltyPoints = queries.new loyaltyCard();
-				loyaltyPoints.insertPointsLoyaltyCard(pointsEarned, customer);
+				loyaltyPoints.insertPointsLoyaltyCard(pointsEarned,
+						customer); /*
+									 * method to insert the points earned into the database
+									 */
 
 				ImageIcon image = new ImageIcon(RentTitlesController.class.getResource("/img/shopping-bag-icon.png"));
 				JOptionPane.showMessageDialog(null,

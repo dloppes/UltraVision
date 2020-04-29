@@ -7,6 +7,16 @@ import View.CheckPointsView;
 import View.TotalPointsView;
 import model.Queries;
 
+/**
+ * @author Daniel Lopes
+ * 
+ *         The check Points Controller gets access to the CkeckPointsView,
+ *         TotalPointsView and Queries in order to search for the total points
+ *         the customer has in his Loyalty card the means how the search is
+ *         proceeded is by getting the user email, which is search in the
+ *         database and returned the information to the screen.
+ */
+
 public class CheckPointsController implements ActionListener {
 
 	CheckPointsView CheckPointsView;
@@ -21,8 +31,19 @@ public class CheckPointsController implements ActionListener {
 	}
 
 	public int getTotalOfPoints(String email) {
+		/*
+		 * This method takes a String as parameter, calls another method which will take
+		 * the String passed onto this method in order to return a integer the integer
+		 * return from the Queries class is stored and returned in this method whenever
+		 * this method is called.
+		 */
 
-		Queries searchQuery = new Queries();
+		Queries searchQuery = new Queries(); // Instance of Query class
+
+		/*
+		 * accessing the getCardPoints method that takes a String as parameter and
+		 * returns an integer (totalOfPoints)
+		 */
 
 		int totalOfPoints = searchQuery.getCardPoints(email);
 
@@ -32,8 +53,7 @@ public class CheckPointsController implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent ae) {
-		// TODO Auto-generated method stub
-
+		
 		String action = ae.getActionCommand();
 
 		if (action.equals("search")) {

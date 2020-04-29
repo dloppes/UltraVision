@@ -13,6 +13,13 @@ import model.Queries;
 import model.connection;
 import model.Queries.updateCustomer;
 
+/**
+ * 
+ * @author Daniel Lopes This class managens the update of a customer. The String
+ *         ID is passed throught the view. I access the database to search for
+ *         the customer that has the got from my view. Once I have found the
+ *         customer it calls method to update customer into my database
+ */
 public class UpdateCustomerController implements ActionListener {
 
 	UpdateCustomerView UpdateCustomerView;
@@ -30,6 +37,8 @@ public class UpdateCustomerController implements ActionListener {
 	}
 
 	public Customer getCustomerDetails(String userID) {
+
+		/* Searches for customer into the database with userID passed from view */
 
 		String fName = "";
 		String lName = "";
@@ -64,7 +73,6 @@ public class UpdateCustomerController implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 
 		String ac = e.getActionCommand();
 		if (ac.equals("update")) {
@@ -80,9 +88,9 @@ public class UpdateCustomerController implements ActionListener {
 
 			Queries newCustomerQuery = new Queries();
 
-			updateCustomer updateDetails = newCustomerQuery.new updateCustomer();
+			updateCustomer updateDetails = newCustomerQuery.new updateCustomer(); // instance of the class
 
-			boolean updatedCustomerBoolean = updateDetails.updateCustomerDetails(customer, userID);
+			boolean updatedCustomerBoolean = updateDetails.updateCustomerDetails(customer, userID); // method within the class to update customer
 
 			if (updatedCustomerBoolean) {
 

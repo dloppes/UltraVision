@@ -1,31 +1,39 @@
 package controller;
 
 import java.awt.event.ActionEvent;
+
 import java.awt.event.ActionListener;
 import java.text.ParseException;
 
 import javax.swing.JOptionPane;
 
 import View.StockAvailableView;
-import View.CheckPointsView;
 import View.CustomerListView;
 import View.DashboarView;
 import View.StockRentedView;
 
+/**
+ * 
+ * @author Daniel Lopes
+ * 
+ *         Main controller called to verify what is the option that the customer
+ *         selected from the main Dashboard and lead the employee to the
+ *         adequate controller
+ *
+ */
 public class DashboardController implements ActionListener {
 
 	DashboarView dashboardView;
 
 	public DashboardController() {
 
-		// menuView = new menuView(this);
 		dashboardView = new DashboarView(this);
 
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
+
 		String ac = e.getActionCommand();
 
 		switch (ac) {
@@ -45,7 +53,7 @@ public class DashboardController implements ActionListener {
 			try {
 				new NewMusicController();
 			} catch (ParseException e3) {
-				// TODO Auto-generated catch block
+
 				JOptionPane.showMessageDialog(null, e3);
 			}
 			break;
@@ -81,14 +89,13 @@ public class DashboardController implements ActionListener {
 		case "searchPoints":
 			new CheckPointsController();
 			break;
-			
+
 		case "rentTitles":
 			new RentTitlesController();
 			break;
 
 		case "exit":
 			System.exit(0);
-			new LoginController();
 		}
 
 	}

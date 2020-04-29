@@ -6,9 +6,16 @@ import View.LoginView;
 import model.Employee;
 import model.userLogged;
 
+/**
+ * 
+ * @author Daniel Lopes
+ * 
+ *         Login that verifies if the employee credentials match the one in the
+ *         database
+ *
+ */
 public class LoginController {
 
-//	loginView loginView;
 	LoginView loginview;
 	Employee employee;
 
@@ -27,15 +34,12 @@ public class LoginController {
 		boolean login = eLogin.loginValidator(user);
 
 		if (login) {
-//			loginview.contentPanel.setVisible(false);
-//			loginview.f.setVisible(false);
 			new DashboardController();
 
 		}
 
 		else {
 			JOptionPane.showMessageDialog(null, "Username or password Incorrect, try again");
-			
 
 		}
 
