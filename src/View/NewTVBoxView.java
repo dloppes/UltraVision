@@ -9,6 +9,7 @@ import javax.swing.ImageIcon;
 import javax.swing.border.LineBorder;
 
 import controller.NewTVBoxController;
+import interfaces.Format;
 
 import java.awt.Font;
 import java.awt.event.ActionListener;
@@ -17,7 +18,6 @@ import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.DefaultComboBoxModel;
-import interfaces.Format;
 
 public class NewTVBoxView extends JFrame{
 

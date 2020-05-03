@@ -2,6 +2,12 @@ package model;
 
 import javax.swing.JOptionPane;
 
+/**
+ * 
+ * @author Daniel Lopes
+ *
+ *         Customer object and all of particular methods for Customer
+ */
 public class Customer {
 
 	protected Membership membership;
@@ -14,6 +20,11 @@ public class Customer {
 	protected String customerID;
 	protected Customer c;
 
+	/*
+	 * This constructor is used when I first create the customer object, It has no
+	 * ID because the ID will be created automatically when inserted into the
+	 * database.
+	 */
 	public Customer(String fName, String lName, String phoneNumber, String email, String plan, String cardNumber) {
 
 		this.email = email;
@@ -25,7 +36,10 @@ public class Customer {
 
 	}
 
-	// constructor that has the ID
+	/*
+	 * Once the customer is inserted into the database I will have an ID, therefore
+	 * I can query and get the ID from the system.
+	 */
 	public Customer(String fName, String lName, String phoneNumber, String email, String plan, String cardNumber,
 			String customerID) {
 
@@ -38,51 +52,72 @@ public class Customer {
 		this.customerID = customerID;
 	}
 
-//------------------------------------------------------------------------------------------------------------------------------------------//	
-	
 	public int totalPointsEarned() {
-		
-		int totalPointsEarned = Integer.parseInt(JOptionPane.showInputDialog("Please insert how many points this customer earned in this transaction"));
-		
+
+		/*
+		 * This method gets the total of points that the customer is due for shopping
+		 * titles - 10 points per titles and returns the integer.
+		 */
+		int totalPointsEarned = Integer.parseInt(
+				JOptionPane.showInputDialog("Please insert how many points this customer earned in this transaction"));
+
 		return totalPointsEarned;
 	}
-	
-	public double  totalDiscount() {
-		
-		double finalDiscount = Double.parseDouble(JOptionPane.showInputDialog("Please insert how much is the discount due to this customer"));
-		
+
+	public double totalDiscount() {
+
+		/*
+		 * This method gets the total of discount that the customer is due for having
+		 * reached 100 points on his loyaltyCard
+		 */
+
+		double finalDiscount = Double.parseDouble(
+				JOptionPane.showInputDialog("Please insert how much is the discount due to this customer"));
+
 		return finalDiscount;
 	}
-	
-	public double totalToPay(double priceTitle, double priceScreen, double discount ) {
-		
+
+	public double totalToPay(double priceTitle, double priceScreen, double discount) {
+
+		/*
+		 * This method gets three variables, title price, screen price (which could be
+		 * zero if first shop or the previous title price) and discount and returns the
+		 * result of it.
+		 */
+
 		return priceTitle + priceScreen - discount;
-		
+
 	}
 
 	public int totalNumberOfTitlesRented(Customer customer) {
-		
-		//method to go through database and check with every table how many titles that customer has rented already
-		
+
+		/*
+		 * method to go through database and check with every table how many titles that
+		 * customer has rented already
+		 */
+
 		Queries queries = new Queries();
 		Queries.liveConcertClass totalLiveConcertTitlesRented = queries.new liveConcertClass();
 		Queries.musicClass totalMusicTitlesRented = queries.new musicClass();
 		Queries.tvBoxClass totalTVBoxTitlesRented = queries.new tvBoxClass();
 		Queries.movieClass totalMovieTitlesRented = queries.new movieClass();
-		
-		 int totalLiveConcert = totalLiveConcertTitlesRented.numberOfLiveConcertRented(customer);
-		 int totalMusic = totalMusicTitlesRented.numberOfMusicRented(customer);
-		 int totalTVBox = totalTVBoxTitlesRented.numberOfTVBoxRented(customer);
-		 int totalMovie = totalMovieTitlesRented.numberOfMovieRented(customer);
-		 
-		 
-		 int count= totalLiveConcert + totalMusic + totalTVBox + totalMovie;
-		 
-		 return count; // it returns the total amount rented in the 4 tables.
-		
-	}
-	public boolean validateMusicPlan(Customer customer) {
 
+		int totalLiveConcert = totalLiveConcertTitlesRented.numberOfLiveConcertRented(customer);
+		int totalMusic = totalMusicTitlesRented.numberOfMusicRented(customer);
+		int totalTVBox = totalTVBoxTitlesRented.numberOfTVBoxRented(customer);
+		int totalMovie = totalMovieTitlesRented.numberOfMovieRented(customer);
+
+		int count = totalLiveConcert + totalMusic + totalTVBox + totalMovie;
+
+		return count; // it returns the total amount rented in the 4 tables.
+
+	}
+
+	public boolean validateMusicPlan(Customer customer) {
+		/*
+		 * Simply validates if the customer can rent music Titles, He has to be ML
+		 * (plan) or Premium
+		 */
 		boolean validMembership = false;
 
 		if (customer.getPlan().toString().equalsIgnoreCase("ML")
@@ -96,7 +131,10 @@ public class Customer {
 	}
 
 	public boolean validateMoviePlan(Customer customer) {
-
+		/*
+		 * Simply validates if the customer can rent movie Titles, He has to be VL
+		 * (plan) or Premium
+		 */
 		boolean validMembership = false;
 
 		if (customer.getPlan().toString().equalsIgnoreCase("VL")
@@ -110,7 +148,10 @@ public class Customer {
 	}
 
 	public boolean validateTVBoxPlan(Customer customer) {
-
+		/*
+		 * Simply validates if the customer can rent TVBox Titles, He has to be TV
+		 * (plan) or Premium
+		 */
 		boolean validMembership = false;
 
 		if (customer.getPlan().toString().equalsIgnoreCase("TV")
@@ -124,7 +165,10 @@ public class Customer {
 	}
 
 	public boolean validateLiveConcertPlan(Customer customer) {
-
+		/*
+		 * Simply validates if the customer can rent music Live Concert, He has to be ML
+		 * (plan) or Premium
+		 */
 		boolean validMembership = false;
 
 		if (customer.getPlan().toString().equalsIgnoreCase("ML")

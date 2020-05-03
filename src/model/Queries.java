@@ -5,15 +5,25 @@ import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 
+/**
+ * 
+ * @author Daniel Lopes
+ *
+ *         Queries is as the name suggests a class that contains all the methods
+ *         that requires connections with the database. It has been divided by
+ *         inner class in order to facilitate the location of methods when
+ *         searching for them.
+ */
 public class Queries {
 
 	public class tvBoxClass {
+
+		/* TV Box inner class for queries */
 		connection conn = new connection();
 
 		public boolean insertNewTVBox(TVBox tvBox) {
 
 			boolean newTVBox = false;
-			// boolean rented=false;
 
 			String query = "INSERT INTO TVBox (season, title, numberOfDisks, rented, price, format) " + "VALUES ( '"
 					+ tvBox.getSeason() + "', '" + tvBox.getTitle() + "', '" + tvBox.getNumberOfDisks() + "', '"
@@ -90,6 +100,11 @@ public class Queries {
 
 		public TVBox searchTVBoxTitle(String tvBoxTitle) {
 
+			/*
+			 * Gets a String title as parameter and searches in the database for the object
+			 * that has the same title. I am returning the whole object
+			 */
+
 			ResultSet rs = null;
 			String titleID = "";
 			String title = "";
@@ -100,7 +115,7 @@ public class Queries {
 			boolean rented = false;
 
 			try {
-				String query = "Select * FROM TVBox WHERE  title = '" + tvBoxTitle + "' AND rented = '" + rented + "'";
+				String query = "Select * FROM TVBox WHERE  title LIKE '%" + tvBoxTitle + "%' AND rented = '" + rented + "'";
 				rs = conn.executeQuery(query);
 
 				while (rs.next()) {
@@ -119,7 +134,13 @@ public class Queries {
 			return tvBox;
 		}
 
-		public boolean UpdateTVBoxToRented(TVBox tvBox, Customer customer) {
+		public boolean UpdateTVBoxToRented(TVBox tvBox) {
+
+			/*
+			 * This method changes the value of the field rented in the database to true,
+			 * which means then that the specific title has been rented
+			 */
+
 			boolean updatedTVBox = false;
 			String query = "UPDATE TVBox SET rented = '" + true + "' WHERE titleID = '" + tvBox.getTitleID() + "'";
 			updatedTVBox = conn.ExecuteSet(query);
@@ -129,6 +150,7 @@ public class Queries {
 		}
 
 		public boolean InsertIntoTVBoxRentedTable(TVBox tvBox, Customer customer, String rentedDate) {
+
 			boolean newTVBoxRented = false;
 
 			String query = "INSERT INTO rentedTVBox (titleID, customerID, rentedDate, returnDate) " + "VALUES ('"
@@ -141,6 +163,13 @@ public class Queries {
 		}
 
 		public int numberOfTVBoxRented(Customer customer) {
+
+			/*
+			 * This method searches for the numbers of titles that has been rented to a
+			 * specific customerID in the rentedTVBox table. It returns the result (sum of
+			 * total).
+			 */
+
 			ResultSet rs;
 			int count = 0;
 
@@ -161,13 +190,14 @@ public class Queries {
 
 	}
 
+	/* Live Concert inner class for queries */
 	public class liveConcertClass {
+
 		connection conn = new connection();
 
 		public boolean insertNewLiveConcert(LiveConcert liveConcert) {
 
 			boolean newLiveConcert = false;
-			// boolean rented=false;
 
 			String query = "INSERT INTO liveConcert (yearOfRelease, title, genre, rented, band, price, format) "
 					+ "VALUES ( '" + liveConcert.getYearOfRelease() + "', '" + liveConcert.getTitle() + "', '"
@@ -245,6 +275,11 @@ public class Queries {
 
 		public LiveConcert searchLiveConcertTitle(String liveTitle) {
 
+			/*
+			 * Gets a String title as parameter and searches in the database for the object
+			 * that has the same title. I am returning the whole object
+			 */
+
 			ResultSet rs = null;
 			String bandID = "";
 			String title = "";
@@ -256,7 +291,7 @@ public class Queries {
 			boolean rented = false;
 
 			try {
-				String query = "Select * FROM liveConcert WHERE  title = '" + liveTitle + "' AND rented = '" + rented
+				String query = "Select * FROM liveConcert WHERE  title LIKE '%" + liveTitle + "%' AND rented = '" + rented
 						+ "'";
 				rs = conn.executeQuery(query);
 
@@ -277,7 +312,13 @@ public class Queries {
 			return liveConcert;
 		}
 
-		public boolean UpdateLiveConcertToRented(LiveConcert liveConcert, Customer customer) {
+		public boolean UpdateLiveConcertToRented(LiveConcert liveConcert) {
+
+			/*
+			 * This method changes the value of the field rented in the database to true,
+			 * which means then that the specific title has been rented
+			 */
+
 			boolean updatedLiveConcert = false;
 			String query = "UPDATE liveConcert SET rented = '" + true + "' WHERE bandID = '"
 					+ liveConcert.getLiveConcertID() + "'";
@@ -288,6 +329,7 @@ public class Queries {
 		}
 
 		public boolean InsertIntoLiveConcertRentedTable(LiveConcert liveConcert, Customer customer, String rentedDate) {
+
 			boolean newLiveConcertRented = false;
 
 			String query = "INSERT INTO rentedLiveConcert (bandID, customerID, rentedDate, returnDate) " + "VALUES ('"
@@ -300,6 +342,12 @@ public class Queries {
 		}
 
 		public int numberOfLiveConcertRented(Customer customer) {
+
+			/*
+			 * This method searches for the numbers of titles that has been rented to a
+			 * specific customerID in the rentedLiveConcert table. It returns the result
+			 * (sum of total).
+			 */
 			ResultSet rs;
 			int count = 0;
 
@@ -319,6 +367,8 @@ public class Queries {
 		}
 
 	}
+
+	/* Movie inner class for queries */
 
 	public class movieClass {
 		connection conn = new connection();
@@ -406,6 +456,11 @@ public class Queries {
 
 		public Movies searchMovieTitle(String movieTitle) {
 
+			/*
+			 * Gets a String title as parameter and searches in the database for the object
+			 * that has the same title. I am returning the whole object
+			 */
+
 			ResultSet rs = null;
 			String movieID = "";
 			String title = "";
@@ -417,7 +472,7 @@ public class Queries {
 			boolean rented = false;
 
 			try {
-				String query = "Select * FROM movies WHERE  title = '" + movieTitle + "' AND rented = '" + rented + "'";
+				String query = "Select * FROM movies WHERE  title LIKE '%" + movieTitle + "%' AND rented = '" + rented + "'";
 				rs = conn.executeQuery(query);
 
 				while (rs.next()) {
@@ -437,7 +492,13 @@ public class Queries {
 			return movie;
 		}
 
-		public boolean UpdateMovieToRented(Movies movie, Customer customer) {
+		public boolean UpdateMovieToRented(Movies movie) {
+
+			/*
+			 * This method changes the value of the field rented in the database to true,
+			 * which means then that the specific title has been rented
+			 */
+
 			boolean updatedMovie = false;
 			String query = "UPDATE movies SET rented = '" + true + "' WHERE movieID = '" + movie.getMovieID() + "'";
 			updatedMovie = conn.ExecuteSet(query);
@@ -459,6 +520,13 @@ public class Queries {
 		}
 
 		public int numberOfMovieRented(Customer customer) {
+
+			/*
+			 * This method searches for the numbers of titles that has been rented to a
+			 * specific customerID in the rentedMovie table. It returns the result (sum of
+			 * total).
+			 */
+
 			ResultSet rs;
 			int count = 0;
 
@@ -478,6 +546,8 @@ public class Queries {
 		}
 
 	}
+
+	/* Music inner class for queries */
 
 	public class musicClass {
 		connection conn = new connection();
@@ -600,6 +670,11 @@ public class Queries {
 
 		public Music searchMusicTitle(String musicTitle) {
 
+			/*
+			 * Gets a String title as parameter and searches in the database for the object
+			 * that has the same title. I am returning the whole object
+			 */
+
 			ResultSet rs = null;
 			String musicID = "";
 			String title = "";
@@ -611,7 +686,7 @@ public class Queries {
 			boolean rented = false;
 
 			try {
-				String query = "Select * FROM music WHERE title = '" + musicTitle + "' AND rented = '" + rented + "'";
+				String query = "Select * FROM music WHERE title LIKE '%" + musicTitle + "%' AND rented = '" + rented + "'";
 				rs = conn.executeQuery(query);
 
 				while (rs.next()) {
@@ -631,7 +706,13 @@ public class Queries {
 			return music;
 		}
 
-		public boolean UpdateMusicToRented(Music music, Customer customer) {
+		public boolean UpdateMusicToRented(Music music) {
+
+			/*
+			 * This method changes the value of the field rented in the database to true,
+			 * which means then that the specific title has been rented
+			 */
+
 			boolean updatedMusic = false;
 			String query = "UPDATE music SET rented = '" + true + "' WHERE musicID = '" + music.getMusicID() + "'";
 			updatedMusic = conn.ExecuteSet(query);
@@ -653,6 +734,13 @@ public class Queries {
 		}
 
 		public int numberOfMusicRented(Customer customer) {
+
+			/*
+			 * This method searches for the numbers of titles that has been rented to a
+			 * specific customerID in the rentedMusic table. It returns the result (sum of
+			 * total).
+			 */
+
 			ResultSet rs;
 			int count = 0;
 
@@ -672,6 +760,7 @@ public class Queries {
 		}
 	}
 
+	/* Customer inner class for queries */
 	public class customerClass {
 
 		connection conn = new connection();
@@ -715,6 +804,11 @@ public class Queries {
 		}
 
 		public Customer getCustomer(String email) {
+
+			/*
+			 * Searches for the customer once the email is given and return the whole object
+			 * with its attributes
+			 */
 
 			String fName = "";
 			String lName = "";
@@ -789,6 +883,14 @@ public class Queries {
 	public int getCardPoints(String email) {
 		connection conn = new connection();
 
+		/*
+		 * This method has two mainly operations; 1 - search for customer that has the
+		 * email given, and through email get the customer ID. 2 - Once I have the
+		 * customer ID I search in the Loyalty Card table for the card that is
+		 * associated with that customer ID. 3 - The value loyaltyCardPoints is stored
+		 * in an integer and returned when this method is called.
+		 */
+
 		int cardPoints = 0;
 		int id = 0;
 
@@ -819,6 +921,14 @@ public class Queries {
 	}
 
 	public int getLoyaltyCardID(String email) {
+
+		/*
+		 * This method receives the customer email as parameter and searches for the
+		 * customer ID in the system. Once it has it, the next step is to search the for
+		 * the card ID in the table LOyalty Card that has the same customer ID
+		 * associated to it. the integer cardID will be returned when the method is
+		 * called. SO it can be displayed on the screen in the rental view.
+		 */
 		connection conn = new connection();
 
 		int customerID = 0;

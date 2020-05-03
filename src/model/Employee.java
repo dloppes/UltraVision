@@ -5,6 +5,12 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * 
+ * @author Daniel Lopes
+ *
+ *         Class to create the Employee Object. There will be only one employee.
+ */
 public class Employee {
 
 	protected int employeeID;
@@ -15,8 +21,9 @@ public class Employee {
 	protected userLogged user;
 
 	public Employee() {
-	
+
 	}
+
 	public Employee(int employeeID, String fName, String lName, String username, String password) {
 		this.employeeID = employeeID;
 		this.fName = fName;
@@ -24,19 +31,22 @@ public class Employee {
 		this.username = username;
 		this.password = password;
 	}
-	
-
 
 	public class employeeLogin {
 
+		/*
+		 * Class to verify that the employee details inserted on the screen are correct.
+		 * Checking is done with the database.
+		 */
+
 		public boolean loginValidator(userLogged user) {
-			
+
 			connection conn = new connection();
 
 			boolean login = false;
 
-			String query = "SELECT * FROM employee WHERE username = '" + user.getUsername()
-					+ "' AND password = '" + user.getPassword() + "';";
+			String query = "SELECT * FROM employee WHERE username = '" + user.getUsername() + "' AND password = '"
+					+ user.getPassword() + "';";
 
 			ResultSet rs = conn.executeQuery(query);
 

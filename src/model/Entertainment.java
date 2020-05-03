@@ -1,5 +1,13 @@
 package model;
 
+/**
+ * 
+ * @author Daniel Lopes
+ *
+ *         This abstract class has all the attributes that are common amongst
+ *         all titles. They will be able to extend it and add any other
+ *         attribute that is particular to that object.
+ */
 public abstract class Entertainment {
 
 	protected int yearOfRelease;
@@ -8,9 +16,9 @@ public abstract class Entertainment {
 	protected boolean rented = false;
 	protected double price;
 	protected String format;
-	
+
 	public Entertainment(int yearOfRelease, String title, String genre, double price, String format) {
-		
+
 		this.yearOfRelease = yearOfRelease;
 		this.title = title;
 		this.genre = genre;

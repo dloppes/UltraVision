@@ -1,5 +1,4 @@
 import controller.DashboardController;
-import controller.LoginController;
 
 public class Main {
 

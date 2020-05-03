@@ -2,7 +2,6 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -177,7 +176,7 @@ public class RentTitlesController implements ActionListener {
 					 * 100 points in the field loyalty card points. If so concede a discount (free
 					 * rental)
 					 */
-					boolean updateMusic = musicQuery.UpdateMusicToRented(music, customer);
+					boolean updateMusic = musicQuery.UpdateMusicToRented(music);
 					if (updateMusic == true) {
 
 						String date = this.RentTitlesView.getRentedDateTextField().getText();
@@ -242,7 +241,7 @@ public class RentTitlesController implements ActionListener {
 					 * 100 points in the field loyalty card points. If so concede a discount (free
 					 * rental)
 					 */
-					boolean updateMovie = movieQuery.UpdateMovieToRented(movie, customer);
+					boolean updateMovie = movieQuery.UpdateMovieToRented(movie);
 					if (updateMovie == true) {
 
 						String date = this.RentTitlesView.getRentedDateTextField().getText();
@@ -298,7 +297,7 @@ public class RentTitlesController implements ActionListener {
 					 * reached 100 points in the field loyalty card points. If so concede a discount
 					 * (free rental)
 					 */
-					boolean updateLiveConcert = liveConcertQuery.UpdateLiveConcertToRented(liveConcert, customer);
+					boolean updateLiveConcert = liveConcertQuery.UpdateLiveConcertToRented(liveConcert);
 					if (updateLiveConcert == true) {
 
 						String date = this.RentTitlesView.getRentedDateTextField().getText();
@@ -354,7 +353,7 @@ public class RentTitlesController implements ActionListener {
 					 * 100 points in the field loyalty card points. If so concede a discount (free
 					 * rental)
 					 */
-					boolean updateTVBox = TVBoxQuery.UpdateTVBoxToRented(tvBox, customer);
+					boolean updateTVBox = TVBoxQuery.UpdateTVBoxToRented(tvBox);
 					if (updateTVBox == true) {
 
 						String date = this.RentTitlesView.getRentedDateTextField().getText();

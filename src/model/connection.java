@@ -8,6 +8,12 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * 
+ * @author Daniel Lopes
+ *
+ *Class created to acess the database. This class therefore can be instantiated in order to access the database.
+ */
 public class connection {
 
 	Statement stmt;
@@ -45,6 +51,7 @@ public class connection {
 		
 	}
 
+	// this method is used to set queries, it does not require any return as confirmation.
 	public ResultSet executeQuery(String query) {
 
 		try {
@@ -59,6 +66,7 @@ public class connection {
 
 	}
 
+	//this method on the other hand, executes the Query and returns weather or not the object has been inserted (true/false)
 	public boolean ExecuteSet(String query) {
 		
 		boolean result = false;

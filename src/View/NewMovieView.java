@@ -14,13 +14,13 @@ import javax.swing.border.LineBorder;
 import javax.swing.text.MaskFormatter;
 
 import controller.NewMovieController;
+import interfaces.FilmGenres;
+import interfaces.Format;
 
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.DefaultComboBoxModel;
-import interfaces.FilmGenres;
-import interfaces.Format;
 import javax.swing.JButton;
 
 public class NewMovieView extends JFrame {

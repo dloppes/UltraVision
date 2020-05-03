@@ -14,13 +14,13 @@ import javax.swing.border.LineBorder;
 import javax.swing.text.MaskFormatter;
 
 import controller.NewLiveConcertController;
+import interfaces.Format;
+import interfaces.MusicGenres;
 
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.DefaultComboBoxModel;
-import interfaces.MusicGenres;
-import interfaces.Format;
 import javax.swing.JButton;
 
 public class NewLiveConcertView extends JFrame {
