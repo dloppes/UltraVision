@@ -24,6 +24,12 @@ import javax.swing.DefaultComboBoxModel;
 import model.Customer;
 import model.Membership;
 
+/**
+ * 
+ * @author Daniel Lopes
+ *
+ */
+
 public class UpdateCustomerView extends JFrame {
 
 	private UpdateCustomerController controllerInternalRef;
@@ -176,31 +182,24 @@ public class UpdateCustomerView extends JFrame {
 
 	}
 
-//------------------------------------------------------------------------------------------------------------------------------------------------    
-
-//--------------------------------------------------------------Get First Name--------------------------------------------------------------------       
 	public String getFirstName() {
 		return firstNameField.getText();
 
 	}
 
-//--------------------------------------------------------------Get Last Name---------------------------------------------------------------------       
 	public String getLastName() {
 		return lNameTextField.getText();
 
 	}
 
-//------------------------------------------------------------------Get  email---------------------------------------------------------------------       
 	public String getEmail() {
 		return emailTextField.getText();
 	}
 
-//------------------------------------------------------------------Get  card Number---------------------------------------------------------------       
 	public String getCardNumber() {
 		return cardNumberTextField.getText();
 	}
 
-//------------------------------------------------------------------Get  Plan---------------------------------------------------------------------       
 	public String getPlan() {
 		String planTextField;
 		planTextField = planBox.getSelectedItem().toString();

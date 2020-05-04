@@ -115,7 +115,8 @@ public class Queries {
 			boolean rented = false;
 
 			try {
-				String query = "Select * FROM TVBox WHERE  title LIKE '%" + tvBoxTitle + "%' AND rented = '" + rented + "'";
+				String query = "Select * FROM TVBox WHERE  title LIKE '%" + tvBoxTitle + "%' AND rented = '" + rented
+						+ "'";
 				rs = conn.executeQuery(query);
 
 				while (rs.next()) {
@@ -153,7 +154,7 @@ public class Queries {
 
 			boolean newTVBoxRented = false;
 
-			String query = "INSERT INTO rentedTVBox (titleID, customerID, rentedDate, returnDate) " + "VALUES ('"
+			String query = "INSERT INTO rentedTVBox (titleID, customerID, rentedDate) " + "VALUES ('"
 					+ tvBox.getTitleID() + "','" + customer.getCustomerID() + "', '" + rentedDate + "');";
 
 			newTVBoxRented = conn.ExecuteSet(query);
@@ -174,7 +175,7 @@ public class Queries {
 			int count = 0;
 
 			String query = "SELECT COUNT(titleID) FROM rentedTVBox WHERE customerID = '" + customer.getCustomerID()
-					+ "' AND returnDate = '" + null + "'";
+					+ "' AND returnDate is null";
 			rs = conn.executeQuery(query);
 
 			try {
@@ -291,8 +292,8 @@ public class Queries {
 			boolean rented = false;
 
 			try {
-				String query = "Select * FROM liveConcert WHERE  title LIKE '%" + liveTitle + "%' AND rented = '" + rented
-						+ "'";
+				String query = "Select * FROM liveConcert WHERE  title LIKE '%" + liveTitle + "%' AND rented = '"
+						+ rented + "'";
 				rs = conn.executeQuery(query);
 
 				while (rs.next()) {
@@ -332,7 +333,7 @@ public class Queries {
 
 			boolean newLiveConcertRented = false;
 
-			String query = "INSERT INTO rentedLiveConcert (bandID, customerID, rentedDate, returnDate) " + "VALUES ('"
+			String query = "INSERT INTO rentedLiveConcert (bandID, customerID, rentedDate) " + "VALUES ('"
 					+ liveConcert.getLiveConcertID() + "','" + customer.getCustomerID() + "', '" + rentedDate + "');";
 
 			newLiveConcertRented = conn.ExecuteSet(query);
@@ -352,7 +353,7 @@ public class Queries {
 			int count = 0;
 
 			String query = "SELECT COUNT(bandID) FROM rentedLiveConcert WHERE customerID = '" + customer.getCustomerID()
-					+ "' AND returnDate = '" + null + "'";
+					+ "' AND returnDate is null";
 			rs = conn.executeQuery(query);
 
 			try {
@@ -429,7 +430,7 @@ public class Queries {
 
 			String[][] data = new String[100][columnNames.length];
 
-			String query = "Select * FROM movie WHERE rented = '" + rented + "'";
+			String query = "Select * FROM movies WHERE rented = '" + rented + "'";
 			ResultSet rs = conn.executeQuery(query);
 
 			try {
@@ -472,7 +473,8 @@ public class Queries {
 			boolean rented = false;
 
 			try {
-				String query = "Select * FROM movies WHERE  title LIKE '%" + movieTitle + "%' AND rented = '" + rented + "'";
+				String query = "Select * FROM movies WHERE  title LIKE '%" + movieTitle + "%' AND rented = '" + rented
+						+ "'";
 				rs = conn.executeQuery(query);
 
 				while (rs.next()) {
@@ -510,7 +512,7 @@ public class Queries {
 		public boolean InsertIntoMovieRentedTable(Movies movie, Customer customer, String rentedDate) {
 			boolean newMovieRented = false;
 
-			String query = "INSERT INTO rentedMovie (movieID, customerID, rentedDate, returnDate) " + "VALUES ('"
+			String query = "INSERT INTO rentedMovie (movieID, customerID, rentedDate) " + "VALUES ('"
 					+ movie.getMovieID() + "','" + customer.getCustomerID() + "', '" + rentedDate + "');";
 
 			newMovieRented = conn.ExecuteSet(query);
@@ -531,7 +533,7 @@ public class Queries {
 			int count = 0;
 
 			String query = "SELECT COUNT(movieID) FROM rentedMovie WHERE customerID = '" + customer.getCustomerID()
-					+ "' AND returnDate = '" + null + "'";
+					+ "' AND returnDate is null";
 			rs = conn.executeQuery(query);
 
 			try {
@@ -686,7 +688,8 @@ public class Queries {
 			boolean rented = false;
 
 			try {
-				String query = "Select * FROM music WHERE title LIKE '%" + musicTitle + "%' AND rented = '" + rented + "'";
+				String query = "Select * FROM music WHERE title LIKE '%" + musicTitle + "%' AND rented = '" + rented
+						+ "'";
 				rs = conn.executeQuery(query);
 
 				while (rs.next()) {
@@ -745,7 +748,7 @@ public class Queries {
 			int count = 0;
 
 			String query = "SELECT COUNT(musicID) FROM rentedMusic WHERE customerID = '" + customer.getCustomerID()
-					+ "' AND returnDate = '" + null + "'";
+					+ "' AND returnDate is null";
 			rs = conn.executeQuery(query);
 
 			try {

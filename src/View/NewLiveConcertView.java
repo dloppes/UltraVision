@@ -23,6 +23,14 @@ import javax.swing.JFormattedTextField;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 
+/**
+ * 
+ * @author Daniel Lopes
+ *
+ *         New Live Concert class, that receives New Live Concert controller passed
+ *         onto.
+ */
+
 public class NewLiveConcertView extends JFrame {
 
 	private JPanel contentPane;

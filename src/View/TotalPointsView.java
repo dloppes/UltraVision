@@ -10,6 +10,12 @@ import java.awt.Font;
 import javax.swing.border.LineBorder;
 import javax.swing.JTextField;
 
+/**
+ * 
+ * @author Daniel Lopes
+ *
+ */
+
 public class TotalPointsView extends JFrame {
 
 	private JPanel contentPane;

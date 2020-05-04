@@ -19,11 +19,18 @@ import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import javax.swing.JTable;
 
+/**
+ * 
+ * @author Daniel Lopes
+ *
+ */
+
 public class StockAvailableView extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
 	private JTable table;
 	private JFrame frame;
+
 	public StockAvailableView() {
 
 		new connection();
@@ -105,6 +112,15 @@ public class StockAvailableView extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent action) {
+
+		/*
+		 * According to the title that the employee wants to check there is a method to
+		 * load the information from the database.
+		 * 
+		 * Instantiating Query class. The result of the inner class will become the data
+		 * for the table
+		 * 
+		 */
 
 		if (action.getActionCommand().equals("music")) {
 

@@ -23,6 +23,12 @@ import javax.swing.JFormattedTextField;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 
+/**
+ * 
+ * @author Daniel Lopes
+ *
+ */
+
 public class NewMovieView extends JFrame {
 
 	private JPanel contentPane;

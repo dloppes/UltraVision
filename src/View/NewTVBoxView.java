@@ -19,6 +19,12 @@ import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.DefaultComboBoxModel;
 
+/**
+ * 
+ * @author Daniel Lopes
+ *
+ */
+
 public class NewTVBoxView extends JFrame{
 
 	private JPanel contentPane;

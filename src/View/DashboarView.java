@@ -17,6 +17,13 @@ import javax.swing.border.LineBorder;
 
 import controller.DashboardController;
 
+/**
+ * 
+ * @author Daniel Lopes
+ *
+ *This is the main Dashboard in which the employee will be able to select what he wants to do in the application.
+ */
+
 public class DashboarView extends JFrame {
 	
 	private JPanel contentPane;

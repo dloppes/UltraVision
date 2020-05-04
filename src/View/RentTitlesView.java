@@ -19,6 +19,12 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JSeparator;
 
+/**
+ * 
+ * @author Daniel Lopes
+ *
+ */
+
 public class RentTitlesView extends JFrame {
 
 	private JPanel contentPane;

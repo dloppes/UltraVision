@@ -8,7 +8,11 @@ import controller.LoginController;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.*;
-
+/**
+ * 
+ * @author Daniel Lopes
+ *
+ */
 public class LoginView implements ActionListener {
 	
 	JPanel contentPane;

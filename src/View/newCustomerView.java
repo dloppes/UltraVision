@@ -22,6 +22,14 @@ import javax.swing.JFormattedTextField;
 import javax.swing.DefaultComboBoxModel;
 import model.Membership;
 
+/**
+ * 
+ * @author Daniel Lopes
+ *
+ *         New Customer class, that receives New Customer controller passed
+ *         onto.
+ */
+
 public class NewCustomerView extends JFrame {
 
 	private NewCustomerController controllerInternalRef;
@@ -160,31 +168,24 @@ public class NewCustomerView extends JFrame {
 
 	}
 
-//------------------------------------------------------------------------------------------------------------------------------------------------    
-
-//--------------------------------------------------------------Get First Name--------------------------------------------------------------------       
 	public String getFirstName() {
 		return firstNameField.getText();
 
 	}
 
-//--------------------------------------------------------------Get Last Name---------------------------------------------------------------------       
 	public String getLastName() {
 		return lNameTextField.getText();
 
 	}
 
-//------------------------------------------------------------------Get  email---------------------------------------------------------------------       
 	public String getEmail() {
 		return emailTextField.getText();
 	}
 
-//------------------------------------------------------------------Get  card Number---------------------------------------------------------------       
 	public String getCardNumber() {
 		return cardNumberTextField.getText();
 	}
 
-//------------------------------------------------------------------Get  Plan---------------------------------------------------------------------       
 	public String getPlan() {
 		String planTextField;
 		planTextField = planBox.getSelectedItem().toString();

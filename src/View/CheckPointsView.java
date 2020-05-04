@@ -16,11 +16,19 @@ import controller.CheckPointsController;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
+/**
+ * 
+ * @author Daniel Lopes
+ *
+ *         This is the view class for the check points. It will have an email
+ *         field that
+ */
 public class CheckPointsView extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField emailTextField;
 	private JFrame frame;
+
 	public CheckPointsView(CheckPointsController controllerInternalRef) {
 
 		frame = new JFrame();

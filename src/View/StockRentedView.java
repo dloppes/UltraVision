@@ -18,19 +18,25 @@ import model.Queries;
 import model.connection;
 import javax.swing.JScrollPane;
 
-public class StockRentedView extends JFrame implements ActionListener{
+/**
+ * 
+ * @author Daniel Lopes
+ *
+ */
+
+public class StockRentedView extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
 	private JTable table;
 	private JFrame frame;
-	
+
 	public StockRentedView() {
-		
+
 		new connection();
-		
+
 		frame = new JFrame();
 		frame.setVisible(true);
-		
+
 		frame.setTitle("Available Stock");
 		frame.setBounds(100, 100, 913, 625);
 		contentPane = new JPanel();
@@ -38,12 +44,12 @@ public class StockRentedView extends JFrame implements ActionListener{
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		frame.setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JLabel lblNewLabel = new JLabel("New label");
 		lblNewLabel.setIcon(new ImageIcon(StockRentedView.class.getResource("/img/logo3-removebg-preview.png")));
 		lblNewLabel.setBounds(-125, -14, 497, 169);
 		contentPane.add(lblNewLabel);
-		
+
 		JLabel rentedTitlesLabel = new JLabel("RENTED TITLES");
 		rentedTitlesLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		rentedTitlesLabel.setBorder(new LineBorder(new Color(189, 183, 107), 3, true));
@@ -53,7 +59,7 @@ public class StockRentedView extends JFrame implements ActionListener{
 		rentedTitlesLabel.setFont(new Font("Verdana", Font.BOLD, 22));
 		rentedTitlesLabel.setBounds(552, 44, 331, 45);
 		contentPane.add(rentedTitlesLabel);
-		
+
 		JLabel lblPleaseSelectThe = new JLabel("Please select the Title you would like to search for:");
 		lblPleaseSelectThe.setBorder(new LineBorder(new Color(255, 255, 255), 2, true));
 		lblPleaseSelectThe.setHorizontalAlignment(SwingConstants.CENTER);
@@ -61,7 +67,7 @@ public class StockRentedView extends JFrame implements ActionListener{
 		lblPleaseSelectThe.setFont(new Font("Verdana", Font.BOLD, 18));
 		lblPleaseSelectThe.setBounds(12, 133, 871, 51);
 		contentPane.add(lblPleaseSelectThe);
-		
+
 		JButton btnMusic = new JButton("MUSIC");
 		btnMusic.setBorder(new LineBorder(new Color(189, 183, 107), 1, true));
 		btnMusic.setIcon(new ImageIcon(StockRentedView.class.getResource("/img/music_menu_icon.png")));
@@ -70,7 +76,7 @@ public class StockRentedView extends JFrame implements ActionListener{
 		contentPane.add(btnMusic);
 		btnMusic.addActionListener(this);
 		btnMusic.setActionCommand("music");
-		
+
 		JButton btnMovie = new JButton("MOVIE");
 		btnMovie.setIcon(new ImageIcon(StockRentedView.class.getResource("/img/movies_menu_icon.png")));
 		btnMovie.setFont(new Font("Arial Black", Font.BOLD, 20));
@@ -79,7 +85,7 @@ public class StockRentedView extends JFrame implements ActionListener{
 		contentPane.add(btnMovie);
 		btnMovie.addActionListener(this);
 		btnMovie.setActionCommand("movie");
-		
+
 		JButton btnTvBox = new JButton("TV BOX");
 		btnTvBox.setIcon(new ImageIcon(StockRentedView.class.getResource("/img/tvBox_menu_icon.png")));
 		btnTvBox.setFont(new Font("Arial Black", Font.BOLD, 20));
@@ -88,7 +94,7 @@ public class StockRentedView extends JFrame implements ActionListener{
 		contentPane.add(btnTvBox);
 		btnTvBox.addActionListener(this);
 		btnTvBox.setActionCommand("TVBox");
-		
+
 		JButton btnLiveConcert = new JButton("LIVE CONCERT");
 		btnLiveConcert.setIcon(new ImageIcon(StockRentedView.class.getResource("/img/liveCOncert_menu_icon.png")));
 		btnLiveConcert.setFont(new Font("Arial Black", Font.BOLD, 20));
@@ -97,14 +103,23 @@ public class StockRentedView extends JFrame implements ActionListener{
 		contentPane.add(btnLiveConcert);
 		btnLiveConcert.addActionListener(this);
 		btnLiveConcert.setActionCommand("liveConcert");
-		
+
 		frame.validate();
 		frame.repaint();
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent action) {
-		
+
+		/*
+		 * According to the title that the employee wants to check there is a method to
+		 * load the information from the database.
+		 * 
+		 * Instantiating Query class. The result of the inner class will become the data
+		 * for the table
+		 * 
+		 */
+
 		if (action.getActionCommand().equals("music")) {
 			String[] columnNames = new String[] { "Music ID", "Title", "Singer", "Genre", "Format", "Price" };
 
@@ -182,6 +197,5 @@ public class StockRentedView extends JFrame implements ActionListener{
 
 		}
 	}
-	
 
 }

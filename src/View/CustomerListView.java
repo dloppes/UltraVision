@@ -23,6 +23,13 @@ import model.connection;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 
+/**
+ * 
+ * @author Daniel Lopes
+ *
+ *         This View will display a combox in which will have the customer
+ *         objects so the customer can select in order to update its details.
+ */
 public class CustomerListView extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
@@ -33,7 +40,6 @@ public class CustomerListView extends JFrame implements ActionListener {
 	private JButton selectButton;
 	private JFrame frame;
 	private JLabel customerLabel;
-	
 
 	public CustomerListView() {
 
@@ -73,7 +79,7 @@ public class CustomerListView extends JFrame implements ActionListener {
 		contentPane.add(selectButton);
 		selectButton.addActionListener(this);
 		selectButton.setActionCommand("select");
-		
+
 		customerLabel = new JLabel(" CUSTOMER LIST");
 		customerLabel.setForeground(Color.WHITE);
 		customerLabel.setFont(new Font("Verdana", Font.BOLD, 20));
@@ -86,6 +92,11 @@ public class CustomerListView extends JFrame implements ActionListener {
 
 	public void populateComboBox() {
 
+		/*
+		 * this method searches for all customers that are available in the database and
+		 * populates the JCombobox
+		 */
+
 		conn = new connection();
 
 		String query = "Select * FROM customer";
@@ -97,7 +108,7 @@ public class CustomerListView extends JFrame implements ActionListener {
 					customerComboBox.addItem(
 							rs.getString("customerID") + " " + rs.getString("fName") + " " + rs.getString("lName"));
 				} catch (SQLException e) {
-				JOptionPane.showMessageDialog(null, "Something went wrong");
+					JOptionPane.showMessageDialog(null, "Something went wrong");
 				}
 			}
 		} catch (SQLException e) {
@@ -108,6 +119,11 @@ public class CustomerListView extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+
+		/*
+		 * Once customer is selected I am getting only the ID from the combobox field
+		 * Having the ID I can therefore pass it to the update Customer Controller
+		 */
 
 		try {
 			selectedCustomerID = customerComboBox.getSelectedItem().toString();
@@ -133,10 +149,10 @@ public class CustomerListView extends JFrame implements ActionListener {
 		String ac = e.getActionCommand();
 		if (ac.equals("select")) {
 			frame.dispose();
-			 try {
+			try {
 				new UpdateCustomerController(selectedCustomerID);
 			} catch (ParseException e1) {
-				// TODO Auto-generated catch block
+
 				e1.printStackTrace();
 			}
 		}
