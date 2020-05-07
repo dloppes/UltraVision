@@ -36,6 +36,7 @@ public class LoginController {
 		if (login) {
 			new DashboardController();
 
+			
 		}
 
 		else {

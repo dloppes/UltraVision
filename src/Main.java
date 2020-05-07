@@ -1,12 +1,13 @@
 import controller.DashboardController;
+import controller.LoginController;
 
 public class Main {
 
 	public static void main(String[] args) {
 		
-	//new LoginController();
+	new LoginController();
 		
-	new DashboardController();
+	//new DashboardController();
 	}
 
 }
