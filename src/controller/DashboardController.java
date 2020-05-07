@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 import View.StockAvailableView;
 import View.CustomerListView;
 import View.DashboarView;
+import View.ReturnTitlesView;
 import View.StockRentedView;
 
 /**
@@ -92,6 +93,10 @@ public class DashboardController implements ActionListener {
 
 		case "rentTitles":
 			new RentTitlesController();
+			break;
+			
+		case "returnTitles":
+			new ReturnTitlesView();
 			break;
 
 		case "exit":

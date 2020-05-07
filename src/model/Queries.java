@@ -34,6 +34,70 @@ public class Queries {
 			return newTVBox;
 		}
 
+		public boolean UpdateTVBoxToAvailable(String id) {
+
+			/*
+			 * This method changes the value of the field rented in the database to false,
+			 * which means then that the specific title is available again for rental.
+			 */
+
+			boolean updatedTVBox = false;
+			String query = "UPDATE TVBox SET rented = '" + false + "' WHERE titleID = '" + id + "'";
+			if (updatedTVBox = conn.ExecuteSet(query))
+				;
+			{
+				updatedTVBox = true;
+			}
+			return updatedTVBox;
+		}
+
+		public boolean updateReturnDate(String id, String date) {
+
+			/*
+			 * This method adds a date to the table rentedTVBox
+			 */
+
+			boolean updatedRentedTVBox = false;
+
+			String query = "UPDATE rentedTVBox SET returnDate = '" + date + "' WHERE titleID = '" + id + "'";
+			if (updatedRentedTVBox = conn.ExecuteSet(query))
+				;
+			{
+				updatedRentedTVBox = true;
+			}
+
+			return updatedRentedTVBox;
+		}
+
+		public String[][] getAllRentedTVBoxByCustomer(String customerID) {
+
+			int row = 0;
+
+			String[] columnNames = new String[] { "Band ID", "Title", "Rented Date" };
+
+			String[][] data = new String[100][columnNames.length];
+
+			String query = "SELECT rentedTVBox.titleID, TVBox.title, rentedTVBox.rentedDate FROM rentedTVBox INNER JOIN TVBox on rentedTVBox.titleID = TVBox.titleID where returnDate is null and rentedTVBox.customerID = '"
+					+ customerID + "'";
+			ResultSet rs = conn.executeQuery(query);
+
+			try {
+				while (rs.next()) {
+					data[row][0] = rs.getString("titleID");
+					data[row][1] = rs.getString("title");
+					data[row][2] = rs.getString("rentedDate");
+					row++;
+
+				}
+
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(null, e);
+			}
+
+			return data;
+
+		}
+
 		public String[][] getAvailableTVBox() {
 
 			boolean rented = false;
@@ -208,6 +272,70 @@ public class Queries {
 			newLiveConcert = conn.ExecuteSet(query);
 
 			return newLiveConcert;
+		}
+		
+		public boolean UpdateLiveConcertToAvailable(String id) {
+
+			/*
+			 * This method changes the value of the field rented in the database to false,
+			 * which means then that the specific title is available again for rental.
+			 */
+
+			boolean updatedLiveConcert = false;
+			String query = "UPDATE liveConcert SET rented = '" + false + "' WHERE bandID = '" + id + "'";
+			if (updatedLiveConcert = conn.ExecuteSet(query))
+				;
+			{
+				updatedLiveConcert = true;
+			}
+			return updatedLiveConcert;
+		}
+
+		public boolean updateReturnDate(String id, String date) {
+
+			/*
+			 * This method adds a date to the table rentedTVBox
+			 */
+
+			boolean updatedRentedLiveConcert = false;
+
+			String query = "UPDATE rentedLiveConcert SET returnDate = '" + date + "' WHERE bandID = '" + id + "'";
+			if (updatedRentedLiveConcert = conn.ExecuteSet(query))
+				;
+			{
+				updatedRentedLiveConcert = true;
+			}
+
+			return updatedRentedLiveConcert;
+		}
+
+		public String[][] getAllRentedLiveConcertByCustomer(String customerID) {
+
+			int row = 0;
+
+			String[] columnNames = new String[] { "Band ID", "Title", "Rented Date" };
+
+			String[][] data = new String[100][columnNames.length];
+
+			String query = "SELECT rentedLiveConcert.bandID, liveConcert.title, rentedLiveConcert.rentedDate FROM rentedLiveConcert INNER JOIN liveConcert on rentedLiveConcert.bandID = liveConcert.bandID where returnDate is null and rentedLiveConcert.customerID = '"
+					+ customerID + "'";
+			ResultSet rs = conn.executeQuery(query);
+
+			try {
+				while (rs.next()) {
+					data[row][0] = rs.getString("bandID");
+					data[row][1] = rs.getString("title");
+					data[row][2] = rs.getString("rentedDate");
+					row++;
+
+				}
+
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(null, e);
+			}
+
+			return data;
+
 		}
 
 		public String[][] getAvailableLiveConcert() {
@@ -389,6 +517,69 @@ public class Queries {
 			return newMovie;
 		}
 
+		public boolean UpdateMovieToAvailable(String id) {
+
+			/*
+			 * This method changes the value of the field rented in the database to false,
+			 * which means then that the specific title is available again for rental.
+			 */
+
+			boolean updatedMovie = false;
+			String query = "UPDATE movies SET rented = '" + false + "' WHERE movieID = '" + id + "'";
+			if (updatedMovie = conn.ExecuteSet(query))
+				;
+			{
+				updatedMovie = true;
+			}
+			return updatedMovie;
+		}
+
+		public boolean updateReturnDate(String id, String date) {
+
+			/*
+			 * This method adds a date to the table rentedTVBox
+			 */
+
+			boolean updatedRentedMovie = false;
+
+			String query = "UPDATE rentedMovie SET returnDate = '" + date + "' WHERE movieID = '" + id + "'";
+			if (updatedRentedMovie = conn.ExecuteSet(query))
+				;
+			{
+				updatedRentedMovie = true;
+			}
+
+			return updatedRentedMovie;
+		}
+		public String[][] getAllRentedMovieByCustomer(String customerID) {
+
+			int row = 0;
+
+			String[] columnNames = new String[] { "Movie ID", "Title", "Rented Date" };
+
+			String[][] data = new String[100][columnNames.length];
+
+			String query = "SELECT rentedMovie.movieID, movies.title, rentedMovie.rentedDate FROM rentedMovie INNER JOIN movies on rentedMovie.movieID = movies.movieID where returnDate is null and rentedMovie.customerID = '"
+					+ customerID + "'";
+			ResultSet rs = conn.executeQuery(query);
+
+			try {
+				while (rs.next()) {
+					data[row][0] = rs.getString("movieID");
+					data[row][1] = rs.getString("title");
+					data[row][2] = rs.getString("rentedDate");
+					row++;
+
+				}
+
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(null, e);
+			}
+
+			return data;
+
+		}
+
 		public String[][] getAvailableMovie() {
 
 			boolean rented = false;
@@ -568,6 +759,40 @@ public class Queries {
 			return newMusic;
 		}
 
+		public boolean UpdateMusicToAvailable(String id) {
+
+			/*
+			 * This method changes the value of the field rented in the database to false,
+			 * which means then that the specific title is available again for rental.
+			 */
+
+			boolean updatedMusic = false;
+			String query = "UPDATE music SET rented = '" + false + "' WHERE musicID = '" + id + "'";
+			if (updatedMusic = conn.ExecuteSet(query))
+				;
+			{
+				updatedMusic = true;
+			}
+			return updatedMusic;
+		}
+
+		public boolean updateReturnDate(String id, String date) {
+
+			/*
+			 * This method adds a date to the table rentedTVBox
+			 */
+
+			boolean updatedRentedMusic = false;
+
+			String query = "UPDATE rentedMusic SET returnDate = '" + date + "' WHERE musicID = '" + id + "'";
+			if (updatedRentedMusic = conn.ExecuteSet(query))
+				;
+			{
+				updatedRentedMusic = true;
+			}
+
+			return updatedRentedMusic;
+		}
 		public Music getMusicDetails(String musicID) {
 
 			Music music;
@@ -601,6 +826,35 @@ public class Queries {
 			music = new Music(yearOfRelease, title, genre, price, singer, format);
 
 			return music;
+
+		}
+
+		public String[][] getAllRentedMusicByCustomer(String customerID) {
+
+			int row = 0;
+
+			String[] columnNames = new String[] { "Music ID", "Title", "Rented Date" };
+
+			String[][] data = new String[100][columnNames.length];
+
+			String query = "SELECT rentedMusic.musicID, music.title, rentedMusic.rentedDate FROM rentedMusic INNER JOIN music on rentedMusic.musicID = music.musicID where returnDate is null and rentedMusic.customerID = '"
+					+ customerID + "'";
+			ResultSet rs = conn.executeQuery(query);
+
+			try {
+				while (rs.next()) {
+					data[row][0] = rs.getString("musicID");
+					data[row][1] = rs.getString("title");
+					data[row][2] = rs.getString("rentedDate");
+					row++;
+
+				}
+
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(null, e);
+			}
+
+			return data;
 
 		}
 
@@ -772,10 +1026,10 @@ public class Queries {
 
 			boolean newCustomer = false;
 
-			String query = "INSERT INTO customer (fName, lName, email, cardNumber, plan, phoneNumber) " + "VALUES ( '"
-					+ customer.getfName() + "', '" + customer.getlName() + "', '" + customer.getEmail() + "', '"
-					+ customer.getCardNumber() + "' , '" + customer.getPlan() + "', '" + customer.getPhoneNumber()
-					+ "');";
+			String query = "INSERT INTO customer (fName, lNagetContentPane().setLayout(null);me, email, cardNumber, plan, phoneNumber) "
+					+ "VALUES ( '" + customer.getfName() + "', '" + customer.getlName() + "', '" + customer.getEmail()
+					+ "', '" + customer.getCardNumber() + "' , '" + customer.getPlan() + "', '"
+					+ customer.getPhoneNumber() + "');";
 
 			newCustomer = conn.ExecuteSet(query);
 

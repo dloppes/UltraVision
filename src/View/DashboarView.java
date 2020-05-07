@@ -43,7 +43,7 @@ public class DashboarView extends JFrame {
 		
 		frame = new JFrame();
 		frame.setUndecorated(true);
-		
+		frame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		frame.setVisible(true);
 		frame.setBounds(100, 100, 935, 632);
 		contentPane = new JPanel();
@@ -186,6 +186,14 @@ public class DashboarView extends JFrame {
 		mnRent.add(mntmRentTitles);
 		mntmRentTitles.addActionListener((ActionListener)controllerInternalRef);
 		mntmRentTitles.setActionCommand("rentTitles");
+		
+		JMenuItem mntmReturnTItles = new JMenuItem("RETURN TITLES");
+		mntmReturnTItles.setIcon(new ImageIcon(DashboarView.class.getResource("/img/Industry-Return-icon.png")));
+		mntmReturnTItles.setFont(new Font("Verdana", Font.BOLD, 18));
+		mntmReturnTItles.setActionCommand("rentTitles");
+		mnRent.add(mntmReturnTItles);
+		mntmReturnTItles.addActionListener((ActionListener)controllerInternalRef);
+		mntmReturnTItles.setActionCommand("returnTitles");
 		
 		JMenu mnLogout = new JMenu("Logout");
 		mnLogout.setBackground(Color.WHITE);
