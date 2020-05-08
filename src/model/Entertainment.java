@@ -10,16 +10,16 @@ package model;
  */
 public abstract class Entertainment {
 
-	protected int yearOfRelease;
+	protected String yearOfRelease;
 	protected String title;
 	protected String genre;
 	protected boolean rented = false;
 	protected double price;
 	protected String format;
 
-	public Entertainment(int yearOfRelease, String title, String genre, double price, String format) {
+	public Entertainment(String yearOfRelease2, String title, String genre, double price, String format) {
 
-		this.yearOfRelease = yearOfRelease;
+		this.yearOfRelease = yearOfRelease2;
 		this.title = title;
 		this.genre = genre;
 		this.rented = false;
@@ -39,11 +39,11 @@ public abstract class Entertainment {
 		return price;
 	}
 
-	public int getYearOfRelease() {
+	public String getYearOfRelease() {
 		return yearOfRelease;
 	}
 
-	public void setYearOfRelease(int yearOfRelease) {
+	public void setYearOfRelease(String yearOfRelease) {
 		this.yearOfRelease = yearOfRelease;
 	}
 

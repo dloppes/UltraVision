@@ -273,7 +273,7 @@ public class Queries {
 
 			return newLiveConcert;
 		}
-		
+
 		public boolean UpdateLiveConcertToAvailable(String id) {
 
 			/*
@@ -416,7 +416,7 @@ public class Queries {
 			String genre = "";
 			String format = "";
 			double price = 0;
-			int yearOfRelease = 0;
+			String yearOfRelease = "";
 			boolean rented = false;
 
 			try {
@@ -426,7 +426,7 @@ public class Queries {
 
 				while (rs.next()) {
 					bandID = (rs.getString("bandID"));
-					yearOfRelease = Integer.parseInt(rs.getString("yearOfRelease"));
+					yearOfRelease = (rs.getString("yearOfRelease"));
 					title = rs.getString("title");
 					genre = rs.getString("genre");
 					band = rs.getString("band");
@@ -551,6 +551,7 @@ public class Queries {
 
 			return updatedRentedMovie;
 		}
+
 		public String[][] getAllRentedMovieByCustomer(String customerID) {
 
 			int row = 0;
@@ -660,7 +661,7 @@ public class Queries {
 			String genre = "";
 			String format = "";
 			double price = 0;
-			int yearOfRelease = 0;
+			String yearOfRelease = "";
 			boolean rented = false;
 
 			try {
@@ -670,7 +671,7 @@ public class Queries {
 
 				while (rs.next()) {
 					movieID = (rs.getString("movieID"));
-					yearOfRelease = Integer.parseInt(rs.getString("yearOfRelease"));
+					yearOfRelease = (rs.getString("yearOfRelease"));
 					title = rs.getString("title");
 					genre = rs.getString("genre");
 					director = rs.getString("director");
@@ -793,12 +794,13 @@ public class Queries {
 
 			return updatedRentedMusic;
 		}
+
 		public Music getMusicDetails(String musicID) {
 
 			Music music;
 			ResultSet rs;
 
-			int yearOfRelease = 0;
+			String yearOfRelease = "";
 			String title = "";
 			String genre = "";
 			String singer = "";
@@ -812,7 +814,7 @@ public class Queries {
 				rs = conn.executeQuery(query);
 
 				while (rs.next()) {
-					yearOfRelease = Integer.parseInt(rs.getString("fName"));
+					yearOfRelease = (rs.getString("fName"));
 					title = rs.getString("lName");
 					genre = rs.getString("email");
 					singer = rs.getString("cardNumber");
@@ -938,7 +940,7 @@ public class Queries {
 			String genre = "";
 			String format = "";
 			double price = 0;
-			int yearOfRelease = 0;
+			String yearOfRelease = "";
 			boolean rented = false;
 
 			try {
@@ -948,7 +950,7 @@ public class Queries {
 
 				while (rs.next()) {
 					musicID = (rs.getString("musicID"));
-					yearOfRelease = Integer.parseInt(rs.getString("yearOfRelease"));
+					yearOfRelease = (rs.getString("yearOfRelease"));
 					title = rs.getString("title");
 					genre = rs.getString("genre");
 					singer = rs.getString("singer");
@@ -1107,6 +1109,18 @@ public class Queries {
 			boolean insertedCardPoints = false;
 
 			String query = "UPDATE loyaltyCard SET numberOfPoints = '" + totalPoints + "' WHERE customerID='"
+					+ customer.getCustomerID() + "';";
+			insertedCardPoints = conn.ExecuteSet(query);
+
+			return insertedCardPoints;
+
+		}
+
+		public boolean resetPointsLoyaltyCard(int points, Customer customer) {
+
+			boolean insertedCardPoints = false;
+
+			String query = "UPDATE loyaltyCard SET numberOfPoints = '" + points + "' WHERE customerID='"
 					+ customer.getCustomerID() + "';";
 			insertedCardPoints = conn.ExecuteSet(query);
 

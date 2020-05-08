@@ -167,8 +167,6 @@ public class RentTitlesController implements ActionListener {
 				else if (musicRentedCounter < 4) {
 					/* method to insert the movie Object into database */
 
-					double discount = 0;
-
 					/*
 					 * Calling method to: 1 - update music rented field to true, therefore music is
 					 * not available anymore for rent until its returned 2 - method to insert object
@@ -178,21 +176,12 @@ public class RentTitlesController implements ActionListener {
 					 */
 					boolean updateMusic = musicQuery.UpdateMusicToRented(music);
 					if (updateMusic == true) {
+						double discount = 0;
 
 						String date = this.RentTitlesView.getRentedDateTextField().getText();
 
 						musicQuery.InsertIntoMusicRentedTable(music, customer, date);
 
-						if (this.RentTitlesView.getCardPointsBalance().equals("100")) { // method requires an boolean
-																						// price to concede discount
-							this.RentTitlesView.setDiscountTextField(
-									customer.totalDiscount()); /*
-																 * after value is retrieved it has been set in the
-																 * discount field
-																 */
-						}
-
-						discount = Double.parseDouble(this.RentTitlesView.getDiscountTextField().getText());
 						double price = Double.parseDouble(this.RentTitlesView.getTotalTextField().getText());
 						double newTotal = customer.totalToPay(music.getPrice(), price, discount);
 						this.RentTitlesView.setTotalTextField(newTotal);
@@ -248,11 +237,6 @@ public class RentTitlesController implements ActionListener {
 
 						movieQuery.InsertIntoMovieRentedTable(movie, customer, date);
 
-						if (this.RentTitlesView.getCardPointsBalance().equals("100")) {
-							this.RentTitlesView.setDiscountTextField(customer.totalDiscount());
-						}
-
-						discount = Double.parseDouble(this.RentTitlesView.getDiscountTextField().getText());
 						double price = Double.parseDouble(this.RentTitlesView.getTotalTextField().getText());
 						double newTotal = customer.totalToPay(movie.getPrice(), price, discount);
 						this.RentTitlesView.setTotalTextField(newTotal);
@@ -304,11 +288,6 @@ public class RentTitlesController implements ActionListener {
 
 						liveConcertQuery.InsertIntoLiveConcertRentedTable(liveConcert, customer, date);
 
-						if (this.RentTitlesView.getCardPointsBalance().equals("100")) {
-							this.RentTitlesView.setDiscountTextField(customer.totalDiscount());
-						}
-
-						discount = Double.parseDouble(this.RentTitlesView.getDiscountTextField().getText());
 						double price = Double.parseDouble(this.RentTitlesView.getTotalTextField().getText());
 						double newTotal = customer.totalToPay(liveConcert.getPrice(), price, discount);
 						this.RentTitlesView.setTotalTextField(newTotal);
@@ -360,11 +339,6 @@ public class RentTitlesController implements ActionListener {
 
 						TVBoxQuery.InsertIntoTVBoxRentedTable(tvBox, customer, date);
 
-						if (this.RentTitlesView.getCardPointsBalance().equals("100")) {
-							this.RentTitlesView.setDiscountTextField(customer.totalDiscount());
-						}
-
-						discount = Double.parseDouble(this.RentTitlesView.getDiscountTextField().getText());
 						double price = Double.parseDouble(this.RentTitlesView.getTotalTextField().getText());
 						double newTotal = customer.totalToPay(tvBox.getPrice(), price, discount);
 						this.RentTitlesView.setTotalTextField(newTotal);
@@ -382,7 +356,35 @@ public class RentTitlesController implements ActionListener {
 			 * customer earned in this transaction for each rental the customer earns 10
 			 * points
 			 */
-			if (this.RentTitlesView.getDiscountTextField().getText().equals("0.0")) {
+			
+			double cardPointsBalance = Double.parseDouble(this.RentTitlesView.getCardPointsBalance());
+				
+			if (cardPointsBalance ==100.0) {
+
+				double discount = 0;
+				double defaultProductPrice = 0; /*
+												 * I don`t have to calculate price of the product as it has already been
+												 * calculated by now and its sum is in the total textfield
+												 */
+				this.RentTitlesView.setDiscountTextField(customer.totalDiscount());
+				discount = Double.parseDouble(this.RentTitlesView.getDiscountTextField().getText());
+				double price = Double.parseDouble(this.RentTitlesView.getTotalTextField().getText());
+				double newTotal = customer.totalToPay(defaultProductPrice, price, discount);
+				this.RentTitlesView.setTotalTextField(newTotal);
+
+				int resetPoints = 0;
+
+				Queries.loyaltyCard loyaltyPoints = queries.new loyaltyCard();
+				loyaltyPoints.resetPointsLoyaltyCard(resetPoints, customer);
+				
+				ImageIcon image = new ImageIcon(RentTitlesController.class.getResource("/img/shopping-bag-icon.png"));
+				JOptionPane.showMessageDialog(null,
+						"Thank you for shopping with us! Don`t forget to bring the items back in 3 days! Your points now has been reseted to 0", "Thanks",
+						JOptionPane.INFORMATION_MESSAGE, image);
+
+			}
+
+			else {
 
 				int pointsEarned = customer.totalPointsEarned();
 				this.RentTitlesView.setCardPointsEarnedTextField(pointsEarned);

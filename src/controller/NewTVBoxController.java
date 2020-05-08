@@ -41,27 +41,42 @@ public class NewTVBoxController implements ActionListener {
 		double price = this.NewTVBoxView.getPrice();
 		String format = this.NewTVBoxView.getFormat();
 
-		TVBox tvBox = new TVBox(title, season, numberOfDisks, price, format);
+		/*
+		 * Validating employee input. Field cannot be empty. I am validating only some fields because the other ones has combobox, therefore
+		 * it has an option selected by default
+		 */
 
-		String action = ae.getActionCommand();
+		if (title.isEmpty() == true) {
+			JOptionPane.showMessageDialog(null, "Please fill all the fields");
 
-		if (action.equals("create")) {
-
-			Queries tvBoxQuery = new Queries(); // instance of Query in order to access its methods and inner classes
-
-			Queries.tvBoxClass innerTVBox = tvBoxQuery.new tvBoxClass(); // accessing TVBox inner class
-
-			boolean newTVBox = innerTVBox.insertNewTVBox(tvBox); /*
-																	 * within music Inner class accessing the method to
-																	 * insert new TVBox that receives a music object
-																	 */
-
-			if (newTVBox) {
-				this.NewTVBoxView.dispose();
-				JOptionPane.showMessageDialog(null, "TV Box " + tvBox.getTitle() + " sucessfully Registered!");
-			}
 		}
 
+		else {
+
+			TVBox tvBox = new TVBox(title, season, numberOfDisks, price, format);
+
+			String action = ae.getActionCommand();
+
+			if (action.equals("create")) {
+
+				Queries tvBoxQuery = new Queries(); // instance of Query in order to access its methods and inner
+													// classes
+
+				Queries.tvBoxClass innerTVBox = tvBoxQuery.new tvBoxClass(); // accessing TVBox inner class
+
+				boolean newTVBox = innerTVBox
+						.insertNewTVBox(tvBox); /*
+												 * within music Inner class accessing the method to insert new TVBox
+												 * that receives a music object
+												 */
+
+				if (newTVBox) {
+					this.NewTVBoxView.dispose();
+					JOptionPane.showMessageDialog(null, "TV Box " + tvBox.getTitle() + " sucessfully Registered!");
+				}
+			}
+
+		}
 	}
 
 }

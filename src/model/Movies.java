@@ -18,7 +18,7 @@ public class Movies extends Entertainment {
 	 * This constructor is used when I first create the Movie object, It has no ID
 	 * because the ID will be created automatically when inserted into the database.
 	 */
-	public Movies(int yearOfRelease, String title, String genre, double price, String director, String format) {
+	public Movies(String yearOfRelease, String title, String genre, double price, String director, String format) {
 		super(yearOfRelease, title, genre, price, director);
 
 		this.director = director;
@@ -30,7 +30,7 @@ public class Movies extends Entertainment {
 	 * query, get the ID from the database and therefore create an object that has
 	 * the attribute ID.
 	 */
-	public Movies(int yearOfRelease, String title, String genre, double price, String director, String format,
+	public Movies(String yearOfRelease, String title, String genre, double price, String director, String format,
 			String movieID) {
 		super(yearOfRelease, title, genre, price, director);
 

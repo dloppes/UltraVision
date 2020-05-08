@@ -172,9 +172,9 @@ public class NewLiveConcertView extends JFrame {
 		
 	}
 	
-	public int getYearOfRelease() {
-		int year = Integer.parseInt(yearOfReleaseTextField.getText());
-		return year;
+	public String getYearOfRelease() {
+		return yearOfReleaseTextField.getText();
+	
 		
 	}
 	

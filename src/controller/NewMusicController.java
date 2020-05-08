@@ -40,30 +40,46 @@ public class NewMusicController implements ActionListener {
 		String title = this.NewMusicView.getTitle();
 		String singer = this.NewMusicView.getSinger();
 		String genre = this.NewMusicView.getGenre();
-		int yearOfRelease = this.NewMusicView.getYearOfRelease();
+		String yearOfRelease = this.NewMusicView.getYearOfRelease();
 		String format = this.NewMusicView.getFormat();
 		double price = this.NewMusicView.getPrice();
 
-		Music music = new Music(yearOfRelease, title, genre, price, singer, format);
+		/*
+		 * Validating employee input. Field cannot be empty. I am validating only some
+		 * fields because the other ones has combobox, therefore it has an option
+		 * selected by default
+		 */
 
-		String action = ae.getActionCommand();
+		if (title.isEmpty() == true || singer.isEmpty() == true || yearOfRelease.isEmpty() == true) {
+			JOptionPane.showMessageDialog(null, "Please fill all the fields");
 
-		if (action.equals("create")) {
+		}
 
-			Queries musicQuery = new Queries(); // instance of Query in order to access its methods and inner classes
+		else {
 
-			Queries.musicClass innerMusic = musicQuery.new musicClass(); // accessing Music inner class
+			Music music = new Music(yearOfRelease, title, genre, price, singer, format);
 
-			boolean newMusic = innerMusic.insertNewMusic(music); /*
-																	 * within music Inner class accessing the method to
-																	 * insert new music that receives a music object
-																	 */
+			String action = ae.getActionCommand();
 
-			if (newMusic) {
-				this.NewMusicView.dispose();
-				JOptionPane.showMessageDialog(null, "New Music " + music.getTitle() + " Successfully Created!");
+			if (action.equals("create")) {
+
+				Queries musicQuery = new Queries(); // instance of Query in order to access its methods and inner
+													// classes
+
+				Queries.musicClass innerMusic = musicQuery.new musicClass(); // accessing Music inner class
+
+				boolean newMusic = innerMusic
+						.insertNewMusic(music); /*
+												 * within music Inner class accessing the method to insert new music
+												 * that receives a music object
+												 */
+
+				if (newMusic) {
+					this.NewMusicView.dispose();
+					JOptionPane.showMessageDialog(null, "New Music " + music.getTitle() + " Successfully Created!");
+				}
+
 			}
-
 		}
 	}
 }

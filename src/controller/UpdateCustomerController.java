@@ -84,25 +84,51 @@ public class UpdateCustomerController implements ActionListener {
 			String plan = UpdateCustomerView.getPlan();
 			String phoneNumber = UpdateCustomerView.getPhoneNumber();
 
-			Customer customer = new Customer(fName, lName, phoneNumber, email, plan, cardNumber);
+			/*
+			 * Validating new customer input: Checking if the field is not empty. Checking
+			 * if fields First Name and Last Name are letters (no numbers allowed). Finally,
+			 * checking if the field email contains a "@" which determines wether or not it
+			 * is a valid email
+			 */
 
-			Queries newCustomerQuery = new Queries();
+			if (fName.isEmpty() == true || lName.isEmpty() == true || email.isEmpty() == true) {
+				JOptionPane.showMessageDialog(null, "Please make sure that fields are NOT EMPTY!");
+			}
 
-			updateCustomer updateDetails = newCustomerQuery.new updateCustomer(); // instance of the class
+			else if (!fName.matches("[a-zA-z]+") || !lName.matches("[a-zA-z]+")) {
 
-			boolean updatedCustomerBoolean = updateDetails.updateCustomerDetails(customer, userID); // method within the class to update customer
-
-			if (updatedCustomerBoolean) {
-
-				this.UpdateCustomerView.dispose();
-				JOptionPane.showMessageDialog(null,
-						customer.getfName() + " " + customer.getlName() + " Updated Successfuly!");
-
-			} else {
-				JOptionPane.showMessageDialog(null, "Something went wrong, please try again!");
+				JOptionPane.showMessageDialog(null, "Only letters allowed for fields First Name and Last Name");
 
 			}
 
+			else if (!email.contains("@")) {
+				JOptionPane.showMessageDialog(null, "Please insert a valid email format");
+			} else {
+
+				Customer customer = new Customer(fName, lName, phoneNumber, email, plan, cardNumber);
+
+				Queries newCustomerQuery = new Queries();
+
+				updateCustomer updateDetails = newCustomerQuery.new updateCustomer(); // instance of the class
+
+				boolean updatedCustomerBoolean = updateDetails.updateCustomerDetails(customer, userID); // method within
+																										// the
+																										// class to
+																										// update
+																										// customer
+
+				if (updatedCustomerBoolean) {
+
+					this.UpdateCustomerView.dispose();
+					JOptionPane.showMessageDialog(null,
+							customer.getfName() + " " + customer.getlName() + " Updated Successfuly!");
+
+				} else {
+					JOptionPane.showMessageDialog(null, "Something went wrong, please try again!");
+
+				}
+
+			}
 		}
 	}
 

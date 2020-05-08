@@ -19,7 +19,7 @@ public class LiveConcert extends Entertainment {
 	 * no ID because the ID will be created automatically when inserted into the
 	 * database.
 	 */
-	public LiveConcert(int yearOfRelease, String title, String genre, double price, String band, String format) {
+	public LiveConcert(String yearOfRelease, String title, String genre, double price, String band, String format) {
 		super(yearOfRelease, title, genre, price, band);
 
 		this.band = band;
@@ -31,7 +31,7 @@ public class LiveConcert extends Entertainment {
 	 * I can query, get the ID from the database and therefore create an object that
 	 * has the attribute ID.
 	 */
-	public LiveConcert(int yearOfRelease, String title, String genre, double price, String band, String format,
+	public LiveConcert(String yearOfRelease, String title, String genre, double price, String band, String format,
 			String liveConcertID) {
 		super(yearOfRelease, title, genre, price, band);
 

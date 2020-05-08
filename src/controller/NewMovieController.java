@@ -38,31 +38,45 @@ public class NewMovieController implements ActionListener {
 		String title = this.NewMovieView.getTitle();
 		String director = this.NewMovieView.getDirector();
 		String genre = this.NewMovieView.getGenre();
-		int yearOfRelease = this.NewMovieView.getYearOfRelease();
+		String yearOfRelease = this.NewMovieView.getYearOfRelease();
 		String format = this.NewMovieView.getFormat();
 		double price = this.NewMovieView.getPrice();
 
-		Movies movie = new Movies(yearOfRelease, title, genre, price, director, format);
+		/*
+		 * Validating employee input. Field cannot be empty. I am validating only some
+		 * fields because the other ones has combobox, therefore it has an option
+		 * selected by default
+		 */
 
-		String action = ae.getActionCommand();
+		if (title.isEmpty() == true || director.isEmpty() == true || yearOfRelease.isEmpty() == true) {
+			JOptionPane.showMessageDialog(null, "Please fill all the fields");
 
-		if (action.equals("create")) {
-
-			Queries movieQuery = new Queries(); // instance of Queries
-
-			Queries.movieClass innerMovie = movieQuery.new movieClass(); /*
-																			 * instance of the inner class within Live
-																			 * Movie Class
-																			 */
-
-			boolean newMovie = innerMovie.insertNewMovie(movie);
-
-			if (newMovie) {
-				this.NewMovieView.dispose();
-				JOptionPane.showMessageDialog(null, "New Movie " + movie.getTitle() + " Successfully Created!");
-			}
 		}
 
+		else {
+
+			Movies movie = new Movies(yearOfRelease, title, genre, price, director, format);
+
+			String action = ae.getActionCommand();
+
+			if (action.equals("create")) {
+
+				Queries movieQuery = new Queries(); // instance of Queries
+
+				Queries.movieClass innerMovie = movieQuery.new movieClass(); /*
+																				 * instance of the inner class within
+																				 * Live Movie Class
+																				 */
+
+				boolean newMovie = innerMovie.insertNewMovie(movie);
+
+				if (newMovie) {
+					this.NewMovieView.dispose();
+					JOptionPane.showMessageDialog(null, "New Movie " + movie.getTitle() + " Successfully Created!");
+				}
+			}
+
+		}
 	}
 
 }

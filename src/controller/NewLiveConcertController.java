@@ -37,37 +37,51 @@ public class NewLiveConcertController implements ActionListener {
 		String title = this.NewLiveConcertView.getTitle();
 		String band = this.NewLiveConcertView.getBand();
 		String genre = this.NewLiveConcertView.getGenre();
-		int yearOfRelease = this.NewLiveConcertView.getYearOfRelease();
+		String yearOfRelease = this.NewLiveConcertView.getYearOfRelease();
 		String format = this.NewLiveConcertView.getFormat();
 		double price = this.NewLiveConcertView.getPrice();
 
-		LiveConcert liveConcert = new LiveConcert(yearOfRelease, title, genre, price, band, format);
+		/*
+		 * Validating employee input. Field cannot be empty. I am validating only title,
+		 * band and yearOfRelease fields because the other ones has combobox, therefore
+		 * it has an option selected by default
+		 */
 
-		String action = ae.getActionCommand();
-
-		if (action.equals("create")) {
-
-			Queries liveConcertQueries = new Queries(); // instance of the Queries
-
-			Queries.liveConcertClass innerLiveConcert = liveConcertQueries.new liveConcertClass(); /*
-																									 * instance of the
-																									 * inner class
-																									 * within Live
-																									 * Concert Class
-																									 */
-
-			boolean newLiveConcert = innerLiveConcert
-					.insertNewLiveConcert(liveConcert); /*
-														 * accessing the method that is in Live Concert class
-														 */
-
-			if (newLiveConcert) {
-				this.NewLiveConcertView.dispose();
-				JOptionPane.showMessageDialog(null,
-						"New Live Concert " + liveConcert.getTitle() + " Successfully Created!");
-			}
+		if (title.isEmpty() == true || band.isEmpty() == true || yearOfRelease.isEmpty() == true) {
+			JOptionPane.showMessageDialog(null, "Please fill all the fields");
 
 		}
-	}
 
+		else {
+
+			LiveConcert liveConcert = new LiveConcert(yearOfRelease, title, genre, price, band, format);
+
+			String action = ae.getActionCommand();
+
+			if (action.equals("create")) {
+
+				Queries liveConcertQueries = new Queries(); // instance of the Queries
+
+				Queries.liveConcertClass innerLiveConcert = liveConcertQueries.new liveConcertClass(); /*
+																										 * instance of
+																										 * the inner
+																										 * class within
+																										 * Live Concert
+																										 * Class
+																										 */
+
+				boolean newLiveConcert = innerLiveConcert
+						.insertNewLiveConcert(liveConcert); /*
+															 * accessing the method that is in Live Concert class
+															 */
+
+				if (newLiveConcert) {
+					this.NewLiveConcertView.dispose();
+					JOptionPane.showMessageDialog(null,
+							"New Live Concert " + liveConcert.getTitle() + " Successfully Created!");
+				}
+
+			}
+		}
+	}
 }
