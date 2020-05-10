@@ -15,8 +15,8 @@ import model.Queries.updateCustomer;
 
 /**
  * 
- * @author Daniel Lopes This class managens the update of a customer. The String
- *         ID is passed throught the view. I access the database to search for
+ * @author Daniel Lopes This class managers the update of a customer. The String
+ *         ID is passed through the view. I access the database to search for
  *         the customer that has the got from my view. Once I have found the
  *         customer it calls method to update customer into my database
  */
