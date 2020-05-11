@@ -1028,7 +1028,7 @@ public class Queries {
 
 			boolean newCustomer = false;
 
-			String query = "INSERT INTO customer (fName, lNagetContentPane().setLayout(null);me, email, cardNumber, plan, phoneNumber) "
+			String query = "INSERT INTO customer (fName, lName, email, cardNumber, plan, phoneNumber) "
 					+ "VALUES ( '" + customer.getfName() + "', '" + customer.getlName() + "', '" + customer.getEmail()
 					+ "', '" + customer.getCardNumber() + "' , '" + customer.getPlan() + "', '"
 					+ customer.getPhoneNumber() + "');";
