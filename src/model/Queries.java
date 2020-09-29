@@ -1028,10 +1028,10 @@ public class Queries {
 
 			boolean newCustomer = false;
 
-			String query = "INSERT INTO customer (fName, lName, email, cardNumber, plan, phoneNumber) "
-					+ "VALUES ( '" + customer.getfName() + "', '" + customer.getlName() + "', '" + customer.getEmail()
-					+ "', '" + customer.getCardNumber() + "' , '" + customer.getPlan() + "', '"
-					+ customer.getPhoneNumber() + "');";
+			String query = "INSERT INTO customer (fName, lName, email, cardNumber, plan, phoneNumber) " + "VALUES ( '"
+					+ customer.getfName() + "', '" + customer.getlName() + "', '" + customer.getEmail() + "', '"
+					+ customer.getCardNumber() + "' , '" + customer.getPlan() + "', '" + customer.getPhoneNumber()
+					+ "');";
 
 			newCustomer = conn.ExecuteSet(query);
 
